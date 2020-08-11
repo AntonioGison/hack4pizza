@@ -1,0 +1,76 @@
+
+
+.inp_cls{
+    position: absolute;
+    right: 15px;
+    display: none;
+    z-index: 99;
+}
+
+.box:hover .inp_cls{
+    display: block;
+}
+
+.inp_cls:hover{
+    background-color: red;
+    padding: 3px;
+    color: white;
+    cursor: pointer;
+}
+.box{
+    /*margin-top: 15px;*/
+    /*margin-bottom: 15px;*/
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.box:hover{
+    background-color: aliceblue;
+}
+
+.lbl{
+    border: 0;
+    width: 100%;
+}
+
+.ttl{
+    text-align: center;
+    background-color: #30a5ff;
+    color: white;
+    padding: 15px;
+}
+
+.md-screen .status{
+    color: transparent;
+}
+
+.save:hover em{
+    color: #14cb08;
+}
+
+.md-screen .active{
+    border: 1px solid #30a5ff;
+}
+
+.old_inp:hover{
+    cursor: crosshair;
+    background-color: #f9243f;
+    color: white;
+}
+
+.users p{
+    font-size: 11px;
+    border-bottom: 1px solid #a2a2a2;
+}
+
+.s_form_box{
+    margin-bottom: 15px;
+}
+
+.s_form_box lable{
+    display: block;
+}
+
+.border-bottom{
+    margin-bottom: 15px;
+}
+

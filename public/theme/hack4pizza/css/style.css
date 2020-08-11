@@ -1,0 +1,778 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap');body {
+  background-color: #fcfcfa;  font-family: 'Roboto', sans-serif;
+}
+
+img {
+  max-width: 100%;
+}
+
+.color_1 {
+  color: #f9b940;
+}
+
+.color_3 {
+  color: #ae4d00;
+}
+
+.form-control, .custom-file-label {
+  border-radius: 0;
+  border-color: #707070;
+}
+
+.custom-file-label::after {
+  color: #ffffff;
+  background-color: #1b8bee;
+  border-left: 1px solid #777777;
+  border-radius: 0;
+}
+
+.custom-file-input {
+  cursor: pointer;
+}
+
+.block-title {
+  position: absolute;
+  top: -20px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #ffffff;
+  width: 240px;
+  left: 0;
+  right: 0;
+  border: 1.5px solid #bbbbbb;
+  line-height: 45px;
+  font-weight: 700;
+  color: #707070;
+  font-size: 24px;
+}
+
+.block_wrapper {
+  border: 1.5px solid #bbbbbb;
+  box-shadow: 0 3px 5px #a7a7a76b;
+  min-height: 300px;
+  padding-top: 60px;
+  background-color: #ffffff;
+}
+
+form.form_class {
+  padding: 30px 60px;
+}
+
+button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+}
+
+button:focus {
+  outline: none;
+}
+.btn-register {    background-color: #64ac51;    color: #ffffff;    text-transform: uppercase;    font-weight: 500;    font-size: 14px;    padding: 5px 15px;}.btn-dashboard {    background-color: #64ac51;    color: #ffffff;    text-transform: uppercase;    font-weight: 500;    font-size: 14px;    padding: 5px 15px;}.btn-logout {    background-color: #007bff;    color: #ffffff;    text-transform: uppercase;    font-weight: 500;    font-size: 14px;    padding: 5px 15px;}.btn-custom{	text-transform: uppercase;    font-weight: 500;    font-size: 14px;    padding: 5px 15px;}.btn-dashboard:hover, .btn-dashboard:focus, .btn-logout:hover, .btn-logout:focus{	color: #ffffff;}
+
+.btn-github {
+    background-color: #333333;
+    color: #ffffff;
+    border: none;
+    text-transform: capitalize;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 5px 35px 5px 15px;
+}
+.btn-github:hover, .btn-github:focus{
+	background-color: #6b6a6a;
+	color: #ffffff;
+}
+.btn-linkedin {
+    background-color: #1A82B9;
+    color: #ffffff;
+    border: none;
+    text-transform: capitalize;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 5px 35px 5px 15px;
+}
+.btn-linkedin:hover, .btn-linkedin:focus{
+	background-color: #29b2fb;
+	color: #ffffff;
+}
+.btn-github i, .btn-linkedin i {
+    margin-right: 10px;
+}
+.external_logins {
+    text-align: center;
+    padding: 45px 10px 20px;
+    position: relative;
+    margin-top: 35px;
+}
+.external_logins:after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 35%;
+    background-color: #E3E3E2;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+.empty-text {
+  color: #9c9caf;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.empty-text a, .empty-text button {
+  color: #9c9caf;
+  text-decoration: underline;
+}
+
+.relative {
+  position: relative;
+}
+
+#header {
+  padding: 7px 10px;
+  margin-bottom: 20px;
+}
+
+#header.header_shadow {
+  box-shadow: 0 0 4px #00000061;
+}
+
+.btn-login {
+  background-color: #e92f35;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 5px 30px;	font-weight: 500;
+}
+
+.btn_signin_helper {
+  margin-top: 25px;
+  color: #545454;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+}
+
+.btn_signin_mobile {
+  padding: 0 0 5px 0;
+  color: #e92f35;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.login_wrapper {
+  text-align: right;
+}
+
+#main_content {
+  padding-top: 50px;
+}
+
+#main_content h3 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #3c3c3c;
+}
+
+#main_content p {
+  margin-bottom: 0;
+  /*font-weight: 600;*/
+  font-size: 20px;
+  line-height: 25px;
+}
+.main_content_text p{
+  font-family: Sylfaen;
+}
+#main_content p a {
+  color: #af0063;
+  text-decoration: underline;
+}
+
+#main_content .img-note {
+  color: #a79b9b;
+  font-size: 10px !important;
+  margin-top: 25px;
+}
+
+.btn-signup {
+  display: inline-block;
+  background-color: #ff792c;
+  color: #ffffff;
+  padding: 5px 30px;
+  margin-top: 40px;
+  box-shadow: inset 0px -2.5px 0px #d34d00;
+  outline: none;
+  text-transform: uppercase;    border: none;    font-weight: 500; font-size: 16px;
+}
+
+.madia_note {
+  border: 1px solid #bababa;
+  padding: 10px 20px;
+  margin: 40px auto;
+}
+
+.madia_note h5 {
+  color: #787877;
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.madia_note p {
+  color: #787877;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  line-height: 17px !important;
+}
+
+.madia_note img {
+  width: 60px;
+}
+
+.howitwork_block {
+  margin: 40px auto;
+  width: 280px;
+}
+
+.howitwork_block_cover {
+  display: inline-block;
+  border: 1px solid #bcbcbc;
+  margin-bottom: 15px;
+}
+
+.howitwork_block h4 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.howitwork_block p {
+  margin-bottom: 0;
+  font-family: Sylfaen;
+}
+
+.main_info_wraper {
+  min-height: 300px;
+  margin: 10px auto;
+  padding: 65px 15px 40px;
+}
+
+.main_info_wraper:before {
+  content: '';
+  background: rgb(255, 2, 126);
+  background: linear-gradient(90deg, rgba(255, 2, 126, 1) 0%, rgba(255, 62, 71, 1) 25%, rgba(255, 120, 18, 1) 50%, rgba(155, 184, 109, 1) 75%, rgba(67, 223, 205, 1) 100%);
+  position: absolute;
+  width: 100%;
+  height: 15px;
+  top: 10px;
+  left: 0;
+}
+
+.main_info_info {
+  padding: 0;
+}
+
+.main_info_cover .figure-img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.main_info_info h2 {
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.main_info_info p {
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 30px;
+}
+
+.main_info_links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.main_info_links a {
+  color: #6B6B6B;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.performance {
+  padding: 0px 5px 0 0;
+  margin-top: 45px;
+}
+
+#performance-badges .performance a.btn-edit, #performance-badges .performance button.btn-edit {
+  position: absolute;
+  right: 30px;
+  top: 20px;
+  z-index: 999;
+}
+
+.badges {
+  padding: 0 0 0 5px;
+  margin-top: 45px;
+}
+
+.performance .block_wrapper, .badges .block_wrapper {
+  padding-top: 40px;
+  padding-bottom: 30px;
+  min-height: 357px;
+  overflow: hidden;
+}
+
+canvas {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+#chartjs-tooltip {
+  opacity: 1;
+  position: absolute;
+  background: rgba(0, 0, 0, .7);
+  color: white;
+  border-radius: 3px;
+  -webkit-transition: all .1s ease;
+  transition: all .1s ease;
+  pointer-events: none;
+  -webkit-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+}
+
+#chartjs-radar {
+  width: 320px;
+  margin: 0 auto;
+  border: 1.5px solid #707070;
+  padding: 0 10px;
+}
+
+#chartjs-radar #canvas {
+  margin: -8px 0;
+}
+
+.badge-min-height {
+  min-height: 285px;
+}
+
+.badge-container {
+  padding: 7px;
+}
+
+.badge-wrapper {
+  display: inline-block;
+  border: 1.5px solid #707070;
+  background-color: #e8e8e8;
+}
+
+.badge-all a {
+  color: #707070;
+  font-weight: 700;
+  text-decoration: underline;
+  margin-top: 10px;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.badge-all button {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #707070;
+  font-weight: 700;
+  text-decoration: underline;
+  margin-top: 10px;
+}
+
+.hackathon_main_wrapper {
+  margin-top: 40px;
+  padding: 70px 60px 40px;
+  min-height: auto;
+}
+
+.hackathon_block {
+  margin: 20px 0;
+}
+
+.hackathon_block .media-body {
+  padding-right: 30px;
+}
+
+.hackathon_block h3 {
+  color: #707070;
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.hackathon_block h4 {
+  color: #707070;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.hackathon_block p {
+  color: #707070;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 15px 0 0;
+}
+
+.hackathon_block p a {
+  color: #ff4242;
+  text-decoration: underline;
+}
+
+.hackathon_block .hackathon_position {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.hackathon_block .hackathon_position span {
+  font-size: 18px;
+}
+
+span.hackathon_date {
+  margin-left: 20px;
+}
+
+.hackathon_block .hackathon_cover {
+  border: 1.5px solid #707070;	min-height: 130px;
+	width: 130px;
+	height: 130px;
+	object-fit: cover;
+}
+
+#hackathon .btn-plus {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.hackathonblock_controls {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 40px;
+  opacity: 0;
+}
+.hackathon_block:hover .hackathonblock_controls{
+	opacity: 1;
+	transition: all 0.3s;
+}
+.hackathonblock_controls a, .hackathonblock_controls button {
+  margin-bottom: 7px;
+  display: inline-block;
+}
+
+.hackathon_winBadges {
+  text-align: center;
+  background-color: #f5f5f5;
+}
+
+.hackathon_winBadges .media.hackathon_position {
+  display: inline-block;
+  margin: 15px 20px;
+  font-weight: 600;
+}
+
+.modal button.btn-close {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+#all_badges .badge_group {
+  margin: 15px auto;
+}
+#all_badges .badge_group.badge_hide {  opacity: 0.2;}
+#all_badges .media {
+  border: 2px solid #838383;
+}
+
+#all_badges .media img {
+  width: 89px;
+  margin-right: 10px;
+  border-right: 2px solid #838383;
+}
+
+#all_badges .media .media-body h5 {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+#all_badges .media .media-body p {
+  margin-bottom: 0;
+  line-height: 19px;
+}
+
+#footer {
+  border-top: 1px solid #d0d0d0;
+  padding: 10px 0;
+  margin-top: 35px
+}
+
+#footer p {
+  margin: 0;
+}
+
+#footer a {
+  color: #000000;
+  font-weight: 700;
+  text-decoration: underline;
+  margin: 2px 10px;
+  display: inline-block;
+}
+.form-group.passwordBox {
+	position: relative;
+}
+
+#password_Progress {
+    position: absolute;
+    top: -7px;
+    width: 50%;
+    height: 30px;
+    right: 0;
+}
+
+#password_strength {
+    font-weight: 500;
+	color:#e11f1b;
+}
+meter {
+    /* Reset the default appearance */
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+            
+    margin: 0 auto 1em;
+    width: 100%;
+    height: 10px;
+	border: 1px solid #707070;
+    
+    /* Applicable only to Firefox */
+    background: rgb(225,31,27);
+	background: linear-gradient(90deg, rgba(225,31,27,1) 0%, rgba(240,124,13,1) 33%, rgba(249,219,2,1) 66%, rgba(120,234,55,1) 100%);
+}
+
+meter::-webkit-meter-bar {
+    background: rgb(225,31,27);
+	background: linear-gradient(90deg, rgba(225,31,27,1) 0%, rgba(240,124,13,1) 33%, rgba(249,219,2,1) 66%, rgba(120,234,55,1) 100%);
+}
+
+meter[value="1"]::-webkit-meter-optimum-value { background: red; }
+meter[value="2"]::-webkit-meter-optimum-value { background: yellow; }
+meter[value="3"]::-webkit-meter-optimum-value { background: orange; }
+meter[value="4"]::-webkit-meter-optimum-value { background: green; }
+
+meter[value="1"]::-moz-meter-bar { background: red; }
+meter[value="2"]::-moz-meter-bar { background: yellow; }
+meter[value="3"]::-moz-meter-bar { background: orange; }
+meter[value="4"]::-moz-meter-bar { background: green; }
+
+
+
+#login_form .external_btns_helper{
+    text-align: right;
+}
+#login_form .btn-github, #login_form .btn-linkedin{
+	font-weight: 400;
+    font-size: 12px;
+}
+#login_form .btn-simple-forget{
+    color: #000000;
+    font-size: 14px;
+    margin-left: 5px;
+    vertical-align: bottom;
+}
+
+
+/* styles for '...' */ 
+.block-with-text {
+  overflow: hidden;
+  position: relative; 
+  line-height: 1.2em;
+  max-height: 6em; 
+  text-align: justify;  
+  margin-right: -1em;
+  padding-right: 1em;
+}
+.block-with-text:before {
+  content: '...';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.block-with-text:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  width: 1em;
+  height: 1em;
+  margin-top: 0.2em;
+  background: white;
+}
+
+
+@media (max-width: 992px) {
+.btns_helper {
+    text-align: center;
+    margin-bottom: 15px;
+}
+#login_form .external_btns_helper{
+	text-align: center;
+}
+}
+@media (max-width: 767px) {
+	#header {
+		margin-bottom: 0px;
+	}
+	#header .logo img{
+		width: 100%;
+	}
+  .main_info_wraper {
+    margin: 10px auto;
+    padding: 40px 15px 1px;
+  }
+
+  .main_info_links {
+    position: absolute;
+    right: 0px;
+    top: 0;
+    width: 32%;
+    padding: 0;
+  }
+	.main_info_links a {
+		font-size: 14px;
+	}
+  .main_info_links img {
+    margin-right: 7px !important;
+	width: 17px;
+  }
+
+  .main_info_wraper .figure {
+    margin-bottom: 5px;
+  }
+
+  .main_info_cover .figure-img {
+		width: 100px;
+		object-fit: cover;
+		height: 100px;
+	}
+
+  .main_info_info {
+    padding: 0 15px;
+  }
+
+  .main_info_info h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .main_info_info p {
+    font-size: 14px;
+    line-height: 21px;
+  }
+
+  .performance, .badges {
+    padding: 0px 0px;
+  }
+
+  .hackathon_main_wrapper {
+    padding: 50px 15px 15px;
+  }
+
+  .hackathon_block .hackathon_cover {
+    width: 55px;
+	height: 55px;
+    margin-right: 15px !important;		min-height: 50px;
+  }
+
+  .hackathon_block h3 {
+    font-size: 12px;
+  }
+
+  .hackathon_block .hackathon_position span {
+    font-size: 12px;
+  }
+
+  .hackathon_block .hackathon_position {
+    margin-left: 5px;
+  }
+
+  .hackathon_position img {
+    width: 14px;
+  }
+
+  .hackathon_block h4 {
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  .hackathon_block p {
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  .hackathon_block .media-body {
+    padding-right: 0;
+  }
+	button.btn-edit {
+		width: 32px;
+	}
+	#hackathon .btn-plus{
+		width: 24px;
+	}
+	.hackathonblock_controls {
+		opacity: 1;
+		right: 0;
+		top: -21px;
+		width: 68px;
+	}
+	.hackathonblock_controls a, .hackathonblock_controls button {
+		width: 22px;
+	}
+  .hackathon_winBadges .media.hackathon_position {
+    margin: 15px 5px;
+  }
+
+  form#hackathon_add_form {
+    padding: 30px 15px;
+  }
+
+  #performance-badges .performance a.btn-edit {
+    display: none;
+  }
+
+  #main_content p {
+    font-weight: 400;
+    font-size: 18px;
+  }
+
+  .btn-signup {
+    padding: 10px 50px;
+    font-size: 18px;
+  }
+	.btn-github, .btn-linkedin {
+		margin: 5px 0px;
+	}
+	#login_form .btn-simple-forget {
+		display: block;
+	}
+}

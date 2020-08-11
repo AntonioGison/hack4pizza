@@ -1,0 +1,1291 @@
+@charset "utf-8";
+
+/* Elements WYSIWYG 6.0 Hover Div */
+
+
+.hoverdiv div {
+    display: inline;
+    float: left;
+}
+
+.hoverdiv {
+    display: block;
+    /*margin: 10% auto;*/
+    width: 360px;
+    height: auto;
+    background-image: url(../files/graphics/admin/hoverdiv_header.png);
+    background-repeat: no-repeat;
+    background-position: left top;
+    z-index: 99999;
+}
+
+.hdivmainmenu {
+
+    width: 345px;
+
+    height: 28px;
+
+    padding-left: 15px;
+
+}
+
+.hdivactivetab, .hdivinactivetab {
+
+    width: auto;
+
+    height: 27px;
+
+    margin: 7px 0 0 2px;
+
+}
+
+.hdivactivetabcontent {
+
+    width: auto;
+
+    height: 20px;
+
+    background: #f7f7f7;
+
+    border-top: 1px solid #cbcbcb;
+
+}
+
+.hdivinactivetabcontent {
+
+    width: auto;
+
+    height: 21px;
+
+    background-image: url(../files/graphics/admin/hdivactivetab_back.jpg);
+
+    background-repeat:repeat-x;
+
+}
+
+.hdinactivetabicon, .hdinactivetabiconf, .hdivactivetabcontent img {
+
+    display: inline;
+
+    float: left;
+
+    padding: 0 5px 0 5px;
+
+}
+
+.hdivactivetabcontent img {
+
+    padding: 2px 7px 0 7px;
+
+}
+
+.hdivactiveableft, .hdivactiveabright {
+
+    width: 2px;
+
+    height: 21px;
+
+    background-image: url(../files/graphics/admin/hdivmmenuh_left.jpg);
+
+}
+
+.hdivactiveabright {
+
+    background-image: url(../files/graphics/admin/hdivmmenuh_right.jpg);
+
+}
+
+.hdivactivetabtext, .hdivinactivetabtext {
+
+    display: inline;
+
+    float: left;
+
+    font-family: arial;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    text-decoration: none;
+
+    color: #5e5e5e;
+
+    padding: 0 8px 0 8px;
+
+    margin: 4px 0 0 0;
+
+}
+
+.hdivinactivetabtext:hover {
+
+    color: #F60;
+
+    cursor: pointer;
+
+}
+
+.hdivinactivetableft, .hdivinactivetabright {
+
+    width: 2px;
+
+    height: 21px;
+
+    background-image: url(../files/graphics/admin/hdivinactivetab_left.jpg)
+
+}
+
+.hdivinactivetabright {
+
+    background-image: url(../files/graphics/admin/hdivinactivetab_right.jpg);
+
+}
+
+.hdivcontent {
+
+    width: 336px;
+
+    height: auto;
+
+    background-image: url(../files/graphics/admin/hoverdiv_content_back.png);
+
+    background-repeat: repeat-y;
+
+    padding: 0 12px 5px 12px;
+
+}
+
+.hdivmessages{
+
+    display: none;
+
+    width: 250px;
+
+    height: 190px;
+    padding-top: 5px;
+
+    margin-left: 55px;
+
+    position: relative;
+
+    top: -350px;
+
+    background-image: url(../files/graphics/admin/alert_back.jpg);
+
+    background-repeat: no-repeat;
+
+}
+
+.hdivfooter {
+
+    width: 360px;
+
+    height: 11px;
+
+    background-image: url(../files/graphics/admin/hoverdiv_footer.png);
+
+}
+
+.hdivtitle {
+
+    display: inline;
+
+    float: left;
+
+    width: 336px;
+
+    font-family: arial;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    color: #5e5e5e;
+
+    margin: 10px 0 6px 0;
+
+}
+
+.hdivtitle a, .hdivtitle p{
+
+    font-family: arial;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    color: #5e5e5e;
+
+    margin: 0 3px 0 3px;
+
+    cursor: pointer;
+
+}
+
+.hdivgadgetrow, .hdivgadgetrowmenu {
+
+    width: 336px;
+
+    height: 28px;
+
+}
+
+.hdivgadgetrowmenu {
+
+    height: 26px;
+
+}
+
+.hdivselectpage, .hdivcreatepage, .hdivdeletepage, .hdivcopypage, .hdivmetadesc, .hdivmetakey, .hdivsitemap, .hdivaddelement, .hdivaddlanguage, .hdivdellanguage, .hdivselectmail, .hdivsendmailto, .hdivdetails, .hdivphone, .hdivpassword, .hdivpagepublish, .hdivelementtext, .hdivelementimage, .hdivelementdoc, .hdivelementlink, .collapseeditor, .expandeditor, .hdivlanguageflag, .hdivlanguageedit, .hdivbanned, .hdivdate {
+
+    display: inline;
+
+    float: left;
+
+    width: 72px;
+
+    font-family: arial;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    line-height: 28px;
+
+    color: #5e5e5e;
+
+    padding-left: 17px;
+
+    margin: 0 0 0 0;
+
+    background-image: url(../files/graphics/admin/icon_select_page.jpg);
+
+    background-repeat: no-repeat;
+
+    background-position: left center;
+
+}
+
+.hdivcreatepage {
+
+    background-image: url(../files/graphics/admin/icon_create_page.jpg);
+
+}
+
+.hdivcopypage {
+
+    background-image: url(../files/graphics/admin/icon_copy_page.jpg);
+
+}
+
+.hdivdeletepage {
+
+    background-image: url(../files/graphics/admin/icon_delete_page.jpg);
+
+}
+
+.hdivmetadesc {
+
+    background-image: url(../files/graphics/admin/icon_meta_description.jpg);
+
+}
+
+.hdivmetakey {
+
+    background-image: url(../files/graphics/admin/icon_meta_keywords.jpg);
+
+}
+
+.hdivaddelement {
+
+    background-image: url(../files/graphics/admin/icon_add_element.jpg);
+
+}
+
+.hdivaddlanguage {
+
+    background-image: url(../files/graphics/admin/icon_add_language.jpg);
+
+}
+
+.hdivdellanguage {
+
+    background-image: url(../files/graphics/admin/icon_del_language.jpg);
+
+}
+
+.hdivselectmail {
+
+    background-image: url(../files/graphics/admin/icon_select_mail.jpg);
+
+}
+
+.hdivsendmailto, .hdivdetails, .hdivpassword {
+
+    background-image: url(../files/graphics/admin/icon_mail.jpg);
+
+    width: 92px;
+
+}
+
+.hdivdetails {
+
+    background-image: url(../files/graphics/admin/icon_details.png);
+
+    width: 92px;
+
+}
+
+.hdivphone {
+
+    background-image: url(../files/graphics/admin/phone_icon.png);
+
+    width: 92px;
+
+}
+
+.hdivpassword {
+
+    background-image: url(../files/graphics/admin/icon_password.jpg);
+
+}
+
+.hdivpagepublish {
+
+    background-image: url(../files/graphics/admin/icon_unpublish_page.jpg);
+
+}
+
+.hdivsitemap {
+
+    background-image: url(../files/graphics/admin/icon_sitemap_settings.jpg);
+
+}
+
+.hdivelementimage  {
+
+    background-image: url(../files/graphics/admin/icon_element_image.jpg);
+
+}
+
+.hdivelementdoc  {
+
+    background-image: url(../files/graphics/admin/icon_element_doc.png);
+
+}
+
+.hdivelementlink {
+
+    background-image: url(../files/graphics/admin/icon_element_link.jpg);
+
+}
+
+.hdivinfotext {
+
+    font-family: tahoma;
+
+    font-size: 10px;
+
+    color: #7D7D7D;
+
+    line-height: 14px;
+
+}
+
+.hdivlanguageedit {
+
+    background-image: url(../files/graphics/admin/icon_language_edit.jpg);
+
+}
+
+.hdivinfotext a {
+
+    text-decoration: none;
+
+    color: #006699;
+
+}
+
+.collapseeditor, .expandeditor {
+
+    padding: 0 0 0 0;
+
+    background: none;
+
+    width: auto;
+
+    float: right;
+
+    text-decoration: none;
+
+    padding-right: 12px;
+
+    background: url(../files/graphics/admin/expand_editor.jpg) no-repeat right 12px;
+
+}
+
+.collapseeditor {
+
+    background: url(../files/graphics/admin/collapse_editor.jpg) no-repeat right 12px;
+
+}
+
+.hdivelementtext {
+
+    background-image: url(../files/graphics/admin/icon_element_text.jpg);
+
+}
+
+.hdivlanguageflag {
+
+    background-image: url(../files/graphics/admin/icon_language_add.jpg);
+
+}
+
+.hdivactivelanguage {
+
+    display: inline;
+
+    float: left;
+
+    width: 100%;
+
+    font-family: arial;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    line-height: 22px;
+
+    text-decoration: none;
+
+    color: #5e5e5e;
+
+    padding-left: 17px;
+
+    margin: 0 0 0 0;
+
+    background-image: url(../files/graphics/admin/icon_language.jpg);
+
+    background-repeat: no-repeat;
+
+    background-position: left center;
+
+}
+
+.hdivbanned {
+
+    background-image: url(../files/graphics/admin/icon_ban.jpg);
+
+}
+
+.hdivdate {
+
+    background-image: url(../files/graphics/admin/icon_date.png);
+
+}
+
+.hdivddown, .hdivddownmenu, .hdivfield, .hdivfieldshort, .hdivfieldmenu {
+
+    display: inline;
+
+    float: left;
+
+    width: 182px !important;
+
+    height: 22px !important;
+
+    font-family: arial;
+
+    font-size: 11px;
+
+    color: #5e5e5e;
+
+    background-image: url(../files/graphics/admin/hdiv_field_back.jpg);
+
+    margin: 4px 0 0 0 !important;
+
+    padding: 1px 1px 1px 1px !important;
+
+    border: 1px solid #cdcdcd;
+    border-radius: 0 0 0 !important;
+
+}
+
+.hdivfield, .hdivfieldshort, .hdivfieldmenu {
+
+    width: 178px !important;
+
+    height: 19px !important;
+
+}
+
+.hdivddownmenu {
+    width: 130px !important;
+    height: 20px !important;
+    margin: 4px 0 0 6px  !important;
+    border-radius: 0 0 0 !important;
+}
+
+.hdivfieldshort {
+
+    width: 158px !important;
+
+}
+
+.hdivfieldmenu {
+
+    height: 16px !important;
+    width: 130px !important;
+    border-radius: 0 0 0 !important;
+
+}
+
+.hdivbutton, .hdivbrowsebutton, .hdivlargebutton {
+
+    display: inline;
+
+    float: left;
+
+    width: 54px;
+
+    height: 20px;
+
+    font-family: arial;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    line-height: 19px;
+
+    color: #474747;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    border: 1px solid #cfcfcf;
+
+    background-image: url(../files/graphics/admin/hdiv_button_back.jpg);
+
+    background-repeat: repeat-x;
+
+    margin: 4px 0 0 5px;
+
+}
+
+.hdivbutton:hover, .hdivbrowsebutton:hover {
+
+    background-image: url(../files/graphics/admin/hdiv_button_back_h.jpg);
+
+    cursor: pointer;
+
+}
+
+.hdivbrowsebutton {
+
+    height: 23px;
+
+}
+
+.hdivlargebutton {
+
+    width: auto;
+
+    padding: 0 8px 0 8px;
+
+}
+
+.hdivlargebutton:hover {
+
+    background: url(../files/graphics/admin/hdiv_button_back_h.jpg);
+
+}
+
+.hdivexpandbutton, .hdivcollapsebutton, .hdivdelbutton, .hdivshowmenubutton, .hdivhidemenubutton {
+
+    display: inline;
+
+    float: left;
+
+    width: 20px;
+
+    height: 20px;
+
+    background: url(../files/graphics/admin/expand_button.jpg);
+
+    margin: 4px 0 0 2px;
+
+}
+
+.hdivcollapsebutton {
+
+    background: url(../files/graphics/admin/collapse_button.jpg);
+
+}
+
+.hdivdelbutton {
+
+    background: url(../files/graphics/admin/button_del.jpg);
+
+}
+
+.hdivshowmenubutton {
+
+    background: url(../files/graphics/admin/showmenu_button.jpg);
+
+}
+
+.hdivhidemenubutton {
+
+    background: url(../files/graphics/admin/hidemenu_button.jpg);
+
+}
+
+.hdivdivider {
+
+    width: 336px;
+
+    height: 13px;
+
+    background-image: url(../files/graphics/admin/divider.jpg);
+
+    background-repeat: repeat-x;
+
+    margin: 6px 0 0 0;
+
+}
+
+.expander, .collapser {
+
+    display: inline;
+
+    float: right;
+
+    width: 16px;
+
+    height: 16px;
+
+    background-image: url(../files/graphics/admin/move.png);
+
+    margin: 6px 8px 0 3px;
+
+}
+
+.rteholder {
+
+    width: 100%;
+
+    height: auto;
+
+    margin: 4px 0 8px 0;
+
+}
+
+
+
+.hdivmailheader {
+
+    width: 334px;
+
+    height: 18px;
+
+    line-height: 18px;
+
+    border-left: 1px solid #cdcdcd;
+
+    border-right: 1px solid #cdcdcd;
+
+    border-top: 1px solid #cdcdcd;
+
+    margin-top: 5px;
+
+    background-image: url(../files/graphics/admin/hdiv_button_back_h.jpg);
+
+}
+
+.hdivmaillist {
+
+    width: 334px;
+
+    height: 220px;
+
+    background: white;
+
+    border: 1px solid #cdcdcd;
+
+    overflow: auto;
+
+    margin: 0 0 5px 0;
+
+}
+
+.hdivmailsfrom, .hdivmailssubject, .hdivmailsdate, .hdivmailslistfrom, .hdivmailslistsubject, .hdivmailslistdate {
+
+    display: inline;
+
+    float: left;
+
+    height: 18px;
+
+    font-family: arial;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    color: #474747;
+
+    line-height: 18px;
+
+    margin: 0 0 0 0;
+
+    overflow: hidden;
+
+    background-image: url(../files/graphics/admin/hdiv_button_back_h.jpg);
+
+}
+
+.hdivmailslistfrom, .hdivmailslistsubject, .hdivmailslistdate {
+
+    background: white;
+
+    font-family: tahoma;
+
+    font-size: 11px;
+
+    font-weight: normal;
+
+}
+
+.hdivmailsfrom, .hdivmailslistfrom {
+
+    width: 60%;
+
+    padding-left: 1%;
+
+
+
+}
+
+.hdivmailslistfrom {
+
+    width: 60%;
+
+    margin-right: 2%;
+
+    color: #06F;
+
+}
+
+.hdivmailsfrom {
+
+    width: 59%;
+
+}
+
+.hdivmailssubject, .hdivmailslistsubject {
+
+    width: 35%;
+
+}
+
+.hdivmailssubject {
+
+    width: 35%;
+
+}
+
+.hdivmailsdate, .hdivmailslistdate {
+
+    width: 35%;
+
+}
+
+.hdivmailsdate {
+
+    width: 49%;
+
+}
+
+.hdivmailslistsubject {
+
+    text-decoration: none;
+
+}
+
+.hdivcheckbox {
+
+    display: inline;
+
+    float: left;
+
+    width: 18px;
+
+    height: 18px;
+
+    margin: 0 0 0 0;
+
+    padding: 0 0 0 0;
+
+}
+
+.hdivmailsrow {
+
+    display: inline;
+
+    float: left;
+
+    width: 100%;
+
+    border-bottom: 1px solid #EEE;
+
+}
+
+.hdivlogo {
+
+    display: inline;
+
+    float: left;
+
+    margin: 15px 0 0 0;
+
+}
+
+.hdivcopyrighttext {
+
+    display: inline;
+
+    float: left;
+
+    font-family: arial;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    color: #474747;
+
+    margin: 4px 0 0 0;
+
+}
+
+.hdivsubmenuholder {
+
+    width: 100%;
+
+    height: auto;
+
+}
+
+.hdivsubmenuitem, .addhdivsubmenuitem, .addhdivmainmenuitem {
+
+    height: 26px;
+
+    background: url(../files/graphics/admin/submenu_bullet.jpg) no-repeat 4px 6px;
+
+}
+
+.addhdivsubmenuitem {
+
+    background: url(../files/graphics/admin/submenu_add_bullet.jpg) no-repeat 4px 6px;
+
+}
+
+.hdivsubmenuholder .hdivfieldmenu, .addhdivmainmenuitem .hdivfieldmenu {
+
+    margin-left: 22px;
+
+}
+
+.addhdivmainmenuitem {
+
+    background: url(../files/graphics/admin/mainmenu_add_bullet.jpg) no-repeat 4px 6px;
+
+}
+
+.hdivsubtabsholder {
+
+    width: 100%;
+
+    height: auto;
+
+    background: url(../files/graphics/admin/subtabs_bottomborder.jpg) repeat-x left bottom;
+
+    margin: 0 0 4px 0;
+
+}
+
+.hdivsubtab_active, .hdivsubtab_inactive {
+
+    display: inline;
+
+    float: left;
+
+    font-family: arial;
+
+    font-size: 11px;
+
+    color: #333333;
+
+    padding: 2px 6px 2px 6px;
+
+    border-left: 1px solid #cdcdcd;
+
+    border-top: 1px solid #cdcdcd;
+
+    border-right: 1px solid #cdcdcd;
+
+    margin: 0 2px 0 0;
+
+}
+
+.hdivsubtab_active {
+
+    background: #f8f8f8;
+
+}
+
+.hdivsubtab_inactive {
+
+    padding-bottom: 1px;
+
+    border-bottom: 1px solid #cdcdcd;
+
+    text-decoration: none;
+
+    background: url(../files/graphics/admin/hdiv_button_back_h.jpg);
+
+}
+
+.hdivaddmenubutton {
+
+    display: inline;
+
+    float: left;
+
+    width: 42px;
+
+    height: 20px;
+
+    background: url(../files/graphics/admin/menuadd_button.jpg);
+
+    margin: 4px 0 0 2px;
+
+}
+
+.hdivloglistelement {
+
+    display: inline;
+
+    float: left;
+
+    font-family: arial;
+
+    font-size: 11px;
+
+    color: #333333;
+
+    margin: 2px 0 2px 0;
+
+    padding: 0 4px 0 4px;
+
+}
+
+.red {
+
+    color: #FF0000;
+
+}
+
+.hdivloglistelement a {
+
+    color: #0066CC;
+
+}
+
+
+.hdivsitemaplistholder {
+
+    width: 100%;
+
+    height: auto;
+
+    margin-bottom: 6px;
+
+}
+
+.hdivsitemaplist {
+
+    display: inline;
+
+    float: left;
+
+    width: 154px;
+
+    height: 220px !important;
+
+    font-family: arial;
+
+    font-size: 12px;
+
+    background: white;
+
+    border: 1px solid #cdcdcd;
+
+}
+
+.hdivsitemapholder{
+
+    display: inline;
+
+    float: left;
+
+    width: 22px;
+
+    height: 90px;
+
+    margin: 80px 3px 80px 3px;
+
+}
+
+.hdivsitemapselect, .hdivsitemapdeselect {
+
+    display: inline;
+
+    float: left;
+
+    width: 20px;
+
+    height: 20px;
+
+    margin: 5px 0;
+
+    background: url(../files/graphics/admin/sitemap_selec_button.jpg);
+
+}
+
+
+
+.hdivsitemapdeselect {
+
+    background: url(../files/graphics/admin/sitemap_deselec_button.jpg);
+
+}
+
+/*** Begin Admin Panel ***/
+
+
+.backendadminpanel {
+
+    display: block;
+
+    float: none;
+
+    width: auto;
+
+    height: 40px;
+
+    z-index: 9995;
+
+    position: fixed;
+
+    top: 0;
+
+    right: 10px;
+
+}
+
+.backendpanelleft, .backendpanelright, .backendpanelcontent {
+
+    display: inline;
+
+    float: left;
+
+    width: 14px;
+
+    height: 40px;
+
+    background-image: url(../files/graphics/admin/adminpanel_left.png);
+
+}
+
+.backendpanelright {
+
+    background-image: url(../files/graphics/admin/adminpanel_right.png);
+
+}
+
+.backendpanelcontent {
+
+    width: auto;
+
+    background-image: url(../files/graphics/admin/adminpanel_back.png);
+
+}
+
+.greeting {
+
+    display: inline;
+
+    float: left;
+
+    font-family: arial;
+
+    font-size: 12px;
+
+    color: #474747;
+
+    line-height: 33px;
+
+    padding: 0 0 0 0;
+
+    margin: 0 0 0 0;
+
+}
+
+.adminpanelbutton {
+
+    display: inline;
+
+    float: left;
+
+    font-family: arial;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    text-decoration: none;
+
+    color: #333;
+
+    padding: 4px 8px 4px 8px;
+
+    border: 1px solid #CCC;
+
+    margin: 5px 0 0 4px;
+
+    background-image: url(../files/graphics/admin/adminpanel_back.png);
+
+    background-position: left top;
+
+}
+
+.adminpanelbutton:hover {
+
+    background: #FFF;
+
+}
+
+
+
+/*** End Admin Panel ***/
+
+.admloginerror{
+    color: #FF0000;
+    font-weight: bold;
+}
+
+.tabdisplay{
+    margin: 5px 8px 0 0;
+    float: right;
+    font-weight: bold;
+    color: #000;
+}
+
+.eHighlight{
+    opacity: 0.3;
+    background: #cccccc;
+    cursor: pointer;
+}
+
+.gadgetHiddenDiv{
+    display: none;
+}
+
+.cmshoverdiv {
+    width: 154px;
+    height: 30px;
+    padding: 6px 10px 7px 10px;	
+    background: url(../files/graphics/admin/iconhover_bg.png);
+    display: inline;
+    float: left;
+    position: absolute;
+    left:0;
+    z-index: 99990;
+}
+
+.cmseditbtn, .cmsdeletebtn, .cmscopybtn, .cmstotopbtn, .cmstobottombtn {
+    display: inline;
+    float: left;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+.cmseditbtn {
+    background: url(../files/graphics/admin/cms_icons.png) no-repeat left top;	
+}
+.cmseditbtn:hover {
+    background: url(../files/graphics/admin/cms_icons.png) no-repeat left -30px;	
+}
+.cmsdeletebtn {
+    background: url(../files/graphics/admin/cms_icons.png) no-repeat -31px top;
+}
+.cmsdeletebtn:hover {
+    background: url(../files/graphics/admin/cms_icons.png) no-repeat -31px -30px;
+}
+.cmscopybtn {
+    background: url(../files/graphics/admin/cms_icons.png) no-repeat -61px top;
+}
+.cmscopybtn:hover {
+    background: url(../files/graphics/admin/cms_icons.png) no-repeat -61px -30px;
+}
+.cmstotopbtn {
+    background: url(../files/graphics/admin/cms_icons.png) no-repeat -91px top;
+}
+.cmstotopbtn:hover {
+    background: url(../files/graphics/admin/cms_icons.png) no-repeat -91px -30px;
+}
+.cmstobottombtn {
+    background: url(../files/graphics/admin/cms_icons.png) no-repeat -121px top;
+}
+.cmstobottombtn:hover {
+    background: url(../files/graphics/admin/cms_icons.png) no-repeat -121px -30px;
+}
+
+.customsepelement{
+    border: 1px dashed #000;
+}
+
+.bgimage_uploader, .news_holder{
+    width: 336px;
+    color: #000;
+    position: relative;
+    top: -165px;
+    background-color: #f7f7f7;
+}
+
+.bgimages_list{
+    width: 334px;
+    height: 145px;
+    overflow: auto;
+    color: #000;
+}
+
+.youtubegmapselement {
+    padding: 40px 0 10px 0;
+}
+.dividerelement {
+    background: #ddd;	
+    border: 1px dashed #000;
+}
+.mnloading {
+    background-image: url(../files/graphics/admin/loading.gif);
+    background-repeat: no-repeat;
+}
+.uploadifyQueue{
+    opacity: 1;
+}
