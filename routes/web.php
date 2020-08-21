@@ -17,16 +17,16 @@ Route::get('/clear',function(){
 });
 
 Route::get('/', function () {
-    return view('themes.new-theme.home.index');
+    return view('themes.new-theme.home');
 //    return redirect()->route('home');
 })->name("home");
 
 Auth::routes();
 Route::get('/login', function () {
-    return view('themes.new-theme.home.index');
+    return view('themes.new-theme.home');
 })->name("login");
 Route::get('/register', function () {
-    return view('themes.new-theme.home.index');
+    return view('themes.new-theme.home');
 })->name('register');
 Route::get('user/dashboard', 'UserController@index')->name('user.dashboard');
 Route::get('user/{slug}','Theme\HomeController@getProfile')->where('slug','[\w\d\-\_]+');

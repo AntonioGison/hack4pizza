@@ -10,11 +10,17 @@
   @yield('additional_css')
 </head>
 <body>
-  @include('themes.new-theme.includes.header')
+  @if(Auth::check())
+    @include('themes.new-theme.includes.logged_header')
+  @else
+    @include('themes.new-theme.includes.header')
+  @endif
   @yield('content')
+  @yield('models')
   @include('themes.new-theme.includes.footer')
   @include('themes.new-theme.includes.load_js')
   @yield('additional_js')
+  
 </body>
 
 </html>

@@ -29,7 +29,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.dashboard.index');
+        return view('themes.new-theme.user.dashboard');
+        // return view('user.dashboard.index');
     }
 
     /**
