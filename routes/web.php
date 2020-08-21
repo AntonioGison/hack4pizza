@@ -27,7 +27,7 @@ Route::get('/login', function () {
 })->name("login");
 Route::get('/register', function () {
     return view('themes.new-theme.home.index');
-});
+})->name('register');
 Route::get('user/dashboard', 'UserController@index')->name('user.dashboard');
 Route::get('user/{slug}','Theme\HomeController@getProfile')->where('slug','[\w\d\-\_]+');
 Route::post('/ajax_upload/action', 'Theme\HomeController@picUpload')->name('ajaxupload.action');
