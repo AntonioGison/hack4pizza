@@ -14,12 +14,13 @@
           <div class="col-8 less-padding">
             <input type="text" id="searchUser" class="form-control search_user" placeholder="Search"> 
           </div>
-         <div class="col-4 logged_menu_right">
+          <div class="col-4 logged_menu_right">
            <a href="#"><img src="{{ asset('new-theme/images/notification.png') }}" class="img img-responsive" alt="menu" /></a>
            <a href="#"><img src="{{ asset('uploads/user-pic/headshot.png') }}" style="height:40px;" class="img img-responsive" alt="headshot" /></a>
-           <a href="#"><img src="{{ asset('new-theme/images/logged_menu.png') }}" style="height:25px;" class="img img-responsive" alt="menu" /></a>
-         </div>
+           <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();"><img src="{{ asset('new-theme/images/logged_menu.png') }}" style="height:25px;" class="img img-responsive" alt="menu" /></a>
+          </div>
         </div>
     </div>
   </div>
+</div>
 </div>

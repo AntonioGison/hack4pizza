@@ -87,7 +87,7 @@
     background-color:yellow;
 }
 .steps_section{
-    background-color:var(--dark-bg-color);
+    background-color:var(--primary-color);
     color:#fff;
     padding:100px 20px;
 }
