@@ -126,6 +126,9 @@
     font-size:14px;
     line-height: 3;
 }
+.login_form_error{
+    color:red;
+}
 /* Default */
 body{
     font-size:16px;

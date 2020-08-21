@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="{{ asset('theme/hack4pizza/css/style.css') }}">
   <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.1/css/all.css" integrity="sha384-wxqG4glGB3nlqX0bi23nmgwCSjWIW13BdLUEYC4VIMehfbcro/ATkyDsF/AbIOVe" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{ asset('new-theme/plugins/alertify/css/alertify.min.css') }}">
   <link rel="stylesheet" href="{{ asset('new-theme/css/custom-style.css') }}">
   <title>Hack4 Pizza</title>  
 </head>
@@ -148,25 +149,35 @@ it's free and this is a link examples of my Hackathons<br /></p>
 @include('themes.new-theme.includes.footer')
 
 <script src="{{asset('theme/hack4pizza/js/jquery-3.2.1.slim.min.js')}}"></script>
-<script src="{{asset('theme/hack4pizza/js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset('theme/hack4pizza/js/Chart.min.js')}}"></script>
-<script src="{{asset('theme/hack4pizza/js/moment.min.js')}}"></script>
-<script src="{{asset('theme/hack4pizza/js/bootstrap-datetimepicker.min.js')}}"></script>
 <script src="{{asset('theme/hack4pizza/js/loadingoverlay.min.js')}}"></script>
-<script src="{{asset('theme/hack4pizza/js/zxcvbn.js')}}"></script>
+<script src="{{ asset('new-theme/plugins/alertify/alertify.min.js')}}"></script>
 
 <script>
    $(document).ready(function(){
-    $("#login_submit").on('click', function () {
-      $.LoadingOverlay("show");
-      $("#loginBox").find('.emsg').remove();
-      $("#loginBox").find('.pmsg').remove();
-      $("#loginBox").find('.smsg').remove();
-      $("#loginBox").find('.Emsg').remove();
+    
+    $("#loginEmail").keyup(function(){
+      $("#loginEmail").css('background-color','#ffffff');
+    });
+    $("#loginPassword").keyup(function(){
+      $("#loginPassword").css('background-color','#ffffff');
+    });
 
+    $("#login_submit").on('click', function () {
+      
       var token = '{{ csrf_token() }}';
       var email = $("#loginEmail").val();
       var password = $("#loginPassword").val();
+
+      if(email==''){
+        $("#loginEmail").css('background-color','#ff7272');
+        return false;
+      }
+      if(password==''){
+        $("#loginPassword").css('background-color','#ff7272');
+        return false;
+      }
+
+      $.LoadingOverlay("show");
 
       $.ajax({
         type: 'POST',
@@ -189,7 +200,9 @@ it's free and this is a link examples of my Hackathons<br /></p>
             }
 
           } else {
-            $('<span class="Emsg">Email/Password Invalid.Try again.</span>').appendTo("#loginmsg").css('color', 'red');
+            alertify.alert(
+              "Login Failed",
+              "<span class='login_form_error'>Email/Password Invalid.Try again.</span>");
           }
 
         },
