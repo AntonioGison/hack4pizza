@@ -1,5 +1,6 @@
 @extends('themes.new-theme.app')
 @section('additional_css')
+  <link href="{{ asset('theme/hack4pizza/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
   <link href="{{ asset('new-theme/plugins/sweetalert/css/sweetalert.css') }}" rel="stylesheet">
 @endsection
 @section('content')
@@ -289,7 +290,7 @@
               <div class="form-group col-md-6">
                 <label>Upload Hackathon's logo/IMG</label>
                 <div class="custom-file">
-                  <input type="file" name="file" class="custom-file-input" id="{{asset("theme/hack4pizza/hackathon_img")}}">
+                  <input type="file" name="file" class="custom-file-input" id="{{asset('theme/hack4pizza/hackathon_img')}}">
                   <label class="custom-file-label" for="hackathon_img"></label>
                 </div>
               </div>
@@ -357,7 +358,7 @@
               <div class="form-group col-md-6">
                 <label class="hackathon_input_label">Upload Hackathon's logo/IMG</label>
                 <div class="custom-file">
-                  <input type="file" name="file" class="custom-file-input hackathon_input" id="hackathon_img">
+                  <input type="file" name="file" class="custom-file-input hackathon_input" id="new_hackathon_img">
                   <label class="custom-file-label add_hackathon_file_label" for="hackathon_img"></label>
                 </div>
 
@@ -526,10 +527,7 @@
   <script src="{{ asset('theme/hack4pizza/js/Chart.min.js')}}"></script>
   <script src="{{ asset('theme/hack4pizza/js/moment.min.js')}}"></script>
   <script src="{{ asset('theme/hack4pizza/js/bootstrap-datetimepicker.min.js')}}"></script>
-  <script src="{{ asset('theme/hack4pizza/js/zxcvbn.js')}}"></script>
-
   <script src="{{asset('new-theme/plugins/sweetalert/js/sweetalert.min.js')}}"></script>
-  <script src="{{asset('new-theme/plugins/datatable/dataTables.responsive.min.js')}}"></script>
   <script>
     /**  Show Radar Chart  **/
     function del(id){
@@ -615,7 +613,7 @@
 
     $(function() {
       // pop up by default;
-      $("#hackathon_add").modal();
+      // $("#hackathon_add").modal();
 
       // Display Badges Modal
       $(".see_all_badges").click(function(e){
