@@ -23,8 +23,9 @@ img {
 
 .custom-file-label::after {
   color: #ffffff;
-  background-color: #1b8bee;
+  background-color: #D90088;
   border-left: 1px solid #777777;
+  font-family:Monument;
   border-radius: 0;
 }
 
@@ -57,7 +58,7 @@ img {
 }
 
 form.form_class {
-  padding: 30px 60px;
+  padding: 30px 30px;
 }
 
 button {

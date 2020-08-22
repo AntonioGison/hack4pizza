@@ -311,33 +311,38 @@
   <div class="modal fade" id="hackathon_add" tabindex="-1" role="dialog" aria-labelledby="hackathon_addLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
-        <div class="block_wrapper">
-          <h2 class="block-title">Add Hackathon</h2>
-          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"><img alt="" src="{{asset("theme/hack4pizza/images/icon_close.jpg")}}"></button>
-          <form id="hackathon_add_form" class="form_class" enctype="multipart/form-data">
+        <div class="new_modal_section">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="new_modal_header">
+                  <button type="button" class="btn-close new_modal_close_btn" data-dismiss="modal" aria-label="Close">
+                    <img alt="" src="{{asset('new-theme/images/icon_close.png')}}"></button>
+                  <h2 class="new_modal_header_title">Add Hackathon</h2>
+                </div>
+                <hr />
+              </div>
+            </div>
+          </div>
+          <form id="hackathon_add_form" class="form_class add_hackathon_form" enctype="multipart/form-data">
             @csrf
             <input type="hidden" id="ha_pic" >
             <div class="form-group">
-              <label>Hackathon's name*</label>
-              <input type="text" class="form-control" id="ha_name">
+              <input type="text" placeholder="Hackathon's name*" class="form-control hackathon_input" id="ha_name">
             </div>
             <div class="form-group ha_organized">
-              <label>Hosted/Organized by*</label>
-              <input type="text" class="form-control" id="ha_organized">
+              <input type="text" class="form-control hackathon_input" placeholder="Hosted/Organized by*" id="ha_organized">
             </div>
             <div class="form-row">
               <div class="form-group col-md-4 ha_from">
-                <label>From*</label>
-                <input type="text" class="form-control datepicker " id="ha_from">
+                <input type="text" placeholder="From*" class="form-control datepicker hackathon_input " id="ha_from">
               </div>
               <div class="form-group col-md-4">
-                <label>To*</label>
-                <input type="text" class="form-control datepicker" id="ha_to">
+                <input type="text" placeholder="To*" class="form-control datepicker hackathon_input" id="ha_to">
               </div>
               <div class="form-group col-md-4 place_msg">
-                <label>Result*</label>
-                <select class="form-control" id="ha_result">
-                  <option value="" selected></option>
+                <select class="form-control hackathon_input" id="ha_result">
+                  <option value="" selected>Select Result*</option>
                   @foreach($badges as $badge)
                     <option value="{{$badge->id}}">{{$badge->name}}</option>
                   @endforeach
@@ -345,15 +350,15 @@
               </div>
             </div>
             <div class="form-group">
-              <label>Description (HTML editor)*</label>
-              <textarea class="form-control" rows="5" id="ha_description"></textarea>
+              <label for="ha_description" class="hackathon_input_label">Description (HTML editor)*</label>
+              <textarea class="form-control hackathon_input_textarea" rows="5" id="ha_description"></textarea>
             </div>
             <div class="form-row">
               <div class="form-group col-md-6">
-                <label>Upload Hackathon's logo/IMG</label>
+                <label class="hackathon_input_label">Upload Hackathon's logo/IMG</label>
                 <div class="custom-file">
-                  <input type="file" name="file" class="custom-file-input" id="hackathon_img">
-                  <label class="custom-file-label" for="hackathon_img"></label>
+                  <input type="file" name="file" class="custom-file-input hackathon_input" id="hackathon_img">
+                  <label class="custom-file-label add_hackathon_file_label" for="hackathon_img"></label>
                 </div>
 
               </div>
@@ -365,7 +370,7 @@
             <div class="form-group text-right ha_success">
             </div>
             <div class="form-group text-right">
-              <button type="button" id="ha_submit" class="btn btn-success">Save</button>
+              <button type="button" id="ha_submit" class="btn add_hackathon_submit_btn">SAVE</button>
             </div>
           </form>
         </div>
@@ -484,14 +489,14 @@
   <div class="modal fade" id="all_badges" tabindex="-1" role="dialog" aria-labelledby="all_badgesLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
-        <div class="badges_modal_section">
+        <div class="new_modal_section">
           <div class="container">
             <div class="row">
               <div class="col-md-12">
-                <div class="badge_modal_header">
-                  <button type="button" class="btn-close badges_modal_close_btn" data-dismiss="modal" aria-label="Close">
+                <div class="new_modal_header">
+                  <button type="button" class="btn-close new_modal_close_btn" data-dismiss="modal" aria-label="Close">
                     <img alt="" src="{{asset('new-theme/images/icon_close.png')}}"></button>
-                  <h2 class="badges_title">Badges</h2>
+                  <h2 class="new_modal_header_title">Badges</h2>
                 </div>
                 <hr />
               </div>
@@ -609,14 +614,20 @@
     var colorNames = Object.keys(window.chartColors);
 
     $(function() {
-      $("#all_badges").modal();
+      // pop up by default;
+      $("#hackathon_add").modal();
 
-      // Display All Badges
+      // Display Badges Modal
       $(".see_all_badges").click(function(e){
         e.preventDefault();
         $("#all_badges").modal();
       })
 
+      // Display Add Hackathon Modal
+      $(".add_hackathon").click(function(e){
+        e.preventDefault();
+        $("#hackathon_add").modal();
+      });
       /** Show Hide Hackathon blocks **/
       $('#hackathon_blocks_2018').on('show.bs.collapse', function() {
         $('#hackathon_winBadges_2018').hide();

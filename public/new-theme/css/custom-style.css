@@ -286,7 +286,7 @@
   color:#fff;
 }
 /* Modals */
-.badges_modal_section{
+.new_modal_section{
   background-color:#3B3677
 }
 .badges_container{
@@ -297,16 +297,52 @@
 .single_badge_info{
   padding-bottom:10px;
 }
-.badge_modal_header{
+.new_modal_header{
   padding:20px 20px 0px 0px;
 }
-.badges_modal_close_btn img{
+.new_modal_close_btn img{
   width:15px;
 }
-.badge_modal_header .badges_title{
+.new_modal_header .new_modal_header_title{
   color:#fff;
   font-family:Monument;
   font-size:18px;
+}
+.hackathon_input_label{
+  color:#fff;
+}
+.hackathon_input,.hackathon_input:active, .hackathon_input:focus{
+  background-color:transparent;
+  outline:none;
+  box-shadow:none;
+  border:0;
+  border-bottom:1px solid #999;
+  color:#fff;
+  padding-left:0px;
+}
+.add_hackathon_file_label{
+  background-color:#47427e;
+}
+.add_hackathon_submit_btn{
+  background-color:#00FFC2;
+  font-family:Monument;
+  padding:7px 20px;
+}
+.hackathon_input_textarea,.hackathon_input_textarea:hover,.hackathon_input_textarea:focus{
+  background-color:#47427e;
+  color:#fff;
+  resize:none;
+  outline:none;
+  box-shadow:none;
+}
+.hackathon_input option{
+  margin: 40px;
+  background: #3B3677;
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+.hackathon_input::placeholder{
+  color:#fff;
 }
 /* Default */
 body{
