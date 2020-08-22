@@ -1,296 +1,339 @@
 :root {
-    --light-bg-color:#f2f2f2;
-    --dark-bg-color:#09062A;
-    --primary-color:#25215A;
+  --light-bg-color:#f2f2f2;
+  --dark-bg-color:#09062A;
+  --primary-color:#25215A;
 }
 @font-face {
-    font-family: Monument;
-    src: url("../fonts/monument/monument.otf") format("opentype");
+  font-family: Monument;
+  src: url("../fonts/monument/monument.otf") format("opentype");
 }
 
 .top-bar{
-    background-color:var(--dark-bg-color);
+  background-color:var(--dark-bg-color);
 }
 .login_form_email,.login_form_password{
-    font-size:14px;
-    border:0px;
-    outline:none;
-    box-shadow:none;
+  font-size:14px;
+  border:0px;
+  outline:none;
+  box-shadow:none;
 }
 .login_form{
-    margin-top:20px;
+  margin-top:20px;
 }
 .login_form_email:focus,.login_form_email:active,.login_form_password:focus,.login_form_password:active{
-    box-shadow:none;
-    outline:none;
+  box-shadow:none;
+  outline:none;
 }
 .login_form_frgt_pw{
-    line-height: 2.5;
-    color:#999;
-    font-size:14px;
+  line-height: 2.5;
+  color:#999;
+  font-size:14px;
 }
 .md-inpt{
-    text-align:left;
+  text-align:left;
 }
 /* Home Page */
 .first_section{
-    background-color:#e72e80;
-    background-image:url('../images/first_bg.png')
+  background-color:#e72e80;
+  background-image:url('../images/first_bg.png')
 }
 .first_section .right_section{
-    color:#fff;
-    padding-top:20px;
+  color:#fff;
+  padding-top:20px;
 }
 .first_section .right_section h3{
-    font-family:Monument;
-    letter-spacing: 3px;
-    font-size:22px;
+  font-family:Monument;
+  letter-spacing: 3px;
+  font-size:22px;
 }
 .checkbox_input{
-    padding:20px 0px;
-    color:#fff;
+  padding:20px 0px;
+  color:#fff;
 }
 .sug_form{
-    padding-bottom:30px;
+  padding-bottom:30px;
 }
 .suf_input{
-    border:0px;
-    margin:5px 0px;
-    border-bottom:1px solid #fff;
-    padding:10px;
-    border-color:#fff;
-    color:#ddd;
-    background-color:transparent;
+  border:0px;
+  margin:5px 0px;
+  border-bottom:1px solid #fff;
+  padding:10px;
+  border-color:#fff;
+  color:#ddd;
+  background-color:transparent;
 }
 .suf_input::placeholder{
-    color:#fff;
+  color:#fff;
 }
 .suf_input:focus, .suf_input:active{
-    border-color:#fff;
-    outline:none;
-    box-shadow:none;
-    color:#fff;
-    background-color:transparent;
+  border-color:#fff;
+  outline:none;
+  box-shadow:none;
+  color:#fff;
+  background-color:transparent;
 }
 .suf_btn{
-    color:#333;
-    background-color:yellow;
-    border:0px;
-    font-family:Monument;
-    
-    box-shadow:none;
+  color:#333;
+  background-color:yellow;
+  border:0px;
+  font-family:Monument;
+      
+  box-shadow:none;
 }
 .suf_btn:focus{
-    outline:none;
-    box-shadow:none;
-    color:#333;
-    background-color:yellow;
+  outline:none;
+  box-shadow:none;
+  color:#333;
+  background-color:yellow;
 }
 .steps_section{
-    background-color:var(--primary-color);
-    color:#fff;
-    padding:100px 20px;
+  background-color:var(--primary-color);
+  color:#fff;
+  padding:100px 20px;
 }
 .steps_section h3, .steps_section h4{
-    color:#fff;
-    font-family: Monument;
+  color:#fff;
+  font-family: Monument;
 }
 .steps_section p{
-    color:#999;
-    font-size:14px;
+  color:#999;
+  font-size:14px;
 }
 .step_box{
-    padding:30px 10px;
+  padding:30px 10px;
 }
 .hr_line{
-    border-bottom:1px solid #999;
-    border-color:#e8dcdc3d;
-    margin:30px 0px;
+  border-bottom:1px solid #999;
+  border-color:#e8dcdc3d;
+  margin:30px 0px;
 }
 .footer_section{
-    color:#fff;
-    padding:40px 0px;
-    background-color:#09062a;
+  color:#fff;
+  padding:40px 0px;
+  background-color:#09062a;
 }
 .footer_section h3{
-    font-size:18px;
-    font-family:Monument;
+  font-size:18px;
+  font-family:Monument;
 }
 .footer_section ul li a{
-    font-size:14px; 
-    padding:5px;
-    color:#999;
+  font-size:14px; 
+  padding:5px;
+  color:#999;
 }
 .footer_bottom{
-    color:#999;
-    font-size:14px;
-    line-height: 3;
+  color:#999;
+  font-size:14px;
+  line-height: 3;
 }
 .login_form_error{
-    color:red;
+  color:red;
 }
 /* Dashboard */
 .dashboard_body{
-    background-color:var(--primary-color);
+  background-color:var(--primary-color);
 }
 .dashboard_block{
-    background-color:#3B3677;
-    margin-top:0px;
+  background-color:#3B3677;
+  margin-top:0px;
 }
 .basic_info_block h2{
-    font-family: Monument;
-    font-size:28px;
-    color:#fff;
+  font-family: Monument;
+  font-size:28px;
+  color:#fff;
 }
 .basic_info_block p{
-    color:#ddd;
-    line-height:1;
+  color:#ddd;
+  line-height:1;
 }
 .bio_info{
-    padding-left:30px;
+  padding-left:30px;
 }
 .bio_info h2{
-    font-family: Monument;
-    font-size:22px;
-    color:#fff;
+  font-family: Monument;
+  font-size:22px;
+  color:#fff;
 }
 .share_block a{
-    padding:10px;
-    border:1px solid #fff;
-    color:#fff;
-    margin:10px;
-    border-radius:1px;
-    text-decoration:none;
+  padding:10px;
+  border:1px solid #fff;
+  color:#fff;
+  margin:10px;
+  border-radius:1px;
+  text-decoration:none;
 }
 .share_block a:hover{
-    background-color:#09062A;
+  background-color:#09062A;
 }
 .bio_info p{
-    color:#999;
-    font-size:14px;
+  color:#999;
+  font-size:14px;
 }
 .social_media_info a{
-    padding-right:10px;
+  padding-right:10px;
 }
 .search_user{
-    border:0px;
-    box-shadow:none;
-    outline:none;
-    border-radius:4px; 
-    background-color:#3C3C43;
+  border:0px;
+  box-shadow:none;
+  outline:none;
+  border-radius:4px; 
+  background-color:#3C3C43;
 }
 .search_user:focus,.search_user:active{
-    box-shadow:none;
-    outline:none;
+  box-shadow:none;
+  outline:none;
 }
 .logged_menu_right a{
-    padding:10px 10px;
+  padding:10px 10px;
 }
 .performance .performance_block{
-    background-color:#3B3677;
-    padding:20px 25px;
+  background-color:#3B3677;
+  padding:20px 25px;
 }
 .badges .badge_block{
-    background-color:#3B3677;
-    padding:20px 25px 60px 25px;
+  background-color:#3B3677;
+  padding:20px 25px 30px 25px;
 }
 .performance_block_title{
-    font-family: Monument;
-    padding-left:20px;
-    color:#fff;
-    font-size:24px;
+  font-family: Monument;
+  padding-left:20px;
+  color:#fff;
+  font-size:24px;
 }
 .display_badge_block{
-    padding:20px;
+  padding:20px;
 }
 .badge_block_title{
-    font-family: Monument;
-    padding-left:20px;
-    color:#fff;
-    font-size:24px;  
+  font-family: Monument;
+  padding-left:20px;
+  color:#fff;
+  font-size:24px;  
 }
 .no-padding{
-    padding:0px;
+  padding:0px;
 }
 .hackathon_sections{
-    padding:0px;
-    margin:0px;
-    margin-top:40px;
+  padding:0px;
+  margin:0px;
+  margin-top:40px;
+}
+.see_all{
+  font-family:Monument;
+  font-size:14px;
+  margin-top:10px;
 }
 .hackathon_section{
-    background-color:#3B3677;
-    padding:30px;
-    margin-bottom:40px;
+  background-color:#3B3677;
+  padding:30px;
+  margin-bottom:40px;
 }
 .hackathon_section .add_hackathon{
-    background-color:#D90088;
-    color:#ffffff;
-    padding:10px 20px;
-    text-decoration:none;
-    border-radius:2px;
-    margin-top:-10px;
-    font-family: Monument;
-    font-size:14px;
+  background-color:#D90088;
+  color:#ffffff;
+  padding:10px 20px;
+  text-decoration:none;
+  border-radius:2px;
+  margin-top:-10px;
+  font-family: Monument;
+  font-size:14px;
 }
 .hackathon_section .block-title{
-    top:-45px;
-    background-color:#00F9FF;
-    color:#333333;
-    font-family:'Monument';
-    font-size:20px;
-    border:none;
+  top:-45px;
+  background-color:#00F9FF;
+  color:#333333;
+  font-family:'Monument';
+  font-size:20px;
+  border:none;
 }
 
 .hackathon_header h3{
-    font-family:'Monument';
-    color:#fff;   
-    font-size:24px;
+  font-family:'Monument';
+  color:#fff;   
+  font-size:24px;
 }
 .hackathon_data_section{
-    padding:0px 10px;
+  padding:0px 10px;
 }
 .hackathon_data{
-    background-color:#34306F;
-    padding:30px;
-    margin-bottom:20px;
-    color:#fff;
+  background-color:#34306F;
+  padding:30px;
+  margin-bottom:20px;
+  color:#fff;
 }
 .hackathon_data h4{
-    font-family:Monument;
-    font-size:22px;
+  font-family:Monument;
+  font-size:22px;
 }
 .hackathon_data h5{
-    font-family:Monument;
-    font-size:14px;
-    letter-spacing: 1px;
+  font-family:Monument;
+  font-size:14px;
+  letter-spacing: 1px;
 }
 .hackathon_share_btn, .hackathon_share_btn:hover{
-    font-family:Monument;
-    font-size:14px;
-    text-decoration:none;
-    background-color:transparent;
-    color:#fff;}
+  font-family:Monument;
+  font-size:14px;
+  text-decoration:none;
+  background-color:transparent;
+  color:#fff;}
 .hackathon_data p{
-    color:#999;
+  color:#999;
 }
 .hackathon_badge_img{
-    width:50px;
+  width:50px;
 }  
 .hackathon_badge_title{
-    font-family:Monument;
-    color:#fff;
+  font-family:Monument;
+  color:#fff;
+}
+/* Modals */
+.badges_modal_section{
+  background-color:#3B3677
+}
+.badges_container{
+  padding:10px;
+  height:350px;
+  overflow:auto;
+}
+.single_badge_info{
+  padding-bottom:10px;
+}
+.badge_modal_header{
+  padding:20px 20px 0px 0px;
+}
+.badges_modal_close_btn img{
+  width:15px;
+}
+.badge_modal_header .badges_title{
+  color:#fff;
+  font-family:Monument;
+  font-size:18px;
 }
 /* Default */
 body{
-    font-size:16px;
+  font-size:16px;
 }
 .less-padding{
-    padding:5px;
-    margin:0px;
+  padding:5px;
+  margin:0px;
 }
 .primary-btn-clr{
-    background-color:#9842f4;
-    color:#fff;
-    font-family:Monument;
+  background-color:#9842f4;
+  color:#fff;
+  font-family:Monument;
+}
+/* Scroll bar */
+::-webkit-scrollbar {
+  width: 10px;
 }
 
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #DEDCFF;
+  border-radius: 10px;
+}

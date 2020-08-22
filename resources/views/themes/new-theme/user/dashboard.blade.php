@@ -123,7 +123,9 @@
                 <img src="{{ asset('uploads/badges/new_badges/here_4_pizza.png') }}" alt="Badge">
               </div>
             </div>
-
+            <div class="row justify-content-center">
+              <a href="#" class="see_all see_all_badges">See all</a>
+            </div>
           </div>
         </div>
       </div>
@@ -482,60 +484,33 @@
   <div class="modal fade" id="all_badges" tabindex="-1" role="dialog" aria-labelledby="all_badgesLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
-        <div class="block_wrapper row">
-          <h2 class="block-title">Badges</h2>
-          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"><img alt="" src="{{asset("theme/hack4pizza/images/icon_close.jpg")}}"></button>
-          @foreach($badges as $badge)
-            <?php $count = \App\Experience::where([['user_id','=',$user->id],['badge_id','=', $badge->id]])->count(); ?>
-            @if($count > 0)
-              <div class="col-xs-12 col-lg-6 badge_group">
-                <div class="media">
-                  <img class="align-self-center" alt="" src="{{asset("uploads/badges/$badge->pic")}}">
-                  <div class="media-body align-self-center">
-                    <h5 class="mt-0">{{$badge->name}}</h5>
-                    <p>{{$badge->description}}</p>
+        <div class="badges_modal_section">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="badge_modal_header">
+                  <button type="button" class="btn-close badges_modal_close_btn" data-dismiss="modal" aria-label="Close">
+                    <img alt="" src="{{asset('new-theme/images/icon_close.png')}}"></button>
+                  <h2 class="badges_title">Badges</h2>
+                </div>
+                <hr />
+              </div>
+              <div class="col-md-12 badges_container">
+                <div class="container">
+                  <div class="row">
+                    <?php
+                    for($i=0;$i<22;$i++){ ?>
+                    <div class="col-md-2">
+                      <div class="single_badge_info">
+                        <img src="{{ asset('uploads/badges/new_badges/place_1.png') }}" alt="Badge" />
+                      </div>
+                    </div>
+                    <?php } ?>
                   </div>
                 </div>
               </div>
-            @else
-              <div class="col-xs-12 col-lg-6 badge_group badge_hide">
-                <div class="media">
-                  <img class="align-self-center" alt="" src="{{asset("uploads/badges/$badge->pic")}}">
-                  <div class="media-body align-self-center">
-                    <h5 class="mt-0">{{$badge->name}}</h5>
-                    <p>{{$badge->description}}</p>
-                  </div>
-                </div>
-              </div>
-            @endif
-          @endforeach
-          @foreach($m_badges as $m_badge)
-            <?php $count = \App\Experience::where([['user_id','=',$user->id],['badge_id','=', $m_badge->badge_id]])->count(); ?>
-            @if($count >= $m_badge->number)
-              <div class="col-xs-12 col-lg-6 badge_group">
-                <div class="media">
-                  <img class="align-self-center" alt="" src="{{asset("uploads/master-badges/$m_badge->pic")}}">
-                  <div class="media-body align-self-center">
-                    <h5 class="mt-0">{{$m_badge->name}}</h5>
-                    <p>{{$m_badge->description}}</p>
-                  </div>
-                </div>
-              </div>
-            @else
-              <div class="col-xs-12 col-lg-6 badge_group badge_hide">
-                <div class="media">
-                  <img class="align-self-center" alt="" src="{{asset("uploads/master-badges/$m_badge->pic")}}">
-                  <div class="media-body align-self-center">
-                    <h5 class="mt-0">{{$m_badge->name}}</h5>
-                    <p>{{$m_badge->description}}</p>
-                  </div>
-                </div>
-              </div>
-            @endif
-          @endforeach
-
-
-        </div>
+            </div>
+          </div>
       </div>
     </div>
   </div>
@@ -634,6 +609,13 @@
     var colorNames = Object.keys(window.chartColors);
 
     $(function() {
+      $("#all_badges").modal();
+
+      // Display All Badges
+      $(".see_all_badges").click(function(e){
+        e.preventDefault();
+        $("#all_badges").modal();
+      })
 
       /** Show Hide Hackathon blocks **/
       $('#hackathon_blocks_2018').on('show.bs.collapse', function() {
@@ -641,7 +623,7 @@
       });
       $('#hackathon_blocks_2018').on('hide.bs.collapse', function() {
         $('#hackathon_winBadges_2018').show();
-      })
+      });
 
       /** Get Selected File name fileinput **/
       $(".custom-file-input").on("change", function() {
@@ -962,8 +944,7 @@
         }
       })
     });
-    $(
-      ".btn-edit").click(function () {
+    $(".btn-edit").click(function () {
        var pic = $(this).attr("pic");
        var description = $(this).attr("description");
        var from = $(this).attr("from");

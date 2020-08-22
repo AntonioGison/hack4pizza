@@ -16,8 +16,8 @@
     @include('themes.new-theme.includes.header')
   @endif
   @yield('content')
-  @yield('models')
   @include('themes.new-theme.includes.footer')
+  @yield('models')
   @include('themes.new-theme.includes.load_js')
   @yield('additional_js')
   
