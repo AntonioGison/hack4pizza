@@ -81,9 +81,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 performance">
-                    <div class="block_wrapper">
-                        <h2 class="block-title">Performance</h2>
-                        <button type="button" class="btn-edit" data-toggle="modal" data-target="#performance_model"><img alt="" src="{{asset("theme/hack4pizza/images/icon_edit.jpg")}}" /></button>
+                    <div class="performance_block">
+                        <h2 class="performance_block_title">Performance</h2>
+                        <hr />
                         <div class="row align-items-center justify-content-center badge-min-height">
                             <div class="col-12 text-center">
                                 <div id="chartjs-radar">
@@ -94,42 +94,33 @@
                     </div>
                 </div>
                 <div class="col-md-6 badges">
-                    <div class="block_wrapper">
-                        <h2 class="block-title">Badges</h2>
+                    <div class="badge_block">
+                        <h2 class="badge_block_title">Badges</h2>
+                        <hr />
                         <div class="row justify-content-center">
-                            <div class="col-8">
-                                <div class="row align-items-center justify-content-center badge-min-height">
-                                    <?php $bage_no = 0;?>
-                                    @foreach($badges as $badge)
-                                        <?php $count = \App\Experience::where([['user_id','=',$user->id],['badge_id','=',$badge->id]])->count(); ?>
-                                        @if($count > 0)
-                                            <?php $bage_no++;?>
-                                            <div class="col-4 badge-container text-center">
-                                                <div class="badge-wrapper">
-                                                    <img class="" src="{{asset("uploads/badges/$badge->pic")}}" alt="">
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                    @foreach($m_badges as $m_badge)
-                                        <?php $count = \App\Experience::where([['user_id','=',$user->id],['badge_id','=',$m_badge->badge_id]])->count(); ?>
-                                        @if($count >= $m_badge->number)
-                                            <div class="col-4 badge-container text-center">
-                                                <div class="badge-wrapper">
-                                                    <img class="" src="{{asset("uploads/master-badges/$m_badge->pic")}}" alt="">
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                    @if($bage_no > 0)
-                                    <div class="col-12 badge-all text-center">
-                                        <button type="button" class="btn-all" data-toggle="modal" data-target="#all_badges">See All</button>
-                                        <!--<a href="#">See All</a>-->
-                                    </div>
-                                    @else
-                                        <h4 class="mt-0" style="color: #bdb7b7;font-size: 20px;">Add some experience to receive a badge</h4>
-                                    @endif
-                                </div>
+                            <div class="col-md-3 display_badge_block">
+                                <img src="{{ asset('uploads/badges/new_badges/place_1.png') }}" alt="Badge">
+                            </div>
+                            <div class="col-md-3 display_badge_block">
+                                <img src="{{ asset('uploads/badges/new_badges/place_3.png') }}" alt="Badge">
+                            </div>
+                            <div class="col-md-3 display_badge_block">
+                                <img src="{{ asset('uploads/badges/new_badges/taste_4_gold.png') }}" alt="Badge">
+                            </div>
+                            <div class="col-md-3 display_badge_block">
+                                <img src="{{ asset('uploads/badges/new_badges/here_4_pizza.png') }}" alt="Badge">
+                            </div>
+                            <div class="col-md-3 display_badge_block">
+                                <img src="{{ asset('uploads/badges/new_badges/place_1.png') }}" alt="Badge">
+                            </div>
+                            <div class="col-md-3 display_badge_block">
+                                <img src="{{ asset('uploads/badges/new_badges/place_3.png') }}" alt="Badge">
+                            </div>
+                            <div class="col-md-3 display_badge_block">
+                                <img src="{{ asset('uploads/badges/new_badges/taste_4_gold.png') }}" alt="Badge">
+                            </div>
+                            <div class="col-md-3 display_badge_block">
+                                <img src="{{ asset('uploads/badges/new_badges/here_4_pizza.png') }}" alt="Badge">
                             </div>
                         </div>
 
@@ -609,7 +600,12 @@
             type: 'radar',
             data: {
                 labels: [
-                    "Pitch Presentation ", "Front End ", "Back End ", "Team player ", "Problem Solving ", "UX Design "
+                    "Pitch Presentation ", 
+                    "Front End ", 
+                    "Back End ", 
+                    "Team player ", 
+                    "Problem Solving ", 
+                    "UX Design "
                 ],
                 datasets: [{
                     label: 'Performance',
@@ -630,14 +626,27 @@
                     display: false,
                 },
                 title: {
-                    display: false,
+                    display: true,
+                    padding:20,
                 },
                 scale: {
+                    pointLabels:{
+                      fontColor:"#00FFC2",
+                      fontFamily:'Monument',
+                      fontSize:8,
+                    },
                     ticks: {
+                        fontColor:'#ffffff',
+                        backdropColor:'transparent',
+                        stepSize:1,
+                        min:0,
+                        max:10,
+                        fontFamily:'Monument',
+                        fontSize:12,
                         beginAtZero: true
                     },
                     Axes: [{
-                        display: false //this will remove all the x-axis grid lines
+                        display: false, //this will remove all the x-axis grid lines
                     }]
                 }
             }

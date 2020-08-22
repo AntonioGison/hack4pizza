@@ -186,6 +186,29 @@
 .logged_menu_right a{
     padding:10px 10px;
 }
+.performance .performance_block{
+    background-color:#3B3677;
+    padding:20px 25px;
+}
+.badges .badge_block{
+    background-color:#3B3677;
+    padding:20px 25px;
+}
+.performance_block_title{
+    font-family: Monument;
+    padding-left:20px;
+    color:#fff;
+    font-size:24px;
+}
+.display_badge_block{
+    padding:20px;
+}
+.badge_block_title{
+    font-family: Monument;
+    padding-left:20px;
+    color:#fff;
+    font-size:24px;  
+}
 /* Default */
 body{
     font-size:16px;

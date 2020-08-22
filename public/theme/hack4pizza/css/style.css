@@ -334,14 +334,15 @@ canvas {
 }
 
 #chartjs-radar {
-  width: 320px;
+  width:430px;
   margin: 0 auto;
-  border: 1.5px solid #707070;
-  padding: 0 10px;
+  padding: 0;
+  margin-top:-60px;
 }
 
-#chartjs-radar #canvas {
+#canvas #canvas {
   margin: -8px 0;
+  color:#fff;
 }
 
 .badge-min-height {
