@@ -88,6 +88,10 @@ class LoginController extends Controller
     {
         return Socialite::with('LinkedIn')->redirect();
     }
+    public function redirectToFacebookProvider()
+    {
+        return Socialite::with('Facebook')->redirect();
+    }
 
     /**
      * Obtain the user information from GitHub.
@@ -124,6 +128,21 @@ class LoginController extends Controller
         return redirect('user/dashboard');
         // $user->token;
     }
+    public function handleProviderFacebookCallback()
+    {
+        try {
+            $user = Socialite::driver('Facebook')->user();
+        } catch (Exception $e) {
+            return Redirect::to('auth/facebook');
+        }
+
+        $authUser = $this->findOrCreateUserFacebook($user);
+
+        Auth::login($authUser, true);
+
+        return redirect('user/dashboard');
+        // $user->token;
+    }
     private function findOrCreateUser($githubUser)
     {
         if ($authUser = User::where('github_id', $githubUser->id)->first()) {
@@ -146,6 +165,18 @@ class LoginController extends Controller
             'name' => $linkedinUser->name,
             'email' => $linkedinUser->email,
             'linkedin_id' => $linkedinUser->id,
+        ]);
+    }
+    private function findOrCreateUserFacebook($facebookUser)
+    {
+        if ($authUser = User::where('facebook_id', $facebookUser->id)->first()) {
+            return $authUser;
+        }
+
+        return User::create([
+            'name' => $facebookUser->name,
+            'email' => $facebookUser->email,
+            'facebook_id' => $facebookUser->id,
         ]);
     }
 }

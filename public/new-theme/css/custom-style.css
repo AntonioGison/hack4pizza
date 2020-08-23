@@ -107,6 +107,25 @@
   border-color:#e8dcdc3d;
   margin:30px 0px;
 }
+.social_login_hr_line {
+  text-align: center; 
+  border-bottom: 1px solid #ffffff; 
+  line-height: 0.1em;
+  margin-top:30px;
+  color:#fff;
+} 
+.social_login_hr_line span { 
+  background-color:#da2b88; 
+  padding:10px;
+  font-family:Monument;
+  margin:10px; 
+}
+.login_with_social_media{
+  padding:20px;
+}
+.login_with{
+  padding:30px 1px;
+}
 .footer_section{
   color:#fff;
   padding:40px 0px;

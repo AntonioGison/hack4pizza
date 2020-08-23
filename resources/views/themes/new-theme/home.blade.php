@@ -44,6 +44,36 @@
           <div class="col-md-12">
             <button type="btn" class="suf_btn btn form-control">SIGN UP</button>
           </div>
+          <div class="container">
+            <div class="social_login_hr_line"><span>OR SIGN UP WITH</span></div>
+          </div>
+          <div class="login_with_social_media">
+            <div class="container">
+              <div class="row  justify-content-md-center">
+                <div class="col-md-4">
+                  <div class="login_with">
+                    <a href="{{ route('facebook-login') }}">
+                      <img src="{{ asset('new-theme/images/login_with_facebook.png') }}" alt="Login with Facebook" />
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="login_with">
+                    <a href="{{ route('github-login') }}">
+                      <img src="{{ asset('new-theme/images/login_with_linkedin.png') }}" alt="Login with LinkedIn" />
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="login_with">
+                    <a href="{{ route('linkedin-login') }}">
+                      <img src="{{ asset('new-theme/images/login_with_github.png') }}" alt="Login with Github" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           </div>
         </form>
       </div>

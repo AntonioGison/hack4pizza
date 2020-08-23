@@ -10,24 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/clear',function(){
-    Artisan::call('config:clear');
-    Artisan::call('cache:clear');
-    Artisan::call('config:cache');
-});
+Route::get('/clear','Auth/ArtisanController@clear')->name('clear-cache');
 
-Route::get('/', function () {
-    return view('themes.new-theme.home');
-//    return redirect()->route('home');
-})->name("home");
+Route::view('/','themes.new-theme.home')->name("home");
 
 Auth::routes();
-Route::get('/login', function () {
-    return view('themes.new-theme.home');
-})->name("login");
-Route::get('/register', function () {
-    return view('themes.new-theme.home');
-})->name('register');
+Route::view('/login','themes.new-theme.home')->name("login");
+
+Route::view('/register','themes.new-theme.home')->name('register');
+
 Route::get('user/dashboard', 'UserController@index')->name('user.dashboard');
 Route::get('user/{slug}','Theme\HomeController@getProfile')->where('slug','[\w\d\-\_]+')->name('user.profile');
 Route::post('/ajax_upload/action', 'Theme\HomeController@picUpload')->name('ajaxupload.action');
@@ -41,8 +32,10 @@ Route::post('update-performance', 'UserController@updatePerformance')->name('upd
 Route::get('hackonthon-delete/delete/{id}', 'UserController@destroy')->name('admin-hackonthon-delete-delete');
 Route::get('login/github', 'Auth\LoginController@redirectToProvider')->name("github-login");
 Route::get('login/linkedin', 'Auth\LoginController@redirectToLinkedinProvider')->name("linkedin-login");
+Route::get('login/facebook', 'Auth\LoginController@redirectToFacebookProvider')->name("facebook-login");
 Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback');
 Route::get('login/linkedin/callback', 'Auth\LoginController@handleProviderLinkedinCallback');
+Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderFacebookCallback');
 
 Route::prefix('admin')->group(function() {
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
