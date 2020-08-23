@@ -25,7 +25,20 @@
             ?>
             <a href="#"><img src="{{ asset('new-theme/images/notification.png') }}" class="img img-responsive" alt="menu" /></a>
             <a href="{{ route('user.profile',['slug'=>$slug]) }}"><img src="<?php echo asset('uploads/user-pic/'.$user_profile_picture); ?>" style="height:40px;" class="img img-responsive" alt="headshot" /></a>
-            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();"><img src="{{ asset('new-theme/images/logged_menu.png') }}" style="height:25px;" class="img img-responsive" alt="menu" /></a>
+            <div class="dropdown" >
+              <button class="dropbtn"><img src="{{ asset('new-theme/images/logged_menu.png') }}" style="height:25px;" class="img img-responsive" alt="menu" /></button>
+              <div class="dropdown-content">
+                <div class="">
+                  <div class="arrow-up"></div>
+                </div>
+                <a href="#">Top 100</a>
+                <a href="#">Add Hackathon</a>
+                <a href="#">Setting & Privacy</a>
+                <a href="#">Edit Profile</a><hr />
+                <a style="padding-top:0px;padding-bottom:20px;" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Logout</a>
+              </div>
+            </div>
+           
           </div>
         </div>
     </div>

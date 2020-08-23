@@ -13,7 +13,7 @@
               <input type="text" id="loginEmail" class="form-control login_form_email" placeholder="Enter Email Address"> 
             </div>
             <div class="col-5 less-padding md-inpt">
-              <input type="text" id="loginPassword" class="form-control login_form_password" placeholder="Enter Password">
+              <input type="password" id="loginPassword" class="form-control login_form_password" placeholder="Enter Password">
               <a  href="{{ route('password.request') }}" class="login_form_frgt_pw">Forget Password?</a>
             </div>
             <div class="col-2 less-padding">
