@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row align-items-center">
       <div class="col-5 logo">
-        <a href="#">
+        <a href="{{ url('/') }}">
           <img alt="Hack4 Pizza" src="{{asset('new-theme/images/logo.png') }}" />
         </a>
       </div>
