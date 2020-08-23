@@ -291,7 +291,7 @@
 }
 .badges_container{
   padding:10px;
-  height:350px;
+  height:430px;
   overflow:auto;
 }
 .single_badge_info{
@@ -307,6 +307,19 @@
   color:#fff;
   font-family:Monument;
   font-size:18px;
+}
+.share_pop_social_media_links{
+  padding:10px;
+}
+.share_pop_social_media_links a{
+  padding:10px;
+}
+.copy_section{
+  color:#fff;
+  border:1px solid #fff;
+  padding:15px;
+  margin:20px;
+  background-color:#47427e;
 }
 .hackathon_input_label{
   color:#fff;

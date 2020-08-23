@@ -154,7 +154,7 @@
                         <img class="img img-responsive" src="{{ asset('uploads/hackonton/hackathon.png') }}" alt="hackathon_logo">
                       </div>
                       <div class="col-md-11">
-                        <a href="#" class="hackathon_share_btn float-right"><i class="fa fa-share-square"></i>&nbsp;Share</a>
+                        <a href="#" class="hackathon_share_btn float-right share_hackathon"><i class="fa fa-share-square"></i>&nbsp;Share</a>
                         <h4>Startup weekend COVID-19 Italy</h4>
                         <h5>By Techstars <br /> 17/04/2020 - 19/04/2020</h5>
                         <p>I’ve been a Mentor at this event. I just loved the experience. Due the coronavirus the event was online Startup Weekend.</p>
@@ -170,7 +170,7 @@
                         <img class="img img-responsive" src="{{ asset('uploads/hackonton/hackathon.png') }}" alt="hackathon_logo">
                       </div>
                       <div class="col-md-11">
-                        <a href="#" class="hackathon_share_btn float-right"><i class="fa fa-share-square"></i>&nbsp;Share</a>
+                        <a href="#" class="hackathon_share_btn float-right share_hackathon"><i class="fa fa-share-square"></i>&nbsp;Share</a>
                         <h4>Startup weekend COVID-19 Italy</h4>
                         <h5>By Techstars <br /> 17/04/2020 - 19/04/2020</h5>
                         <p>I’ve been a Mentor at this event. I just loved the experience. Due the coronavirus the event was online Startup Weekend.</p>
@@ -200,7 +200,7 @@
                         <img class="img img-responsive" src="{{ asset('uploads/hackonton/hackathon.png') }}" alt="hackathon_logo">
                       </div>
                       <div class="col-md-11">
-                        <a href="#" class="hackathon_share_btn float-right"><i class="fa fa-share-square"></i>&nbsp;Share</a>
+                        <a href="#" class="hackathon_share_btn float-right share_hackathon"><i class="fa fa-share-square"></i>&nbsp;Share</a>
                         <h4>Startup weekend COVID-19 Italy</h4>
                         <h5>By Techstars <br /> 17/04/2020 - 19/04/2020</h5>
                         <p>I’ve been a Mentor at this event. I just loved the experience. Due the coronavirus the event was online Startup Weekend.</p>
@@ -216,7 +216,7 @@
                         <img class="img img-responsive" src="{{ asset('uploads/hackonton/hackathon.png') }}" alt="hackathon_logo">
                       </div>
                       <div class="col-md-11">
-                        <a href="#" class="hackathon_share_btn float-right"><i class="fa fa-share-square"></i>&nbsp;Share</a>
+                        <a href="#" class="hackathon_share_btn float-right share_hackathon"><i class="fa fa-share-square"></i>&nbsp;Share</a>
                         <h4>Startup weekend COVID-19 Italy</h4>
                         <h5>By Techstars <br /> 17/04/2020 - 19/04/2020</h5>
                         <p>I’ve been a Mentor at this event. I just loved the experience. Due the coronavirus the event was online Startup Weekend.</p>
@@ -379,6 +379,57 @@
     </div>
   </div>
 
+  <div class="modal fade" id="hackathon_share" tabindex="-1" role="dialog" aria-labelledby="hackathon_shareLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="new_modal_section">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="new_modal_header">
+                  <button type="button" class="btn-close new_modal_close_btn" data-dismiss="modal" aria-label="Close">
+                    <img alt="" src="{{asset('new-theme/images/icon_close.png')}}"></button>
+                  <h2 class="new_modal_header_title">Share</h2>
+                </div>
+                <hr />
+              </div>
+              <div class="col-md-12">
+                <div class="share_pop_social_media_links">
+                  <a href="#">
+                    <img src="{{ asset('new-theme/images/link_instagram.png') }}" alt="instagram" />
+                  </a>
+                  <a href="#">
+                    <img src="{{ asset('new-theme/images/link_facebook.png') }}" alt="facebook" />
+                  </a>
+                  <a href="#">
+                    <img src="{{ asset('new-theme/images/link_dribbble.png') }}" alt="dribbble" />
+                  </a>
+                  <a href="#">
+                    <img src="{{ asset('new-theme/images/link_behance.png') }}" alt="behance" />
+                  </a>
+                  <a href="#">
+                    <img src="{{ asset('new-theme/images/link_whatsapp.png') }}" alt="whatsapp" />
+                  </a>
+                </div>
+                <div class="copy_section col-md-9">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <span>https://hack4.pizza/user/antonio#</span>
+                    </div>
+                    <div class="col-md-6">
+                      <span class="float-right">
+                        <i class="fa fa-copy"></i>&nbsp;Copy</div>
+                      </span>  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="modal fade" id="hackathon_edit" tabindex="-1" role="dialog" aria-labelledby="hackathon_editLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
@@ -444,7 +495,6 @@
       </div>
     </div>
   </div>
-
   <div class="modal fade" id="performance_model" tabindex="-1" role="dialog" aria-labelledby="performance_modelLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
@@ -625,6 +675,15 @@
       $(".add_hackathon").click(function(e){
         e.preventDefault();
         $("#hackathon_add").modal();
+      });
+
+      $("#hackathon_share").modal();
+
+      // Display share pop up for each hackathon
+      $(".share_hackathon").click(function(e){
+        e.preventDefault();
+        $("#hackathon_share").modal();
+
       });
       /** Show Hide Hackathon blocks **/
       $('#hackathon_blocks_2018').on('show.bs.collapse', function() {
