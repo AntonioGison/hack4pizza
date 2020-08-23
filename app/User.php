@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email','slug', 'password','pic','name1','name2','name3','url1','url2','url3','linkedin_id','github_id','bio',
+      'name','first_name','last_name', 'email', 'phone_number', 'slug', 'password','profile_picture','facebook_id', 'linkedin_id','github_id','bio',
     ];
 
     public function experiences(){

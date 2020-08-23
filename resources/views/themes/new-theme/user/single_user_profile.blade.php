@@ -7,7 +7,6 @@
 <div class="dashboard_body">
   <div id="main_info">
     <?php
-      $user = Auth::user(); 
       $badges = \App\Badge::all();
       $m_badges = \App\MasterBadge::all();
       $max = (date("Y",strtotime($user->experiences->max("from"))));

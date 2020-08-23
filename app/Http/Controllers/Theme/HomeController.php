@@ -36,12 +36,12 @@ class HomeController extends Controller
     public function getProfile($slug)
     {
         $user = User::where('slug','=',$slug)->first();
-        $title = "Profiel-".$slug;
+        $title = "Profile-".$slug;
         if (Auth::user()){
             if (Auth::user()->slug == $slug){
-                return view('user.dashboard.index',['title'=>$title,'user'=>$user]);
+                return view('themes.new-theme.user.dashboard',['title'=>$title,'user'=>$user]);
             }else{
-                return view('user.dashboard.singleProfile',['title'=>$title,'user'=>$user]);
+                return view('themes.new-theme.user.single_user_profile',['title'=>$title,'user'=>$user]);
             }
         }else{
             return view('user.dashboard.singleProfile',['title'=>$title,'user'=>$user]);

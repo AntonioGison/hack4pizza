@@ -24,10 +24,10 @@
             <input type="email" name="suf_email" placeholder="Email Address*" class="form-control suf_input suf_email">  
           </div>
           <div class="col-md-12">
-            <input type="text" name="suf_password" placeholder="Password*" class="form-control suf_input suf_password">  
+            <input type="password" name="suf_password" placeholder="Password*" class="form-control suf_input suf_password">  
           </div>
           <div class="col-md-12">
-            <input type="text" name="suf_confirm_password" placeholder="Confirm Password*" class="form-control suf_input suf_confirm_password">  
+            <input type="password" name="suf_confirm_password" placeholder="Confirm Password*" class="form-control suf_input suf_confirm_password">  
           </div>
           <div class="col-md-6">
             <input type="text" name="suf_phone" placeholder="Telephone number*" class="form-control suf_input suf_phone">  

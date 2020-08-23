@@ -15,9 +15,17 @@
             <input type="text" id="searchUser" class="form-control search_user" placeholder="Search"> 
           </div>
           <div class="col-4 logged_menu_right">
-           <a href="#"><img src="{{ asset('new-theme/images/notification.png') }}" class="img img-responsive" alt="menu" /></a>
-           <a href="#"><img src="{{ asset('uploads/user-pic/headshot.png') }}" style="height:40px;" class="img img-responsive" alt="headshot" /></a>
-           <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();"><img src="{{ asset('new-theme/images/logged_menu.png') }}" style="height:25px;" class="img img-responsive" alt="menu" /></a>
+            <?php
+              if(Auth::user()->profile_picture==''){
+                $user_profile_picture = "placeholder.jpg";
+              }else{
+                $user_profile_picture = Auth::user()->profile_picture;
+              }
+              $slug = Auth::user()->slug;
+            ?>
+            <a href="#"><img src="{{ asset('new-theme/images/notification.png') }}" class="img img-responsive" alt="menu" /></a>
+            <a href="{{ route('user.profile',['slug'=>$slug]) }}"><img src="<?php echo asset('uploads/user-pic/'.$user_profile_picture); ?>" style="height:40px;" class="img img-responsive" alt="headshot" /></a>
+            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();"><img src="{{ asset('new-theme/images/logged_menu.png') }}" style="height:25px;" class="img img-responsive" alt="menu" /></a>
           </div>
         </div>
     </div>

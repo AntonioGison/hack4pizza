@@ -53,21 +53,27 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'phone_number' => 'required|numeric|min:10',
             'password' => 'required|string|min:6',
             'terms' => 'required',
         ]);
     }
 
     protected function create(array $data)
-    {
+    {       
+        $profile_slug =  $this->createSlug($data['first_name']." ".$data['last_name']);
         return User::create([
-            'name' => $data['name'],
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'name'=>$data['first_name']." ".$data['last_name'],
             'email' => $data['email'],
+            'phone_number'=>$data['phone_number'],
             'password' => bcrypt($data['password']),
-            'pic' => $data['pic'],
-            'slug' => $data['slug']
+            'slug' => $profile_slug,
+            'address'=> $data['address'],
         ]);
     }
 
@@ -143,11 +149,13 @@ class RegisterController extends Controller
         } else {
             $input = $request->all();
             $slug =  $this->createSlug($request->name);
-            $input['slug'] = $slug;
+            $profile_slug =  $this->createSlug($request->first_name." ".$request->last_name);
+
+            $input['slug'] = $profile_slug;
             $user = $this->create($input);
             Auth::login($user);
             if (Auth::user()) {
-                return response()->json(['status' => '0','slug' => $slug]);
+                return response()->json(['status' => '0','slug' => $profile_slug]);
             }
         }
     }

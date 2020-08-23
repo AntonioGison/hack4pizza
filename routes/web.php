@@ -29,7 +29,7 @@ Route::get('/register', function () {
     return view('themes.new-theme.home');
 })->name('register');
 Route::get('user/dashboard', 'UserController@index')->name('user.dashboard');
-Route::get('user/{slug}','Theme\HomeController@getProfile')->where('slug','[\w\d\-\_]+');
+Route::get('user/{slug}','Theme\HomeController@getProfile')->where('slug','[\w\d\-\_]+')->name('user.profile');
 Route::post('/ajax_upload/action', 'Theme\HomeController@picUpload')->name('ajaxupload.action');
 Route::post('/ajax_upload_hackon/action', 'Theme\HomeController@picUploadHackon')->name('ajaxuploadhackon.action');
 Route::post('user-update', 'UserController@profileUpdate')->name('user-update');
