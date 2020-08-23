@@ -44,7 +44,7 @@ class HomeController extends Controller
                 return view('themes.new-theme.user.single_user_profile',['title'=>$title,'user'=>$user]);
             }
         }else{
-            return view('user.dashboard.singleProfile',['title'=>$title,'user'=>$user]);
+            return view('themes.new-theme.user.single_user_profile',['title'=>$title,'user'=>$user]);
         }
     }
     function picUpload(Request $request)

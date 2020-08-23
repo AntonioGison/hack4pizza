@@ -11,7 +11,6 @@
       $m_badges = \App\MasterBadge::all();
       $max = (date("Y",strtotime($user->experiences->max("from"))));
       $min =(date("Y",strtotime($user->experiences->min("from"))));
-
       // Extracting user data.
       $full_name = $user->name;
       $address = $user->address;
@@ -154,7 +153,6 @@
                 <h2 class="block-title">2020</h2>
               </div>
               <div class="col-md-12 hackathon_header">
-                <a href="#" class="add_hackathon float-right"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add Hackathon</a>
                 <h3>HACKATHONS</h3>
                 <hr />
               </div>
@@ -200,7 +198,6 @@
                 <h2 class="block-title">2019</h2>
               </div>
               <div class="col-md-12 hackathon_header">
-                <a href="#" class="add_hackathon float-right"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add Hackathon</a>
                 <h3>HACKATHONS</h3>
                 <hr />
               </div>
@@ -247,150 +244,6 @@
 </div>
 @endsection
 @section('models')
-  <div class="modal fade" id="profile_model" tabindex="-1" role="dialog" aria-labelledby="performance_modelLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content">
-        <div class="block_wrapper">
-          <h2 class="block-title">Edit Profile</h2>
-          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"><img alt="" src="{{asset("theme/hack4pizza/images/icon_close.jpg")}}"></button>
-          <form id="profile_form" class="form_class" method="post" enctype="multipart/form-data">
-            <div class="form-group msg_name">
-              @csrf
-              <input type="hidden" id="pic" value="{{$user->pic}}">
-              <label>Name*</label>
-              <input type="hidden" id="id" value="{{$user->id}}">
-              <input type="text" name="name" class="form-control" value="<?php $user = Auth::user();echo $user->name;?>" id="name">
-            </div>
-            <div class="form-group">
-              <label>Bio</label>
-              <textarea name="" id="bio"  class="form-control">{{$user->bio}}</textarea>
-            </div>
-            <div class="form-group msg_email">
-              <label>Email*</label>
-              <input type="email" class="form-control" id="email" value="{{$user->email}}">
-            </div>
-            <div class="form-group msg_pass">
-              <label>Password</label>
-              <input type="password" class="form-control" id="password" placeholder="If you didnt want to change Password leave it blank">
-            </div>
-            <div class="form-group">
-              <label>Social Link Name</label>
-              <input type="text" class="form-control" {{$user->name1}} id="name1">
-            </div>
-            <div class="form-group">
-              <label>Url</label>
-              <input type="text" class="form-control" {{$user->url1}} id="url1">
-            </div>
-            <div class="form-group">
-              <label>Social Link Name</label>
-              <input type="text" class="form-control" {{$user->name2}} id="name2">
-            </div>
-            <div class="form-group">
-              <label>Url</label>
-              <input type="text" class="form-control" {{$user->url2}} id="url2">
-            </div>
-            <div class="form-group">
-              <label>Social Link Name</label>
-              <input type="text" class="form-control" {{$user->name3}} id="name3">
-            </div>
-            <div class="form-group">
-              <label>Url</label>
-              <input type="text" class="form-control" {{$user->url3}} id="url3">
-            </div>
-
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label>Upload Hackathon's logo/IMG</label>
-                <div class="custom-file">
-                  <input type="file" name="file" class="custom-file-input" id="{{asset('theme/hack4pizza/hackathon_img')}}">
-                  <label class="custom-file-label" for="hackathon_img"></label>
-                </div>
-              </div>
-              <div class="form-group col-sm-3 pic_msg">
-                @if($user->pic != null)
-                  <img src="{{asset("uploads/user-pic/$user->pic")}}" width="100%" alt="">
-                @endif
-              </div>
-            </div>
-            <div class="form-group text-right ">
-              <button type="button" id="profile_submit"  class="btn btn-success">Save</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="hackathon_add" tabindex="-1" role="dialog" aria-labelledby="hackathon_addLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content">
-        <div class="new_modal_section">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="new_modal_header">
-                  <button type="button" class="btn-close new_modal_close_btn" data-dismiss="modal" aria-label="Close">
-                    <img alt="" src="{{asset('new-theme/images/icon_close.png')}}"></button>
-                  <h2 class="new_modal_header_title">Add Hackathon</h2>
-                </div>
-                <hr />
-              </div>
-            </div>
-          </div>
-          <form id="hackathon_add_form" class="form_class add_hackathon_form" enctype="multipart/form-data">
-            @csrf
-            <input type="hidden" id="ha_pic" >
-            <div class="form-group">
-              <input type="text" placeholder="Hackathon's name*" class="form-control hackathon_input" id="ha_name">
-            </div>
-            <div class="form-group ha_organized">
-              <input type="text" class="form-control hackathon_input" placeholder="Hosted/Organized by*" id="ha_organized">
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-4 ha_from">
-                <input type="text" placeholder="From*" class="form-control datepicker hackathon_input " id="ha_from">
-              </div>
-              <div class="form-group col-md-4">
-                <input type="text" placeholder="To*" class="form-control datepicker hackathon_input" id="ha_to">
-              </div>
-              <div class="form-group col-md-4 place_msg">
-                <select class="form-control hackathon_input" id="ha_result">
-                  <option value="" selected>Select Result*</option>
-                  @foreach($badges as $badge)
-                    <option value="{{$badge->id}}">{{$badge->name}}</option>
-                  @endforeach
-                </select>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="ha_description" class="hackathon_input_label">Description (HTML editor)*</label>
-              <textarea class="form-control hackathon_input_textarea" rows="5" id="ha_description"></textarea>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label class="hackathon_input_label">Upload Hackathon's logo/IMG</label>
-                <div class="custom-file">
-                  <input type="file" name="file" class="custom-file-input hackathon_input" id="new_hackathon_img">
-                  <label class="custom-file-label add_hackathon_file_label" for="hackathon_img"></label>
-                </div>
-
-              </div>
-              <div class="form-group col-sm-2 ha_pic_msg">
-
-              </div>
-
-            </div>
-            <div class="form-group text-right ha_success">
-            </div>
-            <div class="form-group text-right">
-              <button type="button" id="ha_submit" class="btn add_hackathon_submit_btn">SAVE</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div class="modal fade" id="hackathon_share" tabindex="-1" role="dialog" aria-labelledby="hackathon_shareLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
