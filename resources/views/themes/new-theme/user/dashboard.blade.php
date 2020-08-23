@@ -677,8 +677,6 @@
         $("#hackathon_add").modal();
       });
 
-      $("#hackathon_share").modal();
-
       // Display share pop up for each hackathon
       $(".share_hackathon").click(function(e){
         e.preventDefault();
