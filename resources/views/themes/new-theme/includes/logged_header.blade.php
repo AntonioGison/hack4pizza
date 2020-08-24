@@ -17,7 +17,64 @@
               <div class="search_area_content">
                 <div class="arrow-up-white"></div>
                 <div class="search_area">
-                  Content
+                  <div class="search_result_number">
+                    About <span class="number_search">35</span> Results
+                  </div>
+                  <div class="row justify-content-md-center" >
+                    <div class="col-md-3">
+                      <div class="user_search_box">
+                        <img src="{{ asset('uploads/user-pic/search1.png') }}" alt="User" class="img img-responsive">
+                        <div class="user_name"><h4>Rick Jones</h4></div>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="user_search_box">
+                        <img src="{{ asset('uploads/user-pic/search2.png') }}" alt="User" class="img img-responsive">
+                        <div class="user_name"><h4>Rick Brando</h4></div>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="user_search_box">
+                        <img src="{{ asset('uploads/user-pic/search3.png') }}" alt="User" class="img img-responsive">
+                        <div class="user_name"><h4>Rick Smith</h4></div>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="user_search_box">
+                        <img src="{{ asset('uploads/user-pic/search4.png') }}" alt="User" class="img img-responsive">
+                        <div class="user_name"><h4>Rick Saurez</h4></div>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="user_search_box">
+                        <img src="{{ asset('uploads/user-pic/search5.png') }}" alt="User" class="img img-responsive">
+                        <div class="user_name"><h4>Rick James</h4></div>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="user_search_box">
+                        <img src="{{ asset('uploads/user-pic/search1.png') }}" alt="User" class="img img-responsive">
+                        <div class="user_name"><h4>Rick Jones</h4></div>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="user_search_box">
+                        <img src="{{ asset('uploads/user-pic/search2.png') }}" alt="User" class="img img-responsive">
+                        <div class="user_name"><h4>Rick Brando</h4></div>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="user_search_box">
+                        <img src="{{ asset('uploads/see_all.png') }}" alt="User" class="img img-responsive">
+                        <div class="user_name"><h4>See All</h4></div>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="close_btn_sec">
+                        <a href="#" class="close_btn">Close Search Result</a>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

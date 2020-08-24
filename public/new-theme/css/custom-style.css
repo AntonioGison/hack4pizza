@@ -405,6 +405,13 @@ body{
 .dropdown_search{
   position:relative;
   display:inline-block;
+  width:100%;
+}
+.close_btn_sec{
+  text-align:center;
+}
+.close_btn_sec a{
+  color:#666666;
 }
 .search_area_content{
   display: none;
@@ -417,8 +424,24 @@ body{
   text-align:left;
   margin-top:20px;
 }
+.search_area_content:hover .search_area_content{
+  display:block;
+}
 .search_area{
+  padding:30px;
+}
+.user_search_box{
+  text-align:center;
+  padding:10px 20px;
+  cursor: pointer;
+}
+.user_search_box .user_name h4{
+  font-family:Monument;
+  font-size:16px;
+}
+.user_name{
   padding:10px;
+  text-align:center;
 }
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
