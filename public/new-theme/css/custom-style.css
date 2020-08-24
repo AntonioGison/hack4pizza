@@ -402,7 +402,24 @@ body{
   display: inline-block;
   padding:20px 0px;
 }
-
+.dropdown_search{
+  position:relative;
+  display:inline-block;
+}
+.search_area_content{
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  min-width: 700px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  right: 0;
+  text-align:left;
+  margin-top:20px;
+}
+.search_area{
+  padding:10px;
+}
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
   display: none;
@@ -423,17 +440,28 @@ body{
   border-left: 20px solid transparent;
   border-bottom: 20px solid #D90088;
 }
+.arrow-up-white {
+  width: 0;
+  float: right;
+  height: 0;
+  margin-top: -15px;
+  border-left: 15px solid transparent;
+  border-bottom: 15px solid #ffffff;
+}
 /* Links inside the dropdown */
 .dropdown-content a{
   color: #fff;
   font-size:12px;
-  padding:10px 20pxsearch_user
-  ;
+  padding:10px 20px;
   text-decoration: none;
+  margin-bottom:3px;
   display: block;
 }
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {color: #ddd;}
+.dropdown-content a:hover {
+  color: #fff;
+  background-color: #af1d6b;
+}
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 

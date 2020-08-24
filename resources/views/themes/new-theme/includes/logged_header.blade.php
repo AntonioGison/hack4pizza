@@ -12,7 +12,15 @@
         </form>
         <div class="row">
           <div class="col-8 less-padding">
-            <input type="text" id="searchUser" class="form-control search_user" placeholder="Search"> 
+            <div class="dropdown_search">
+              <input type="text" id="searchUser" class="form-control search_user" placeholder="Search"> 
+              <div class="search_area_content">
+                <div class="arrow-up-white"></div>
+                <div class="search_area">
+                  Content
+                </div>
+              </div>
+            </div>
           </div>
           <div class="col-4 logged_menu_right">
             <?php
@@ -34,8 +42,8 @@
                 <a href="#">Top 100</a>
                 <a href="#">Add Hackathon</a>
                 <a href="#">Setting & Privacy</a>
-                <a href="#">Edit Profile</a><hr />
-                <a style="padding-top:0px;padding-bottom:20px;" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Logout</a>
+                <a href="#">Edit Profile</a>
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Logout</a>
               </div>
             </div>
            

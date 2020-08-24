@@ -7,6 +7,11 @@
       e.preventDefault();
       $(".dropdown-content").toggle();
     });
+    $("#searchUser").focus(function(e){
+      e.preventDefault();
+      $(".search_area_content").show();
+    });
+    
     $(document).on("click", function(event){
         var $trigger = $(".dropdown");
         if($trigger !== event.target && !$trigger.has(event.target).length){
