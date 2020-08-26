@@ -35,6 +35,9 @@ class UserController extends Controller
     public function top_hackers(){
         return view('themes.new-theme.user.top_hackers');
     }
+    public function search_user(){
+        return view('themes.new-theme.user.search_user');
+    }
     /**
      * Store a newly created resource in storage.
      *

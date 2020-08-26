@@ -435,6 +435,44 @@
   font-family:Monument;
   font-size:12px;
 }
+/* Search User */
+.search_user_block{
+  padding:30px;
+  margin:30px 0px;
+  background-color:#3B3677;
+}
+.user_search_box a{
+  color:#000;
+  text-decoration:none;
+}
+.search_user_link{
+  text-decoration:none;
+}
+.search_user_link:hover{
+  text-decoration:none;
+}
+.search_result_data{
+  padding-bottom:20px;
+}
+.search_result_data h4{
+  font-family:Monument;
+  color:#999999;
+  font-size:18px;
+}
+.search_user_info{
+  padding:10px;
+  text-align:center;
+  margin-bottom:20px;
+  color:#fff;
+  background-color:#34306F;
+}
+.search_user_info h5{
+  padding:10px;
+}
+.search_user_info p{
+  color:#999;
+  font-size:12px;
+}
 /* Modals */
 .new_modal_section{
   background-color:#3B3677;

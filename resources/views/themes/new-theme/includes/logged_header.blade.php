@@ -65,8 +65,10 @@
                     </div>
                     <div class="col-md-3">
                       <div class="user_search_box">
-                        <img src="{{ asset('uploads/see_all.png') }}" alt="User" class="img img-responsive">
-                        <div class="user_name"><h4>See All</h4></div>
+                        <a href="{{ route('user.search.index') }}">
+                          <img src="{{ asset('uploads/see_all.png') }}" alt="User" class="img img-responsive">
+                          <div class="user_name"><h4>See All</h4></div>
+                        </a>
                       </div>
                     </div>
                     <div class="col-md-12">
