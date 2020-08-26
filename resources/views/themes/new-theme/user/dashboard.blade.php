@@ -40,32 +40,34 @@
       <div class="row">
         <div class="col main_info_wraper dashboard_first_block dashboard_block">
           <div class="row relative">
-            <div class="col-md-3 main_info_cover text-center">
+            <div class="col-4 col-md-3 main_info_cover text-center">
               <a href="#">
                 <figure class="figure">
                     <img src="<?php echo asset('uploads/user-pic/'.$user_profile_picture); ?>" class="figure-img img-fluid" alt="cover">
                 </figure>
               </a>
             </div>
-            <div class="col-md-5 basic_info_block">
+            <div class="col-8 col-md-5 basic_info_block">
               <h2>{{ $full_name }} <img src="{{ asset('new-theme/images/verified_user.png') }}" alt="verified" /></h2>
               <p><i class="fa fa-map-marker-alt"></i> &nbsp;{{ $address }}</p>
               <p><i class="fa fa-user"></i> &nbsp;Member Since {{ $member_since }} </p>
             </div>
-            <div class="col-md-4 main_info_links">
+            <div class="col-12 only-mobile"><hr /></div>
+            <div class="col-12 col-md-4 main_info_links">
               <div class="share_block">
                 <a href="#"><i class="fab fa-facebook-f"></i> &nbsp;Share</a>
                 <a href="#"><i class="fab fa-linkedin-in"></i>&nbsp;Share</a>
                 <a href="#"><i class="fa fa-copy"></i> &nbsp;Copy</a>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-12 only-mobile"><hr /></div>
+            <div class="col-12 col-md-6">
               <div class="bio_info">
                 <h2>Biography</h2>
                 <p><?php echo $bio ?></p>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-12 col-md-6">
               <div class="bio_info social_media_info">
                 <h2>Social</h2>
                 <a href="#">
@@ -112,28 +114,28 @@
             <h2 class="badge_block_title">Badges</h2>
             <hr />
             <div class="row justify-content-center">
-              <div class="col-md-3 display_badge_block">
+              <div class="col-4 col-md-3 display_badge_block">
                 <img src="{{ asset('uploads/badges/new_badges/place_1.svg') }}" alt="Badge">
               </div>
-              <div class="col-md-3 display_badge_block">
+              <div class="col-4 col-md-3 display_badge_block">
                 <img src="{{ asset('uploads/badges/new_badges/place_3.svg') }}" alt="Badge">
               </div>
-              <div class="col-md-3 display_badge_block">
+              <div class="col-4 col-md-3 display_badge_block">
                 <img src="{{ asset('uploads/badges/new_badges/taste_4_gold.svg') }}" alt="Badge">
               </div>
-              <div class="col-md-3 display_badge_block">
+              <div class="col-4 col-md-3 display_badge_block">
                 <img src="{{ asset('uploads/badges/new_badges/here_4_pizza.svg') }}" alt="Badge">
               </div>
-              <div class="col-md-3 display_badge_block">
+              <div class="col-4 col-md-3 display_badge_block">
                 <img src="{{ asset('uploads/badges/new_badges/place_1.svg') }}" alt="Badge">
               </div>
-              <div class="col-md-3 display_badge_block">
+              <div class="col-4 col-md-3 display_badge_block">
                 <img src="{{ asset('uploads/badges/new_badges/place_3.svg') }}" alt="Badge">
               </div>
-              <div class="col-md-3 display_badge_block">
+              <div class="col-4 col-md-3 display_badge_block">
                 <img src="{{ asset('uploads/badges/new_badges/taste_4_gold.svg') }}" alt="Badge">
               </div>
-              <div class="col-md-3 display_badge_block">
+              <div class="col-4 col-md-3 display_badge_block">
                 <img src="{{ asset('uploads/badges/new_badges/here_4_pizza.svg') }}" alt="Badge">
               </div>
             </div>
@@ -149,10 +151,13 @@
     <div class="container">
       <div class="row">
         <div class="col no-padding">
+          <?php
+            for($i=2020; $i>2017; $i--){
+          ?>
           <div class="hackathon_section">
             <div class="row">
               <div class="col-md-12">
-                <h2 class="block-title">2020</h2>
+                <h2 class="block-title">{{ $i }}</h2>
               </div>
               <div class="col-md-12 hackathon_header">
                 <a href="#" class="add_hackathon float-right"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add Hackathon</a>
@@ -163,13 +168,22 @@
                 <div class="hackathon_data">
                   <div class="container">
                     <div class="row">
-                      <div class="col-md-1">
+                      <div class="col-2 col-md-1 hackathon_thumbnail">
                         <img class="img img-responsive" src="{{ asset('uploads/hackonton/hackathon.svg') }}" alt="hackathon_logo">
                       </div>
-                      <div class="col-md-11">
-                        <a href="#" class="hackathon_share_btn float-right share_hackathon"><i class="fa fa-share-square"></i>&nbsp;Share</a>
+                      <div class="col-9 col-md-11">
+                        <a href="#" class="hackathon_share_btn only-desktop float-right share_hackathon"><i class="fa fa-share-square"></i>&nbsp;Share</a>
                         <h4>Startup weekend COVID-19 Italy</h4>
                         <h5>By Techstars <br /> 17/04/2020 - 19/04/2020</h5>
+                        <p class="only-desktop">I’ve been a Mentor at this event. I just loved the experience. Due the coronavirus the event was online Startup Weekend.</p>
+                        <img src="{{ asset('uploads/badges/new_badges/place_1.svg') }}" class="hackathon_badge_img only-desktop" alt="badge information"><label class="hackathon_badge_title only-desktop">&nbsp;&nbsp;1st Place</label>
+                      </div>
+                      <div class="col-2 only-mobile">
+                        <a href="#" class="hackathon_share_btn only-mobile share_hackathon">
+                          <img src="{{ asset('new-theme/images/share_icon.svg') }}" alt="share">
+                        </a>
+                      </div>
+                      <div class="col-10 only-mobile">
                         <p>I’ve been a Mentor at this event. I just loved the experience. Due the coronavirus the event was online Startup Weekend.</p>
                         <img src="{{ asset('uploads/badges/new_badges/place_1.svg') }}" class="hackathon_badge_img" alt="badge information"><label class="hackathon_badge_title">&nbsp;&nbsp;1st Place</label>
                       </div>
@@ -179,13 +193,22 @@
                 <div class="hackathon_data">
                   <div class="container">
                     <div class="row">
-                      <div class="col-md-1">
+                      <div class="col-2 col-md-1 hackathon_thumbnail">
                         <img class="img img-responsive" src="{{ asset('uploads/hackonton/hackathon.svg') }}" alt="hackathon_logo">
                       </div>
-                      <div class="col-md-11">
-                        <a href="#" class="hackathon_share_btn float-right share_hackathon"><i class="fa fa-share-square"></i>&nbsp;Share</a>
+                      <div class="col-9 col-md-11">
+                        <a href="#" class="hackathon_share_btn only-desktop float-right share_hackathon"><i class="fa fa-share-square"></i>&nbsp;Share</a>
                         <h4>Startup weekend COVID-19 Italy</h4>
                         <h5>By Techstars <br /> 17/04/2020 - 19/04/2020</h5>
+                        <p class="only-desktop">I’ve been a Mentor at this event. I just loved the experience. Due the coronavirus the event was online Startup Weekend.</p>
+                        <img src="{{ asset('uploads/badges/new_badges/place_1.svg') }}" class="hackathon_badge_img only-desktop" alt="badge information"><label class="hackathon_badge_title only-desktop">&nbsp;&nbsp;1st Place</label>
+                      </div>
+                      <div class="col-2 only-mobile">
+                        <a href="#" class="hackathon_share_btn only-mobile share_hackathon">
+                          <img src="{{ asset('new-theme/images/share_icon.svg') }}" alt="share">
+                        </a>
+                      </div>
+                      <div class="col-10 only-mobile">
                         <p>I’ve been a Mentor at this event. I just loved the experience. Due the coronavirus the event was online Startup Weekend.</p>
                         <img src="{{ asset('uploads/badges/new_badges/place_1.svg') }}" class="hackathon_badge_img" alt="badge information"><label class="hackathon_badge_title">&nbsp;&nbsp;1st Place</label>
                       </div>
@@ -195,52 +218,9 @@
               </div>
             </div>
           </div>
-          <div class="hackathon_section">
-            <div class="row">
-              <div class="col-md-12">
-                <h2 class="block-title">2019</h2>
-              </div>
-              <div class="col-md-12 hackathon_header">
-                <a href="#" class="add_hackathon float-right"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add Hackathon</a>
-                <h3>HACKATHONS</h3>
-                <hr />
-              </div>
-              <div class="col-md-12 hackathon_data_section">
-                <div class="hackathon_data">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-md-1">
-                        <img class="img img-responsive" src="{{ asset('uploads/hackonton/hackathon.svg') }}" alt="hackathon_logo">
-                      </div>
-                      <div class="col-md-11">
-                        <a href="#" class="hackathon_share_btn float-right share_hackathon"><i class="fa fa-share-square"></i>&nbsp;Share</a>
-                        <h4>Startup weekend COVID-19 Italy</h4>
-                        <h5>By Techstars <br /> 17/04/2020 - 19/04/2020</h5>
-                        <p>I’ve been a Mentor at this event. I just loved the experience. Due the coronavirus the event was online Startup Weekend.</p>
-                        <img src="{{ asset('uploads/badges/new_badges/place_1.svg') }}" class="hackathon_badge_img" alt="badge information"><label class="hackathon_badge_title">&nbsp;&nbsp;1st Place</label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="hackathon_data">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-md-1">
-                        <img class="img img-responsive" src="{{ asset('uploads/hackonton/hackathon.svg') }}" alt="hackathon_logo">
-                      </div>
-                      <div class="col-md-11">
-                        <a href="#" class="hackathon_share_btn float-right share_hackathon"><i class="fa fa-share-square"></i>&nbsp;Share</a>
-                        <h4>Startup weekend COVID-19 Italy</h4>
-                        <h5>By Techstars <br /> 17/04/2020 - 19/04/2020</h5>
-                        <p>I’ve been a Mentor at this event. I just loved the experience. Due the coronavirus the event was online Startup Weekend.</p>
-                        <img src="{{ asset('uploads/badges/new_badges/place_1.svg') }}" class="hackathon_badge_img" alt="badge information"><label class="hackathon_badge_title">&nbsp;&nbsp;1st Place</label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <?php 
+            }
+          ?>
         </div>
       </div>
     </div>
@@ -424,14 +404,14 @@
                     <img src="{{ asset('new-theme/images/link_whatsapp.svg') }}" alt="whatsapp" />
                   </a>
                 </div>
-                <div class="copy_section col-md-9">
+                <div class="copy_section col-md-9 col-12">
                   <div class="row">
-                    <div class="col-md-9">
+                    <div class="col-md-9 col-9">
                       <span>
                         <?php echo url('/')."user/".$slug; ?>
                       </span>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-3">
                       <span class="float-right">
                         <i class="fa fa-copy"></i>&nbsp;Copy</div>
                       </span>  
@@ -571,7 +551,7 @@
                   <div class="row">
                     <?php
                     for($i=0;$i<22;$i++){ ?>
-                    <div class="col-md-2">
+                    <div class="col-md-2 col-4">
                       <div class="single_badge_info">
                         <img src="{{ asset('uploads/badges/new_badges/place_1.svg') }}" alt="Badge" />
                       </div>

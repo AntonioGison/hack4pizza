@@ -742,4 +742,65 @@ body{
   .primary-btn-clr{
     width:100%;
   }
+  .logged_menu_right{
+    text-align:right;
+  }
+  #chartjs-radar{
+    width:300px;
+    padding:0px;
+  }
+  .basic_info_block h2{
+    font-size:16px;
+  }
+  .basic_info_block h2 img{
+    width:20px;
+  }
+  .dashboard_block{
+    padding:30px;
+  }
+  .main_info_links{
+    position:unset;
+  }
+  .bio_info{
+    padding:0px;
+  }
+  .hackathon_header{
+    margin-top:20px;
+  }
+  .hackathon_header h3{
+    font-size:14px;
+  }
+  .hackathon_data{
+    padding:20px;
+  }
+  .hackathon_thumbnail{
+    padding:0px;    
+  }
+  .hackathon_data h4{
+    font-size:13px;
+  }
+  .hackathon_data h5{
+    font-size:10px;
+    font-family:'Roboto Slab';
+  }
+  .hackathon_data p{
+    font-size:10px;
+  }
+  .hackathon_section .add_hackathon{
+    font-size:10px;
+  }
+  .hackathon_badge_img{
+    width:30px;
+  }
+  .share_pop_social_media_links{
+    padding:0px;
+  }
+  .copy_section {
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 10px;
+    margin: 20px 0px;
+    background-color: #47427e;
+    font-size: 12px;
+  }
 }

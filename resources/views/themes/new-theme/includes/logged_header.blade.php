@@ -1,12 +1,12 @@
 <div id="header" class="top-bar-admin">
   <div class="container">
     <div class="row align-items-center">
-      <div class="col-5 logo">
+      <div class="col-5 logo only-desktop">
         <a href="{{ url('/') }}">
           <img alt="Hack4 Pizza" src="{{asset('new-theme/images/logo.svg') }}" />
         </a>
       </div>
-      <div class="col-6 offset-1 login_wrapper">
+      <div class="col-6 offset-1 only-desktop login_wrapper">
         <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
           {{ csrf_field() }}
         </form>
@@ -14,7 +14,7 @@
           <div class="col-8 less-padding">
             <div class="dropdown_search">
               <input type="text" id="searchUser" class="form-control search_user" placeholder="Search"> 
-              <div class="search_area_content">
+              <div class="search_area_content only-desktop">
                 <div class="arrow-up-white"></div>
                 <div class="search_area">
                   <div class="search_result_number">
@@ -91,7 +91,7 @@
               $slug = Auth::user()->slug;
             ?>
             <a href="#"><img src="{{ asset('new-theme/images/notification.svg') }}" class="img img-responsive" alt="menu" /></a>
-            <a href="{{ route('user.profile',['slug'=>$slug]) }}"><img src="<?php echo asset('uploads/user-pic/'.$user_profile_picture); ?>" style="height:40px;" class="img img-responsive" alt="headshot" /></a>
+            <a href="{{ route('user.dashboard') }}"><img src="<?php echo asset('uploads/user-pic/'.$user_profile_picture); ?>" style="height:40px;" class="img img-responsive" alt="headshot" /></a>
             <div class="dropdown my-dropdown">
               <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img src="{{ asset('new-theme/images/logged_menu.svg') }}" style="height:25px;" class="img img-responsive" alt="menu" />
@@ -109,7 +109,40 @@
             </div>           
           </div>
         </div>
-    </div>
+      </div>
+      <div class="col-3 logo only-mobile">
+        <a href="{{ url('/') }}">
+          <img alt="Hack4 Pizza" src="{{asset('new-theme/images/logo.svg') }}" />
+        </a>
+      </div>
+      <div class="col-9 logged_menu_right only-mobile">
+        <?php
+          if(Auth::user()->profile_picture==''){
+            $user_profile_picture = "placeholder.jpg";
+          }else{
+            $user_profile_picture = Auth::user()->profile_picture;
+          }
+          $slug = Auth::user()->slug;
+        ?>
+        <a href="#"><img src="{{ asset('new-theme/images/notification.svg') }}" class="img img-responsive" alt="menu" /></a>
+        <a href="{{ route('user.dashboard') }}"><img src="<?php echo asset('uploads/user-pic/'.$user_profile_picture); ?>" style="height:40px;" class="img img-responsive" alt="headshot" /></a>
+        <div class="dropdown my-dropdown">
+          <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="{{ asset('new-theme/images/logged_menu.svg') }}" style="height:25px;" class="img img-responsive" alt="menu" />
+          </button>
+          <div class="dropdown-menu dropdown-content dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+            <div class="">
+              <div class="arrow-up"></div>
+            </div>
+            <a class="dropdown-item" href="{{ route('user.search.index') }}">Search Users</a>
+            <a class="dropdown-item" href="{{ route('user.top.hackers') }}">Top 100</a>
+            <a class="dropdown-item" href="#">Add Hackathon</a>
+            <a class="dropdown-item" href="#">Setting & Privacy</a>
+            <a class="dropdown-item" href="#">Edit Profile</a>
+            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Logout</a>
+          </div>
+        </div>    
+      </div>
   </div>
 </div>
 </div>
