@@ -38,18 +38,18 @@ return [
     'github' => [
         'client_id' => env('GITHUB_CLIENT_ID'),         // Your GitHub Client ID
         'client_secret' => env('GITHUB_CLIENT_SECRET'), // Your GitHub Client Secret
-        'redirect' => url().'/login/github/callback',
+        'redirect' => env('GITHUB_CALLBACK_URL'),
     ],
 
     'linkedin' => [
         'client_id' => env('LINKEDIN_KEY'),
         'client_secret' => env('LINKEDIN_SECRET'),
-        'redirect' => url().'/login/linkedin/callback'
+        'redirect' =>  env('LINKEDIN_CALLBACK_URL'),
     ],
 
     'facebook' => [
         'client_id' => env('FACEBOOK_KEY'),
         'client_secret' => env('FACEBOOK_SECRET'),
-        'redirect' => url().'/login/facebook/callback'
+        'redirect' =>  env('FACEBOOK_CALLBACK_URL'),
     ],
 ];
