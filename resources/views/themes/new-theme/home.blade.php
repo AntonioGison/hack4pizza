@@ -6,10 +6,16 @@
 <div class="first_section">
   <div class="container">
     <div class="row align-items-center">
-      <div class="col-md-7 col-xs-12">
+      <div class="col-md-12 only-mobile">
+        <div class="intro_section align-center">
+          <h3><b>HACK. WIN. COLLECT!</b></h3>
+          <img alt="Hack4 Pizza" class="img img-responsive" style="width:80%" src="{{asset('new-theme/images/hp_first_left.svg') }}" /> 
+        </div>
+      </div>
+      <div class="col-md-7 only-desktop col-xs-12">
         <img alt="Hack4 Pizza" class="img img-responsive" style="width:80%" src="{{asset('new-theme/images/hp_first_left.svg') }}" /> 
       </div>
-      <div class="col-md-5 col-xs-12 right_section">
+      <div class="col-md-5 only-desktop col-xs-12 right_section">
         <h3><b>HACK. WIN. COLLECT!</b></h3>
         <h3>Sign Up</h3>
         <form class="sug_form" method="POST">
@@ -87,7 +93,7 @@
       <h3>HOW IT works</h3>
       <p>Keep track of your Hackathons!<br />it's like Linkedin but with Hackathons<br />it's free and this is a link examples of my Hackathons<br /></p>
       </div>  
-      <div class="col-md-6">
+      <div class="col-md-6 only-desktop">
         <div class="row">
           <div class="col-md-2">
           <img src="{{ asset('new-theme/images/location_pin.svg') }}" alt="location pin" class="img">
@@ -101,25 +107,28 @@
     </div><br />
     <div class="row">
       <div class="col-md-4">
-      <img src="{{ asset('new-theme/images/step1.svg') }}" alt="step 1" class="img">
+      <img src="{{ asset('new-theme/images/step1.svg') }}" alt="step 1" class="img only-desktop">
       <div class="step_box">
         <h4>Step 1</h4>
         <p>Add the attended hackathon in your collection with all the information you want</p>
       </div>
+      <img src="{{ asset('new-theme/images/step1.svg') }}" alt="step 1" class="img only-mobile">
       </div>  
       <div class="col-md-4">
-      <img src="{{ asset('new-theme/images/step2.svg') }}" alt="step 2" class="img">
+      <img src="{{ asset('new-theme/images/step2.svg') }}" alt="step 2" class="img only-desktop">
       <div class="step_box">
         <h4>Step 2</h4>
         <p>Unlock and collect badges!</p>
       </div>  
+      <img src="{{ asset('new-theme/images/step2.svg') }}" alt="step 2" class="img only-mobile">
       </div>
       <div class="col-md-4">
-      <img src="{{ asset('new-theme/images/step3.svg') }}" alt="step 3" class="img">
+      <img src="{{ asset('new-theme/images/step3.svg') }}" alt="step 3" class="img only-desktop">
       <div class="step_box">
         <h4>Step 3</h4>
         <p>Shares your profile with friends, family and potential Big tech willing to hire you!</p>
       </div>
+      <img src="{{ asset('new-theme/images/step3.svg') }}" alt="step 3" class="img only-mobile">
       </div>  
     </div>
   </div>

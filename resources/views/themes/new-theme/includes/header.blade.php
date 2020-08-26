@@ -6,7 +6,7 @@
           <img alt="Hack4 Pizza" src="{{asset('new-theme/images/logo.svg') }}" />
         </a>
       </div>
-      <div class="col-6 offset-1 login_wrapper">
+      <div class="col-6 offset-1 only-desktop login_wrapper">
         <form class="login_form">
           <div class="row">
             <div class="col-5 less-padding">
@@ -21,6 +21,10 @@
             </div>
           </div>
         </form>     
+      </div>
+      <div class="col-7 only-mobile align-right">
+          <a href="#" class="header_mobile_btns signup_mobile">Sign up</a>
+          <a href="#" class="header_mobile_btns login_mobile">Login</a>
       </div>
     </div>
   </div>

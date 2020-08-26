@@ -7,7 +7,9 @@
   font-family: Monument;
   src: url("../fonts/monument/monument.otf") format("opentype");
 }
-
+.only-mobile{
+  display:none;
+}
 .top-bar{
   background-color:var(--dark-bg-color);
 }
@@ -683,4 +685,49 @@ body{
 ::-webkit-scrollbar-thumb {
   background: #DEDCFF;
   border-radius: 10px;
+}
+@media only screen and (max-width: 600px) {
+  .only-desktop{
+    display:none;
+  }
+  .only-mobile{
+    display:block;
+  }
+  #header .logo img {
+    width: 60px;
+    height:60px;
+  }
+  .header_mobile_btns{
+    padding:6px 15px;
+    font-family:Monument;
+    font-size:12px;
+  }
+  .signup_mobile{
+    background-color:#FFBE06;
+    color:#000000;
+  }
+  .login_mobile{
+    background-color:#9842F4;
+    color:#ffffff;
+  }
+  .align-right{
+    text-align:right;
+  }
+  .align-center{
+    text-align:center;
+  }
+  .intro_section{
+    padding:20px;
+  }
+  .intro_section h3{
+    color:#fff;
+    font-size:20px;
+    font-family:Monument;
+  }
+  .first_section{
+    padding:30px 0px;
+  }
+  .steps_section{
+    padding:60px 20px;
+  }
 }
