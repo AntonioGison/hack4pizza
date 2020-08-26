@@ -32,7 +32,9 @@ class UserController extends Controller
         return view('themes.new-theme.user.dashboard');
         // return view('user.dashboard.index');
     }
-
+    public function top_hackers(){
+        return view('themes.new-theme.user.top_hackers');
+    }
     /**
      * Store a newly created resource in storage.
      *

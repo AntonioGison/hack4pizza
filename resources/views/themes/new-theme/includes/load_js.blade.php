@@ -3,16 +3,7 @@
 <script src="{{ asset('new-theme/plugins/alertify/alertify.min.js')}}"></script>
 <script>
   $(document).ready(function(){
-    $(".dropdown").click(function(e){
-      e.preventDefault();
-      $(".dropdown-content").toggle();
-    });
-    $(document).on("click", function(event){
-        var $trigger = $(".dropdown");
-        if($trigger !== event.target && !$trigger.has(event.target).length){
-            $(".dropdown-content").hide();
-        }            
-    });
+    
     $("#searchUser").focus(function(e){
       e.preventDefault();
       $(".search_area_content").show();

@@ -1,4 +1,4 @@
-<div id="header" class="top-bar">
+<div id="header" class="top-bar-admin">
   <div class="container">
     <div class="row align-items-center">
       <div class="col-5 logo">
@@ -90,20 +90,21 @@
             ?>
             <a href="#"><img src="{{ asset('new-theme/images/notification.svg') }}" class="img img-responsive" alt="menu" /></a>
             <a href="{{ route('user.profile',['slug'=>$slug]) }}"><img src="<?php echo asset('uploads/user-pic/'.$user_profile_picture); ?>" style="height:40px;" class="img img-responsive" alt="headshot" /></a>
-            <div class="dropdown" >
-              <button class="dropbtn"><img src="{{ asset('new-theme/images/logged_menu.svg') }}" style="height:25px;" class="img img-responsive" alt="menu" /></button>
-              <div class="dropdown-content">
+            <div class="dropdown my-dropdown">
+              <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="{{ asset('new-theme/images/logged_menu.svg') }}" style="height:25px;" class="img img-responsive" alt="menu" />
+              </button>
+              <div class="dropdown-menu dropdown-content dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                 <div class="">
                   <div class="arrow-up"></div>
                 </div>
-                <a href="#">Top 100</a>
-                <a href="#">Add Hackathon</a>
-                <a href="#">Setting & Privacy</a>
-                <a href="#">Edit Profile</a>
-                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Logout</a>
+                <a class="dropdown-item" href="{{ route('user.top.hackers') }}">Top 100</a>
+                <a class="dropdown-item" href="#">Add Hackathon</a>
+                <a class="dropdown-item" href="#">Setting & Privacy</a>
+                <a class="dropdown-item" href="#">Edit Profile</a>
+                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Logout</a>
               </div>
-            </div>
-           
+            </div>           
           </div>
         </div>
     </div>

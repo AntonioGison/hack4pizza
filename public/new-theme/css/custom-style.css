@@ -11,6 +11,9 @@
 .top-bar{
   background-color:var(--dark-bg-color);
 }
+.top-bar-admin{
+  background-color: #09062A;
+}
 .login_form_email,.login_form_password{
   font-size:14px;
   border:0px;
@@ -158,6 +161,9 @@
 /* Dashboard */
 .dashboard_body{
   background-color:var(--primary-color);
+}
+.bt-p-0{
+  padding-bottom:0px;
 }
 .dashboard_block{
   background-color:#3B3677;
@@ -313,9 +319,125 @@
   font-family:Monument;
   color:#fff;
 }
+/* TOP HACKERS */
+.rank_info{
+  margin-bottom:-90px;
+}
+.display_rank{
+  font-size:200px;
+  color:#4f4b84;
+  font-family:Monument;
+  margin-top:-120px;
+}
+.top_section{
+  padding:20px 0px;
+}
+.top_hackers_header h3{
+  font-family:Monument;
+  color:#ffffff;
+  text-align: left;
+  font-size:20px;
+}
+.hacker_prizes{
+  text-align:center;
+  padding:40px 40px 10px 40px;
+  font-family:Monument;
+  background-color:#34306F; 
+}
+.hacker_prizes h3{
+  font-family:Monument;
+  color:#ffffff;
+  font-size:20px;
+  text-align: left;
+}
+.invite_section{
+  text-align:left;
+}
+.invite_input_label{
+  color:#fff;
+  font-size:14px;
+  font-family:'Roboto slab';
+}
+.invite_input{
+  color: #fff;
+  border: 1px solid #999999;
+  padding: 15px;
+  margin:10px 0px;
+  background-color: #47427e;
+}
+.hacker_reward_content h4{
+  font-size:14px;
+  text-align:left;
+  color:#fff;
+}
+.hacker_reward_content p{
+  font-size:12px;
+  font-family:'Roboto slab';
+  text-align:left;
+  color:#fff;
+}
+.invite_share_btns{
+  text-align:center;
+  padding-top:20px;
+}
+.invite_share_btns a{
+  font-family:Monument;
+  padding:10px 12px;
+  color:#fff;
+  font-size:10px;
+  text-decoration:none;
+  border: 1px solid #999999;
+  background-color:#47427e;
+}
+.hacker_rewards{
+  padding:10px;
+  margin-top:20px;
+}
+.top_hackers_header{
+  text-align:center;
+  padding:40px 40px 10px 40px;
+  font-family:Monument;
+  background-color:#34306F;
+}
+.hacker_rank_info{
+  color:#fff;
+  /* background-color:#ddd;
+  border:1px solid #333; */
+}
+.hacker_rank{
+  margin:15px 0px;
+  background-color:#34306F;
+  padding:10px 40px 10px 40px;
+  text-align:center;
+  font-family:Monument;
+  font-size:12px;
+}
+.hacker_rank.hacker_rank_active{
+  background-color:#9842F4;
+}
+.hacker_rank_info.hacker_name{
+  font-family:'Roboto Slab';
+  font-size:14px;
+}
+.hacker_rank_info.hacker_first{
+  color:#FFBE06;
+}
+.hacker_rank_info.hacker_second{
+  color:#BFBFBF;
+}
+.hacker_rank_info.hacker_third{
+  color:#BC5642;
+}
+.top_hacker_see_all{
+  text-align:center;
+}
+.top_hacker_see_all_btn{
+  font-family:Monument;
+  font-size:12px;
+}
 /* Modals */
 .new_modal_section{
-  background-color:#3B3677
+  background-color:#3B3677;
 }
 .badges_container{
   padding:10px;
@@ -389,6 +511,9 @@
 body{
   font-size:16px;
 }
+.no-padding{
+  padding:0px;
+}
 .less-padding{
   padding:5px;
   margin:0px;
@@ -414,7 +539,7 @@ body{
 .dropdown {
   position: relative;
   display: inline-block;
-  padding:20px 0px;
+  padding:20px 5px;
 }
 .dropdown_search{
   position:relative;
@@ -459,15 +584,18 @@ body{
 }
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
-  display: none;
-  position: absolute;
   background-color: #D90088;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
-  right: 0;
   text-align:left;
   margin-top:25px;
+}
+.my-dropdown img{
+  width:25px;
+}
+.dropdown-toggle::after {
+  content: none;
 }
 .arrow-up {
   width: 0;
