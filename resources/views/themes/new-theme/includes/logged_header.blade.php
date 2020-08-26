@@ -3,7 +3,7 @@
     <div class="row align-items-center">
       <div class="col-5 logo">
         <a href="{{ url('/') }}">
-          <img alt="Hack4 Pizza" src="{{asset('new-theme/images/logo.png') }}" />
+          <img alt="Hack4 Pizza" src="{{asset('new-theme/images/logo.svg') }}" />
         </a>
       </div>
       <div class="col-6 offset-1 login_wrapper">
@@ -88,10 +88,10 @@
               }
               $slug = Auth::user()->slug;
             ?>
-            <a href="#"><img src="{{ asset('new-theme/images/notification.png') }}" class="img img-responsive" alt="menu" /></a>
+            <a href="#"><img src="{{ asset('new-theme/images/notification.svg') }}" class="img img-responsive" alt="menu" /></a>
             <a href="{{ route('user.profile',['slug'=>$slug]) }}"><img src="<?php echo asset('uploads/user-pic/'.$user_profile_picture); ?>" style="height:40px;" class="img img-responsive" alt="headshot" /></a>
             <div class="dropdown" >
-              <button class="dropbtn"><img src="{{ asset('new-theme/images/logged_menu.png') }}" style="height:25px;" class="img img-responsive" alt="menu" /></button>
+              <button class="dropbtn"><img src="{{ asset('new-theme/images/logged_menu.svg') }}" style="height:25px;" class="img img-responsive" alt="menu" /></button>
               <div class="dropdown-content">
                 <div class="">
                   <div class="arrow-up"></div>

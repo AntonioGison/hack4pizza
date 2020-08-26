@@ -7,7 +7,7 @@
   <div class="container">
     <div class="row align-items-center">
       <div class="col-md-7 col-xs-12">
-        <img alt="Hack4 Pizza" class="img img-responsive" style="width:80%" src="{{asset('new-theme/images/hp_first_left.png') }}" /> 
+        <img alt="Hack4 Pizza" class="img img-responsive" style="width:80%" src="{{asset('new-theme/images/hp_first_left.svg') }}" /> 
       </div>
       <div class="col-md-5 col-xs-12 right_section">
         <h3><b>HACK. WIN. COLLECT!</b></h3>
@@ -53,21 +53,21 @@
                 <div class="col-md-4">
                   <div class="login_with">
                     <a href="{{ route('facebook-login') }}">
-                      <img src="{{ asset('new-theme/images/login_with_facebook.png') }}" alt="Login with Facebook" />
+                      <img src="{{ asset('new-theme/images/login_with_facebook.svg') }}" alt="Login with Facebook" />
                     </a>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="login_with">
                     <a href="{{ route('github-login') }}">
-                      <img src="{{ asset('new-theme/images/login_with_linkedin.png') }}" alt="Login with LinkedIn" />
+                      <img src="{{ asset('new-theme/images/login_with_linkedin.svg') }}" alt="Login with LinkedIn" />
                     </a>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="login_with">
                     <a href="{{ route('linkedin-login') }}">
-                      <img src="{{ asset('new-theme/images/login_with_github.png') }}" alt="Login with Github" />
+                      <img src="{{ asset('new-theme/images/login_with_github.svg') }}" alt="Login with Github" />
                     </a>
                   </div>
                 </div>
@@ -90,7 +90,7 @@
       <div class="col-md-6">
         <div class="row">
           <div class="col-md-2">
-          <img src="{{ asset('new-theme/images/location_pin.png') }}" alt="location pin" class="img">
+          <img src="{{ asset('new-theme/images/location_pin.svg') }}" alt="location pin" class="img">
           </div>
           <div class="col-md-8">
           <h5>Are you a Noob?</h5>
@@ -101,21 +101,21 @@
     </div><br />
     <div class="row">
       <div class="col-md-4">
-      <img src="{{ asset('new-theme/images/step1.png') }}" alt="step 1" class="img">
+      <img src="{{ asset('new-theme/images/step1.svg') }}" alt="step 1" class="img">
       <div class="step_box">
         <h4>Step 1</h4>
         <p>Add the attended hackathon in your collection with all the information you want</p>
       </div>
       </div>  
       <div class="col-md-4">
-      <img src="{{ asset('new-theme/images/step2.png') }}" alt="step 2" class="img">
+      <img src="{{ asset('new-theme/images/step2.svg') }}" alt="step 2" class="img">
       <div class="step_box">
         <h4>Step 2</h4>
         <p>Unlock and collect badges!</p>
       </div>  
       </div>
       <div class="col-md-4">
-      <img src="{{ asset('new-theme/images/step3.png') }}" alt="step 3" class="img">
+      <img src="{{ asset('new-theme/images/step3.svg') }}" alt="step 3" class="img">
       <div class="step_box">
         <h4>Step 3</h4>
         <p>Shares your profile with friends, family and potential Big tech willing to hire you!</p>

@@ -3,7 +3,7 @@
     <div class="row align-items-center">
       <div class="col-5 logo">
         <a href="{{ url('/') }}">
-          <img alt="Hack4 Pizza" src="{{asset('new-theme/images/logo.png') }}" />
+          <img alt="Hack4 Pizza" src="{{asset('new-theme/images/logo.svg') }}" />
         </a>
       </div>
       <div class="col-6 offset-1 login_wrapper">
