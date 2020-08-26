@@ -141,17 +141,18 @@
             <div class="">
               <div class="arrow-up"></div>
             </div>
+            <div class="dark_mode_switch">
+              Dark Mode
+              <label class="switch">
+                <input type="checkbox" name="dark_mode_input" class="dark_mode_input" checked>
+                <span class="slider round"></span>
+              </label>
+            </div>
             <a class="dropdown-item" href="{{ route('user.search.index') }}">Search Users</a>
             <a class="dropdown-item" href="{{ route('user.top.hackers') }}">Top 100</a>
             <a class="dropdown-item" href="#">Add Hackathon</a>
             <a class="dropdown-item" href="#">Setting & Privacy</a>
             <a class="dropdown-item" href="#">Edit Profile</a>
-            <a class="dropdown-item" href="#">
-              <label class="switch">
-                <input type="checkbox" checked>
-                <span class="slider round"></span>
-              </label>
-            </a>
             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Logout</a>
           </div>
         </div>    
