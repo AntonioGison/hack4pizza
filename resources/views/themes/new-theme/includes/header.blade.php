@@ -23,8 +23,13 @@
         </form>     
       </div>
       <div class="col-7 only-mobile align-right">
-          <a href="#" class="header_mobile_btns signup_mobile">Sign up</a>
-          <a href="#" class="header_mobile_btns login_mobile">Login</a>
+        <?php 
+        if(Route::currentRouteName()!="mobile.login"){ ?>
+          <a href="{{ route('mobile.login') }}" class="header_mobile_btns login_mobile">Login</a>
+        <?php } ?>
+        <?php if(Route::currentRouteName()!="mobile.register"){ ?>
+          <a href="{{ route('mobile.register') }}" class="header_mobile_btns signup_mobile">Sign up</a>
+        <?php } ?>
       </div>
     </div>
   </div>

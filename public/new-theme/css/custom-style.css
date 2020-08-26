@@ -118,6 +118,7 @@
   padding:10px;
   margin-top:10px;
   align-items: center;
+  color:#fff;
   text-align: center;
   font-family:Monument;
 }
@@ -724,10 +725,21 @@ body{
     font-size:20px;
     font-family:Monument;
   }
+  .intro_section p{
+    color:#fff;
+  }
+  .intro_section p a{
+    color:#fff;
+    text-decoration:none;
+    font-family:Monument;
+  }
   .first_section{
     padding:30px 0px;
   }
   .steps_section{
     padding:60px 20px;
+  }
+  .primary-btn-clr{
+    width:100%;
   }
 }

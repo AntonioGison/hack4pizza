@@ -13,6 +13,8 @@
 Route::get('/clear','Auth/ArtisanController@clear')->name('clear-cache');
 
 Route::view('/','themes.new-theme.home')->name("home");
+Route::view('/login-mobile','themes.new-theme.user.login_mobile')->name("mobile.login");
+Route::view('/register-mobile','themes.new-theme.user.registration_mobile')->name("mobile.register");
 
 Auth::routes();
 Route::view('/login','themes.new-theme.home')->name("login");
