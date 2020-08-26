@@ -1,4 +1,4 @@
-@extends('themes/new-theme/app')
+@extends('themes.new-theme.app')
 @section('additional_css')
   <title>Hack4 Pizza</title>
 @endsection
