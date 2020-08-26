@@ -26,7 +26,7 @@ class UsersSeeder extends Seeder
                 'created_at'=>'2019-08-07 06:26:02',
                 'updated_at'=>'2019-09-20 05:04:13'
             ]
-        ],
+        ]
     );
     }
 }

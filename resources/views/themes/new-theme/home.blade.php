@@ -223,7 +223,6 @@
         if(validate_input("suf_password")==false){ return false; };
         if(validate_input("suf_confirm_password")==false){ return false; };
         if(validate_input("suf_phone")==false){ return false; };
-        if(validate_input("suf_address")==false){ return false; };
 
         if ($('#suf_tc').is(":checked")){
           terms = "true";
@@ -278,6 +277,10 @@
                       if (typeof resp.email != "undefined") {
                         error_msg+= '<div class="login_form_error">'+resp.email + '</div>';
                         $(".suf_email").css('background-color','red');
+                      }
+                      if (typeof resp.phone_number != "undefined") {
+                        error_msg+= '<div class="login_form_error">'+resp.phone_number + '</div>';
+                        $(".suf_phone").css('background-color','red');
                       }
                       if (typeof resp.password != "undefined") {
                         error_msg+= '<div class="login_form_error">'+resp.password + '</div>';

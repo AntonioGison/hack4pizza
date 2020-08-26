@@ -108,23 +108,29 @@
   margin:30px 0px;
 }
 .social_login_hr_line {
-  text-align: center; 
-  border-bottom: 1px solid #ffffff; 
-  line-height: 0.1em;
-  margin-top:30px;
-  color:#fff;
-} 
-.social_login_hr_line span { 
-  background-color:#da2b88; 
+  display: flex;
   padding:10px;
+  margin-top:10px;
+  align-items: center;
+  text-align: center;
   font-family:Monument;
-  margin:10px; 
+}
+.social_login_hr_line::before, .social_login_hr_line::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #ffffff;
+}
+.social_login_hr_line::before {
+  margin-right: .25em;
+}
+.social_login_hr_line::after {
+  margin-left: .25em;
 }
 .login_with_social_media{
-  padding:20px;
+  padding:0px;
 }
 .login_with{
-  padding:30px 1px;
+  padding:20px 1px;
 }
 .footer_section{
   color:#fff;
