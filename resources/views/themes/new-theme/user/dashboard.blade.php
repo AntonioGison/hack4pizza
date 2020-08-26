@@ -19,6 +19,19 @@
       $bio = $user->bio;
       $slug = $user->slug;
       $user_profile_picture = $user->profile_picture;
+      
+      if($user_profile_picture==''){
+        $profile_picture = asset('uploads/user-pic/placeholder.jpg');
+      }else{
+        if(Auth::user()->facebook_id=='' && 
+          Auth::user()->linkedin_id=='' && 
+          Auth::user()->github_id==''){
+            $profile_picture = asset('uploads/user-pic/'.$user_profile_picture);
+        }else{
+            $profile_picture =  $user_profile_picture;
+        }
+      }
+
       $member_since =(date("Y",strtotime($user->created_at)));
 
       if($address==''){
@@ -43,7 +56,7 @@
             <div class="col-4 col-md-3 main_info_cover text-center">
               <a href="#">
                 <figure class="figure">
-                    <img src="<?php echo asset('uploads/user-pic/'.$user_profile_picture); ?>" class="figure-img img-fluid" alt="cover">
+                    <img src="<?php echo $profile_picture; ?>" class="figure-img img-fluid user_headshot" alt="cover">
                 </figure>
               </a>
             </div>

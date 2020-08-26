@@ -167,15 +167,46 @@ class LoginController extends Controller
             'linkedin_id' => $linkedinUser->id,
         ]);
     }
+    public function createFileObject($url){
+  
+        $path_parts = pathinfo($url);
+  
+        $newPath = $path_parts['dirname'] . '/tmp-files/';
+        if(!is_dir ($newPath)){
+            mkdir($newPath, 0777);
+        }
+  
+        $newUrl = $newPath . $path_parts['basename'];
+        copy($url, $newUrl);
+        $imgInfo = getimagesize($newUrl);
+  
+        $file = new UploadedFile(
+            $newUrl,
+            $path_parts['basename'],
+            $imgInfo['mime'],
+            filesize($url),
+            true,
+            TRUE
+        );
+  
+        return $file;
+    }
     private function findOrCreateUserFacebook($facebookUser)
     {
-        if ($authUser = User::where('facebook_id', $facebookUser->id)->first()) {
-            return $authUser;
-        }
-
+        // if ($authUser = User::where('facebook_id', $facebookUser->id)->first()) {
+        //     return $authUser;
+        // }  
+        $headshot = $facebookUser->avatar_original;
+        
+        $slug = str_slug($facebookUser->name,"-");
+        $password = bcrypt("hack4Pizza$".$slug);
+        
         return User::create([
             'name' => $facebookUser->name,
+            'slug'=>$slug,
             'email' => $facebookUser->email,
+            'password'=>$password,
+            'profile_picture'=>$headshot,
             'facebook_id' => $facebookUser->id,
         ]);
     }

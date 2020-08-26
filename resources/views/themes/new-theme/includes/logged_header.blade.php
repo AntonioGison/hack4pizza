@@ -86,12 +86,18 @@
               if(Auth::user()->profile_picture==''){
                 $user_profile_picture = "placeholder.jpg";
               }else{
-                $user_profile_picture = Auth::user()->profile_picture;
+                if(Auth::user()->facebook_id=='' && 
+                  Auth::user()->linkedin_id=='' && 
+                  Auth::user()->github_id==''){
+                    $user_profile_picture = asset('uploads/user-pic/'.Auth::user()->profile_picture);
+                }else{
+                    $user_profile_picture =  Auth::user()->profile_picture;
+                }
               }
               $slug = Auth::user()->slug;
             ?>
             <a href="#"><img src="{{ asset('new-theme/images/notification.svg') }}" class="img img-responsive" alt="menu" /></a>
-            <a href="{{ route('user.dashboard') }}"><img src="<?php echo asset('uploads/user-pic/'.$user_profile_picture); ?>" style="height:40px;" class="img img-responsive" alt="headshot" /></a>
+            <a href="{{ route('user.dashboard') }}"><img src="<?php echo $user_profile_picture; ?>" style="height:40px;" class="img img-responsive" alt="headshot" /></a>
             <div class="dropdown my-dropdown">
               <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img src="{{ asset('new-theme/images/logged_menu.svg') }}" style="height:25px;" class="img img-responsive" alt="menu" />
@@ -127,12 +133,18 @@
           if(Auth::user()->profile_picture==''){
             $user_profile_picture = "placeholder.jpg";
           }else{
-            $user_profile_picture = Auth::user()->profile_picture;
+            if(Auth::user()->facebook_id=='' && 
+              Auth::user()->linkedin_id=='' && 
+              Auth::user()->github_id==''){
+                $user_profile_picture = asset('uploads/user-pic/'.Auth::user()->profile_picture);
+            }else{
+                $user_profile_picture =  Auth::user()->profile_picture;
+            }
           }
           $slug = Auth::user()->slug;
         ?>
         <a href="#"><img src="{{ asset('new-theme/images/notification.svg') }}" class="img img-responsive" alt="menu" /></a>
-        <a href="{{ route('user.dashboard') }}"><img src="<?php echo asset('uploads/user-pic/'.$user_profile_picture); ?>" style="height:40px;" class="img img-responsive" alt="headshot" /></a>
+        <a href="{{ route('user.dashboard') }}"><img src="<?php echo $user_profile_picture; ?>" style="height:40px;" class="img img-responsive" alt="headshot" /></a>
         <div class="dropdown my-dropdown">
           <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img src="{{ asset('new-theme/images/logged_menu.svg') }}" style="height:25px;" class="img img-responsive" alt="menu" />
