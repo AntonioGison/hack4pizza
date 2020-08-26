@@ -1,8 +1,3 @@
-:root {
-  --light-bg-color:#f2f2f2;
-  --dark-bg-color:#25215A;
-  --primary-color:#25215A;
-}
 @font-face {
   font-family: Monument;
   src: url("../fonts/monument/monument.otf") format("opentype");
@@ -11,10 +6,10 @@
   display:none;
 }
 .top-bar{
-  background-color:var(--dark-bg-color);
+  background-color:var(--dark-bg);
 }
 .top-bar-admin{
-  background-color: #09062A;
+  background-color:var(--very-dark-bg);
 }
 .login_form_email,.login_form_password{
   font-size:14px;
@@ -38,13 +33,77 @@
   text-align:left;
 }
 /* Home Page */
+.switch {
+  position: relative;
+  /* display: inline-block; */
+  float:right;
+  width: 40px;
+  height: 20px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: -6px;
+  bottom: 0px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+.dark_mode_switch{
+  padding:10px;
+  color:var(--light-color);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
 .first_section{
   background-color:#e72e80;
   background-image:url('../images/first_bg.svg');
   background-size: cover;
 }
 .first_section .right_section{
-  color:#fff;
+  color:var(--light-color);
   padding-top:20px;
 }
 .first_section .right_section h3{
@@ -54,7 +113,7 @@
 }
 .checkbox_input{
   padding:20px 0px;
-  color:#fff;
+  color:var(--light-color);
 }
 .sug_form{
   padding-bottom:30px;
@@ -62,20 +121,20 @@
 .suf_input{
   border:0px;
   margin:5px 0px;
-  border-bottom:1px solid #fff;
+  border-bottom:1px solid var(--light-color);
   padding:10px;
-  border-color:#fff;
+  border-color:var(--light-color);
   color:#ddd;
   background-color:transparent;
 }
 .suf_input::placeholder{
-  color:#fff;
+  color:var(--light-color);
 }
 .suf_input:focus, .suf_input:active{
-  border-color:#fff;
+  border-color:var(--light-color);
   outline:none;
   box-shadow:none;
-  color:#fff;
+  color:var(--light-color);
   background-color:transparent;
 }
 .suf_btn{
@@ -93,12 +152,12 @@
   background-color:yellow;
 }
 .steps_section{
-  background-color:var(--primary-color);
-  color:#fff;
+  background-color:var(--dark-bg);
+  color:var(--light-color);
   padding:100px 20px;
 }
 .steps_section h3, .steps_section h4{
-  color:#fff;
+  color:var(--light-color);
   font-family: Monument;
 }
 .steps_section p{
@@ -118,14 +177,14 @@
   padding:10px;
   margin-top:10px;
   align-items: center;
-  color:#fff;
+  color:var(--light-color);
   text-align: center;
   font-family:Monument;
 }
 .social_login_hr_line::before, .social_login_hr_line::after {
   content: '';
   flex: 1;
-  border-bottom: 1px solid #ffffff;
+  border-bottom: 1px solid var(--light-color);
 }
 .social_login_hr_line::before {
   margin-right: .25em;
@@ -140,9 +199,9 @@
   padding:20px 1px;
 }
 .footer_section{
-  color:#fff;
+  color:var(--light-color);
   padding:40px 0px;
-  background-color:#09062a;
+  background-color: var(--very-dark-bg);
 }
 .footer_section h3{
   font-size:18px;
@@ -163,19 +222,19 @@
 }
 /* Dashboard */
 .dashboard_body{
-  background-color:var(--primary-color);
+  background-color:var(--dark-bg);
 }
 .bt-p-0{
   padding-bottom:0px;
 }
 .dashboard_block{
-  background-color:#3B3677;
+  background-color:var(--dark-blue);
   margin-top:0px;
 }
 .basic_info_block h2{
   font-family: Monument;
   font-size:28px;
-  color:#fff;
+  color:var(--light-color);
 }
 .basic_info_block p{
   color:#ddd;
@@ -187,18 +246,18 @@
 .bio_info h2{
   font-family: Monument;
   font-size:22px;
-  color:#fff;
+  color:var(--light-color);
 }
 .share_block a{
   padding:10px;
-  border:1px solid #fff;
-  color:#fff;
+  border:1px solid var(--light-color);
+  color:var(--light-color);
   margin:10px;
   border-radius:1px;
   text-decoration:none;
 }
 .share_block a:hover{
-  background-color:#09062A;
+  background-color: var(--very-dark-bg);
 }
 .bio_info p{
   color:#999;
@@ -224,17 +283,17 @@
   padding:10px 10px;
 }
 .performance .performance_block{
-  background-color:#3B3677;
+  background-color:var(--dark-blue);
   padding:20px 25px;
 }
 .badges .badge_block{
-  background-color:#3B3677;
+  background-color:var(--dark-blue);
   padding:20px 25px 30px 25px;
 }
 .performance_block_title{
   font-family: Monument;
   padding-left:20px;
-  color:#fff;
+  color:var(--light-color);
   font-size:24px;
 }
 .display_badge_block{
@@ -243,7 +302,7 @@
 .badge_block_title{
   font-family: Monument;
   padding-left:20px;
-  color:#fff;
+  color:var(--light-color);
   font-size:24px;  
 }
 .no-padding{
@@ -260,13 +319,13 @@
   margin-top:10px;
 }
 .hackathon_section{
-  background-color:#3B3677;
+  background-color:var(--dark-blue);
   padding:30px;
   margin-bottom:40px;
 }
 .hackathon_section .add_hackathon{
   background-color:#D90088;
-  color:#ffffff;
+  color:var(--light-color);
   padding:10px 20px;
   text-decoration:none;
   border-radius:2px;
@@ -285,17 +344,17 @@
 
 .hackathon_header h3{
   font-family:'Monument';
-  color:#fff;   
+  color:var(--light-color);   
   font-size:24px;
 }
 .hackathon_data_section{
   padding:0px 10px;
 }
 .hackathon_data{
-  background-color:#34306F;
+  background-color:var(--dark-blue);
   padding:30px;
   margin-bottom:20px;
-  color:#fff;
+  color:var(--light-color);
 }
 .hackathon_data h4{
   font-family:Monument;
@@ -311,7 +370,7 @@
   font-size:14px;
   text-decoration:none;
   background-color:transparent;
-  color:#fff;}
+  color:var(--light-color);}
 .hackathon_data p{
   color:#999;
 }
@@ -320,7 +379,7 @@
 }  
 .hackathon_badge_title{
   font-family:Monument;
-  color:#fff;
+  color:var(--light-color);
 }
 /* TOP HACKERS */
 .rank_info{
@@ -337,7 +396,7 @@
 }
 .top_hackers_header h3{
   font-family:Monument;
-  color:#ffffff;
+  color:var(--light-color);
   text-align: left;
   font-size:20px;
 }
@@ -345,11 +404,11 @@
   text-align:center;
   padding:40px 40px 10px 40px;
   font-family:Monument;
-  background-color:#34306F; 
+  background-color:var(--dark-blue); 
 }
 .hacker_prizes h3{
   font-family:Monument;
-  color:#ffffff;
+  color:var(--light-color);
   font-size:20px;
   text-align: left;
 }
@@ -357,12 +416,12 @@
   text-align:left;
 }
 .invite_input_label{
-  color:#fff;
+  color:var(--light-color);
   font-size:14px;
   font-family:'Roboto slab';
 }
 .invite_input{
-  color: #fff;
+  color: var(--light-color);
   border: 1px solid #999999;
   padding: 15px;
   margin:10px 0px;
@@ -371,13 +430,13 @@
 .hacker_reward_content h4{
   font-size:14px;
   text-align:left;
-  color:#fff;
+  color:var(--light-color);
 }
 .hacker_reward_content p{
   font-size:12px;
   font-family:'Roboto slab';
   text-align:left;
-  color:#fff;
+  color:var(--light-color);
 }
 .invite_share_btns{
   text-align:center;
@@ -386,7 +445,7 @@
 .invite_share_btns a{
   font-family:Monument;
   padding:10px 12px;
-  color:#fff;
+  color:var(--light-color);
   font-size:10px;
   text-decoration:none;
   border: 1px solid #999999;
@@ -400,16 +459,16 @@
   text-align:center;
   padding:40px 40px 10px 40px;
   font-family:Monument;
-  background-color:#34306F;
+  background-color:var(--dark-blue);
 }
 .hacker_rank_info{
-  color:#fff;
+  color:var(--light-color);
   /* background-color:#ddd;
   border:1px solid #333; */
 }
 .hacker_rank{
   margin:15px 0px;
-  background-color:#34306F;
+  background-color:var(--dark-blue);
   padding:10px 40px 10px 40px;
   text-align:center;
   font-family:Monument;
@@ -442,7 +501,7 @@
 .search_user_block{
   padding:30px;
   margin:30px 0px;
-  background-color:#3B3677;
+  background-color:var(--dark-blue);
 }
 .user_search_box a{
   color:#000;
@@ -466,8 +525,8 @@
   padding:10px;
   text-align:center;
   margin-bottom:20px;
-  color:#fff;
-  background-color:#34306F;
+  color:var(--light-color);
+  background-color:var(--dark-blue);
 }
 .search_user_info h5{
   padding:10px;
@@ -478,7 +537,7 @@
 }
 /* Modals */
 .new_modal_section{
-  background-color:#3B3677;
+  background-color:var(--dark-blue);
 }
 .badges_container{
   padding:10px;
@@ -495,7 +554,7 @@
   width:15px;
 }
 .new_modal_header .new_modal_header_title{
-  color:#fff;
+  color:var(--light-color);
   font-family:Monument;
   font-size:18px;
 }
@@ -506,14 +565,14 @@
   padding:10px;
 }
 .copy_section{
-  color:#fff;
-  border:1px solid #fff;
+  color:var(--light-color);
+  border:1px solid var(--light-color);
   padding:15px;
   margin:20px;
   background-color:#47427e;
 }
 .hackathon_input_label{
-  color:#fff;
+  color:var(--light-color);
 }
 .hackathon_input,.hackathon_input:active, .hackathon_input:focus{
   background-color:transparent;
@@ -521,7 +580,7 @@
   box-shadow:none;
   border:0;
   border-bottom:1px solid #999;
-  color:#fff;
+  color:var(--light-color);
   padding-left:0px;
 }
 .add_hackathon_file_label{
@@ -534,19 +593,19 @@
 }
 .hackathon_input_textarea,.hackathon_input_textarea:hover,.hackathon_input_textarea:focus{
   background-color:#47427e;
-  color:#fff;
+  color:var(--light-color);
   resize:none;
   outline:none;
   box-shadow:none;
 }
 .hackathon_input option{
   margin: 40px;
-  background: #3B3677;
-  color: #fff;
+  background: var(--dark-blue);
+  color: var(--light-color);
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
 }
 .hackathon_input::placeholder{
-  color:#fff;
+  color:var(--light-color);
 }
 /* Default */
 body{
@@ -561,7 +620,7 @@ body{
 }
 .primary-btn-clr{
   background-color: #9842F4;
-  color: #fff;
+  color: var(--light-color);
   font-family: Monument;
   padding: 6px 20px;
   font-size: 14px;
@@ -596,7 +655,7 @@ body{
 .search_area_content{
   display: none;
   position: absolute;
-  background-color: #ffffff;
+  background-color: var(--light-color);
   min-width: 700px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -652,11 +711,11 @@ body{
   height: 0;
   margin-top: -15px;
   border-left: 15px solid transparent;
-  border-bottom: 15px solid #ffffff;
+  border-bottom: 15px solid var(--light-color);
 }
 /* Links inside the dropdown */
 .dropdown-content a{
-  color: #fff;
+  color: var(--light-color);
   font-size:12px;
   padding:10px 20px;
   text-decoration: none;
@@ -665,7 +724,7 @@ body{
 }
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
-  color: #fff;
+  color: var(--light-color);
   background-color: #af1d6b;
 }
 
@@ -709,7 +768,7 @@ body{
   }
   .login_mobile{
     background-color:#9842F4;
-    color:#ffffff;
+    color:var(--light-color);
   }
   .align-right{
     text-align:right;
@@ -721,15 +780,15 @@ body{
     padding:20px;
   }
   .intro_section h3{
-    color:#fff;
+    color:var(--light-color);
     font-size:20px;
     font-family:Monument;
   }
   .intro_section p{
-    color:#fff;
+    color:var(--light-color);
   }
   .intro_section p a{
-    color:#fff;
+    color:var(--light-color);
     text-decoration:none;
     font-family:Monument;
   }
@@ -796,8 +855,8 @@ body{
     padding:0px;
   }
   .copy_section {
-    color: #fff;
-    border: 1px solid #fff;
+    color: var(--light-color);
+    border: 1px solid var(--light-color);
     padding: 10px;
     margin: 20px 0px;
     background-color: #47427e;

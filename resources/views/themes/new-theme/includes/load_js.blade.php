@@ -13,5 +13,25 @@
       e.preventDefault();
       $(".search_area_content").hide();
     });
+    $(".dark_mode_input").change(function(){
+      if($(this).prop("checked") == true){
+        // do everything to make it dark
+        $("body").get(0).style.setProperty("--very-dark-bg", "#09062A");
+        $("body").get(0).style.setProperty("--light-color", "#ffffff");
+        $("body").get(0).style.setProperty("--dark-bg", "#25215A");
+        $("body").get(0).style.setProperty("--dark-blue", "#3B3677");
+
+      } else if($(this).prop("checked") == false){
+        // do everything to make it light
+        $("body").get(0).style.setProperty("--very-dark-bg", "#09062A");
+        $("body").get(0).style.setProperty("--light-color", "#333333");
+        $("body").get(0).style.setProperty("--dark-bg", "#f3f3f3");
+        $("body").get(0).style.setProperty("--dark-blue", "#ffffff");
+      }
+    });
+
+    $(".dropdown-content").click(function(e){
+      e.stopPropagation();
+    });
   })
 </script>

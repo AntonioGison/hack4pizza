@@ -172,7 +172,7 @@
                         <img class="img img-responsive" src="{{ asset('uploads/hackonton/hackathon.svg') }}" alt="hackathon_logo">
                       </div>
                       <div class="col-9 col-md-11">
-                        <a href="#" class="hackathon_share_btn only-desktop float-right share_hackathon"><i class="fa fa-share-square"></i>&nbsp;Share</a>
+                        <a href="#" class="hackathon_share_btn only-desktop float-right share_hackathon"><img src="{{ asset('new-theme/images/share_icon.svg') }}" alt="share">&nbsp;Share</a>
                         <h4>Startup weekend COVID-19 Italy</h4>
                         <h5>By Techstars <br /> 17/04/2020 - 19/04/2020</h5>
                         <p class="only-desktop">I’ve been a Mentor at this event. I just loved the experience. Due the coronavirus the event was online Startup Weekend.</p>
@@ -197,7 +197,7 @@
                         <img class="img img-responsive" src="{{ asset('uploads/hackonton/hackathon.svg') }}" alt="hackathon_logo">
                       </div>
                       <div class="col-9 col-md-11">
-                        <a href="#" class="hackathon_share_btn only-desktop float-right share_hackathon"><i class="fa fa-share-square"></i>&nbsp;Share</a>
+                        <a href="#" class="hackathon_share_btn only-desktop float-right share_hackathon"><img src="{{ asset('new-theme/images/share_icon.svg') }}" alt="share">&nbsp;Share</a>
                         <h4>Startup weekend COVID-19 Italy</h4>
                         <h5>By Techstars <br /> 17/04/2020 - 19/04/2020</h5>
                         <p class="only-desktop">I’ve been a Mentor at this event. I just loved the experience. Due the coronavirus the event was online Startup Weekend.</p>
@@ -662,7 +662,7 @@
       $(".see_all_badges").click(function(e){
         e.preventDefault();
         $("#all_badges").modal();
-      })
+      });
 
       // Display Add Hackathon Modal
       $(".add_hackathon").click(function(e){
