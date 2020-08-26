@@ -155,9 +155,3 @@
 
 </div>
 @endsection
-@section("additional_js")
-  <script src="{{asset('new-theme/plugins/sweetalert/js/sweetalert.min.js')}}"></script>
-  <script type="text/javascript">
- 
-  </script>
-@endsection
