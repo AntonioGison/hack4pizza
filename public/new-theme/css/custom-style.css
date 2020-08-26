@@ -1,6 +1,6 @@
 :root {
   --light-bg-color:#f2f2f2;
-  --dark-bg-color:#09062A;
+  --dark-bg-color:#25215A;
   --primary-color:#25215A;
 }
 @font-face {
@@ -35,7 +35,8 @@
 /* Home Page */
 .first_section{
   background-color:#e72e80;
-  background-image:url('../images/first_bg.png')
+  background-image:url('../images/first_bg.svg');
+  background-size: cover;
 }
 .first_section .right_section{
   color:#fff;
@@ -393,9 +394,13 @@ body{
   margin:0px;
 }
 .primary-btn-clr{
-  background-color:#9842f4;
-  color:#fff;
-  font-family:Monument;
+  background-color: #9842F4;
+  color: #fff;
+  font-family: Monument;
+  padding: 6px 20px;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 1px;
 }
 /* Dropdown Button */
 .dropbtn {

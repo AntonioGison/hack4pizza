@@ -17,7 +17,7 @@
               <a  href="{{ route('password.request') }}" class="login_form_frgt_pw">Forget Password?</a>
             </div>
             <div class="col-2 less-padding">
-              <button type="button" id="login_submit" class="btn btn-login primary-btn-clr">Login</button>  
+              <button type="button" id="login_submit" class="btn primary-btn-clr">Login</button>  
             </div>
           </div>
         </form>     
