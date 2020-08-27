@@ -57,14 +57,14 @@
                   </div>
                   <div class="col">
                     <div class="login_with">
-                      <a href="{{ route('github-login') }}">
+                      <a href="{{ route('linkedin-login') }}">
                         <img src="{{ asset('new-theme/images/login_with_linkedin.svg') }}" alt="Login with LinkedIn" />
                       </a>
                     </div>
                   </div>
                   <div class="col">
                     <div class="login_with">
-                      <a href="{{ route('linkedin-login') }}">
+                      <a href="{{ route('github-login') }}">
                         <img src="{{ asset('new-theme/images/login_with_github.svg') }}" alt="Login with Github" />
                       </a>
                     </div>
