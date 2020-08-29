@@ -147,13 +147,24 @@ class LoginController extends Controller
     {
         if ($authUser = User::where('github_id', $githubUser->id)->first()) {
             return $authUser;
+        }        
+        $headshot = $githubUser->avatar;
+        
+        $slug = str_slug($githubUser->name,"-");
+        $password = bcrypt("hack4Pizza$".$slug);
+        
+        if ($authUser = User::where('email', $githubUser->email)->first()) {
+            return $authUser;
+        } else{
+            return User::create([
+                'name' => $githubUser->name,
+                'slug'=>$slug,
+                'email' => $githubUser->email,
+                'password'=>$password,
+                'profile_picture'=>$headshot,
+                'github_id' => $githubUser->id,
+            ]);
         }
-
-        return User::create([
-            'name' => $githubUser->name,
-            'email' => $githubUser->email,
-            'github_id' => $githubUser->id,
-        ]);
     }
     private function findOrCreateUserLinkedin($linkedinUser)
     {
@@ -193,9 +204,9 @@ class LoginController extends Controller
     }
     private function findOrCreateUserFacebook($facebookUser)
     {
-        // if ($authUser = User::where('facebook_id', $facebookUser->id)->first()) {
-        //     return $authUser;
-        // }  
+        if ($authUser = User::where('facebook_id', $facebookUser->id)->first()) {
+            return $authUser;
+        }  
         $headshot = $facebookUser->avatar_original;
         
         $slug = str_slug($facebookUser->name,"-");
