@@ -171,12 +171,23 @@ class LoginController extends Controller
         if ($authUser = User::where('linkedin_id', $linkedinUser->id)->first()) {
             return $authUser;
         }
-
-        return User::create([
-            'name' => $linkedinUser->name,
-            'email' => $linkedinUser->email,
-            'linkedin_id' => $linkedinUser->id,
-        ]);
+        $headshot = $linkedinUser->pictureUrl;
+        $full_name = $linkedinUser->firstName." ".$linkedinUser->lastName;
+        $slug = str_slug($full_name,"-");
+        $password = bcrypt("hack4Pizza$".$slug);
+        
+        if ($authUser = User::where('email', $linkedinUser->emailAddress)->first()) {
+            return $authUser;
+        } else{
+            return User::create([
+                'name' => $full_name,
+                'slug'=>$slug,
+                'email' => $linkedinUser->emailAddress,
+                'password'=>$password,
+                'profile_picture'=>$headshot,
+                'linkedin_id' => $linkedinUser->id,
+            ]);
+        }
     }
     public function createFileObject($url){
   
@@ -212,13 +223,17 @@ class LoginController extends Controller
         $slug = str_slug($facebookUser->name,"-");
         $password = bcrypt("hack4Pizza$".$slug);
         
-        return User::create([
-            'name' => $facebookUser->name,
-            'slug'=>$slug,
-            'email' => $facebookUser->email,
-            'password'=>$password,
-            'profile_picture'=>$headshot,
-            'facebook_id' => $facebookUser->id,
-        ]);
+        if ($authUser = User::where('email', $facebookUser->email)->first()) {
+            return $authUser;
+        } else{
+            return User::create([
+                'name' => $facebookUser->name,
+                'slug'=>$slug,
+                'email' => $facebookUser->email,
+                'password'=>$password,
+                'profile_picture'=>$headshot,
+                'facebook_id' => $facebookUser->id,
+            ]);
+        }
     }
 }
