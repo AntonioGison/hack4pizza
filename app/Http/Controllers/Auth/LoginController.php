@@ -86,7 +86,9 @@ class LoginController extends Controller
     }
     public function redirectToLinkedinProvider()
     {
-        return Socialite::with('LinkedIn')->redirect();
+        return Socialite::with('LinkedIn')
+        ->setScopes(['r_liteprofile', 'r_emailaddress'])
+        ->redirect();
     }
     public function redirectToFacebookProvider()
     {
@@ -168,25 +170,33 @@ class LoginController extends Controller
     }
     private function findOrCreateUserLinkedin($linkedinUser)
     {
-        if ($authUser = User::where('linkedin_id', $linkedinUser->id)->first()) {
+        
+        $linked_id = $linkedinUser['id'];
+        $first_name = $linkedinUser['first'];
+        $last_name = $linkedinUser['last'];
+        $headshot = $linkedinUser['profile_picture'];
+        $email_address = $linkedinUser['email'];
+        
+        if ($authUser = User::where('linked_id', $linked_id)->first()) {
             return $authUser;
         }
-        $headshot = $linkedinUser->pictureUrl;
-        $full_name = $linkedinUser->firstName." ".$linkedinUser->lastName;
+
+        $full_name = $first_name." ".$last_name;
         $slug = str_slug($full_name,"-");
         $password = bcrypt("hack4Pizza$".$slug);
         
-        if ($authUser = User::where('email', $linkedinUser->emailAddress)->first()) {
+        if ($authUser = User::where('email', $email_address)->first()) {
             return $authUser;
         } else{
-            return User::create([
+            $createArray = [
                 'name' => $full_name,
                 'slug'=>$slug,
-                'email' => $linkedinUser->emailAddress,
+                'email' => $email_address,
                 'password'=>$password,
                 'profile_picture'=>$headshot,
-                'linkedin_id' => $linkedinUser->id,
-            ]);
+                'linked_id' => $linked_id,
+            ];
+            return User::create($createArray);
         }
     }
     public function createFileObject($url){

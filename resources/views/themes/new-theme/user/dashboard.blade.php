@@ -24,7 +24,7 @@
         $profile_picture = asset('uploads/user-pic/placeholder.jpg');
       }else{
         if(Auth::user()->facebook_id=='' && 
-          Auth::user()->linkedin_id=='' && 
+          Auth::user()->linked_id=='' && 
           Auth::user()->github_id==''){
             $profile_picture = asset('uploads/user-pic/'.$user_profile_picture);
         }else{

@@ -23,7 +23,7 @@
         $profile_picture = asset('uploads/user-pic/placeholder.jpg');
       }else{
         if($user->facebook_id=='' && 
-          $user->linkedin_id=='' && 
+          $user->linked_id=='' && 
           $user->github_id==''){
             $profile_picture = asset('uploads/user-pic/'.$user_profile_picture);
         }else{

@@ -87,7 +87,7 @@
                 $user_profile_picture = "placeholder.jpg";
               }else{
                 if(Auth::user()->facebook_id=='' && 
-                  Auth::user()->linkedin_id=='' && 
+                  Auth::user()->linked_id=='' && 
                   Auth::user()->github_id==''){
                     $user_profile_picture = asset('uploads/user-pic/'.Auth::user()->profile_picture);
                 }else{
