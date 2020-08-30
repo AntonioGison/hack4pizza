@@ -26,7 +26,7 @@ class LinkedInProvider extends AbstractProvider implements ProviderInterface
      * @var array
      */
     protected $fields = [
-        'id', 'firstName', 'lastName', 'profilePicture', 'emailAddress'
+        'id', 'firstName', 'lastName', 'profilePicture(displayImage~:playableStreams)', 'emailAddress'
     ];
 
     /**
@@ -81,10 +81,11 @@ class LinkedInProvider extends AbstractProvider implements ProviderInterface
         ]); 
         $basic_data = json_decode($response->getBody(), true);
         $email_data = json_decode($response2->getBody(), true);
+            
         $linked_id = $basic_data['id'];
         $first_name = $basic_data['firstName']['localized']['en_US'];
         $last_name = $basic_data['lastName']['localized']['en_US'];
-        $headshot = $basic_data['profilePicture']['displayImage'];
+        $headshot = $basic_data['profilePicture']['displayImage~']['elements'][3]['identifiers'][0]['identifier'];
         $email = $email_data['elements'][0]['handle~']['emailAddress'];
         // print_r($email_data->elements[0]->{"handle~"}->emailAddress);
         $response_data = [
@@ -95,7 +96,7 @@ class LinkedInProvider extends AbstractProvider implements ProviderInterface
             "profile_picture"=>$headshot,
         ];
         $res = json_encode($response_data);
-        return json_encode($res,true);
+        return json_decode($res,true);
     }
 
     /**
