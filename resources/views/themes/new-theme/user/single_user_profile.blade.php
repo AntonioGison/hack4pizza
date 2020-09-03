@@ -524,12 +524,14 @@
           backgroundColor: color(window.chartColors.red).alpha(0.2).rgbString(),
           borderColor: window.chartColors.red,
           pointBackgroundColor: window.chartColors.red,
-          data: [{{$user->performance->pitch or '0'}},
+          data: [
+            {{$user->performance->pitch or '0'}},
             {{$user->performance->front_end or '0'}},
             {{$user->performance->back_end or '0'}},
             {{$user->performance->team_player or '0'}},
             {{$user->performance->problem_solving or '0'}},
-            {{$user->performance->ux_design or '0'}}],
+            {{$user->performance->ux_design or '0'}}
+          ],
           notes: ["none", "none", "none", "none", "none", "none"]
         }]
       },
