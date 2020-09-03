@@ -21,9 +21,6 @@ class BadgesSeeder extends Seeder
             'created_at' => '2019-07-24 06:27:27',
             'updated_at' => '2019-08-05 06:12:00'
         ]);
-
-
-
         Badge::create([
             'id' => 2,
             'name' => '3rd place',
@@ -33,9 +30,6 @@ class BadgesSeeder extends Seeder
             'created_at' => '2019-08-05 05:10:57',
             'updated_at' => '2019-08-05 05:10:57'
         ]);
-
-
-
         Badge::create([
             'id' => 3,
             'name' => '2nd Place',
@@ -45,9 +39,6 @@ class BadgesSeeder extends Seeder
             'created_at' => '2019-08-24 07:35:06',
             'updated_at' => '2019-08-24 07:35:06'
         ]);
-
-
-
         Badge::create([
             'id' => 4,
             'name' => 'Not Classified',

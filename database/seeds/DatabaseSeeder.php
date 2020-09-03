@@ -16,5 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(WorkSeeder::class);
         $this->call(MasterBadgesSeeder::class);
         $this->call(PerformanceSeeder::class);
+        $this->call(ExperienceSeeder::class);
+        $this->call(SettingsSeeder::class);
     }
 }
