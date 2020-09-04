@@ -25,7 +25,7 @@
         if($user->facebook_id=='' && 
           $user->linked_id=='' && 
           $user->github_id==''){
-            $profile_picture = asset('uploads/user-pic/'.$user_profile_picture);
+            $profile_picture = Storage::url($user_profile_picture);
         }else{
             $profile_picture =  $user_profile_picture;
         }
@@ -180,7 +180,7 @@
             //finding year
             $experiences = \App\Experience::where("user_id",$user->id)->whereYear("from",$i)->get();
           ?>
-          @if($experiences->isNotEmpty() or $sn==1)
+          @if(($experiences->isNotEmpty() or $sn==1) && count($experiences)>0)
             @if($sn == 1)
               <div class="hackathon_section">
                 <div class="row">

@@ -164,75 +164,112 @@
     <div class="container">
       <div class="row">
         <div class="col no-padding">
-          <?php
-            for($i=2020; $i>2017; $i--){
-          ?>
-          <div class="hackathon_section">
-            <div class="row">
-              <div class="col-md-12">
-                <h2 class="block-title">{{ $i }}</h2>
-              </div>
-              <div class="col-md-12 hackathon_header">
-                <a href="#" class="add_hackathon float-right"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add Hackathon</a>
-                <h3>HACKATHONS</h3>
-                <hr />
-              </div>
-              <div class="col-md-12 hackathon_data_section">
-                <div class="hackathon_data">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-2 col-md-1 hackathon_thumbnail">
-                        <img class="img img-responsive" src="{{ asset('uploads/hackonton/hackathon.svg') }}" alt="hackathon_logo">
-                      </div>
-                      <div class="col-9 col-md-11">
-                        <a href="#" class="hackathon_share_btn only-desktop float-right share_hackathon"><img src="{{ asset('new-theme/images/share_icon.svg') }}" alt="share">&nbsp;Share</a>
-                        <h4>Startup weekend COVID-19 Italy</h4>
-                        <h5>By Techstars <br /> 17/04/2020 - 19/04/2020</h5>
-                        <p class="only-desktop">I’ve been a Mentor at this event. I just loved the experience. Due the coronavirus the event was online Startup Weekend.</p>
-                        <img src="{{ asset('uploads/badges/new_badges/place_1.svg') }}" class="hackathon_badge_img only-desktop" alt="badge information"><label class="hackathon_badge_title only-desktop">&nbsp;&nbsp;1st Place</label>
-                      </div>
-                      <div class="col-2 only-mobile">
-                        <a href="#" class="hackathon_share_btn only-mobile share_hackathon">
-                          <img src="{{ asset('new-theme/images/share_icon.svg') }}" alt="share">
-                        </a>
-                      </div>
-                      <div class="col-10 only-mobile">
-                        <p>I’ve been a Mentor at this event. I just loved the experience. Due the coronavirus the event was online Startup Weekend.</p>
-                        <img src="{{ asset('uploads/badges/new_badges/place_1.svg') }}" class="hackathon_badge_img" alt="badge information"><label class="hackathon_badge_title">&nbsp;&nbsp;1st Place</label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="hackathon_data">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-2 col-md-1 hackathon_thumbnail">
-                        <img class="img img-responsive" src="{{ asset('uploads/hackonton/hackathon.svg') }}" alt="hackathon_logo">
-                      </div>
-                      <div class="col-9 col-md-11">
-                        <a href="#" class="hackathon_share_btn only-desktop float-right share_hackathon"><img src="{{ asset('new-theme/images/share_icon.svg') }}" alt="share">&nbsp;Share</a>
-                        <h4>Startup weekend COVID-19 Italy</h4>
-                        <h5>By Techstars <br /> 17/04/2020 - 19/04/2020</h5>
-                        <p class="only-desktop">I’ve been a Mentor at this event. I just loved the experience. Due the coronavirus the event was online Startup Weekend.</p>
-                        <img src="{{ asset('uploads/badges/new_badges/place_1.svg') }}" class="hackathon_badge_img only-desktop" alt="badge information"><label class="hackathon_badge_title only-desktop">&nbsp;&nbsp;1st Place</label>
-                      </div>
-                      <div class="col-2 only-mobile">
-                        <a href="#" class="hackathon_share_btn only-mobile share_hackathon">
-                          <img src="{{ asset('new-theme/images/share_icon.svg') }}" alt="share">
-                        </a>
-                      </div>
-                      <div class="col-10 only-mobile">
-                        <p>I’ve been a Mentor at this event. I just loved the experience. Due the coronavirus the event was online Startup Weekend.</p>
-                        <img src="{{ asset('uploads/badges/new_badges/place_1.svg') }}" class="hackathon_badge_img" alt="badge information"><label class="hackathon_badge_title">&nbsp;&nbsp;1st Place</label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
           <?php 
+          $sn=0;
+          $ik = 0;
+          for ($i = $max; $i >= $min; $i--){
+            $sn++;
+            $ik++;
+            if($ik==1){
+              $btn_style = "background-color:#00F9FF; color:#000";
+            }else if($ik==2){
+              $btn_style = "background-color:#FFBE06; color:#000"; 
+            }else if($ik==3){
+              $btn_style = "background-color:#D90088; color:#fff";
+            }else{
+              $ik=2;
+              $btn_style = "background-color:#00F9FF; color:#000";
             }
+            //finding year
+            $experiences = \App\Experience::where("user_id",$user->id)->whereYear("from",$i)->get();
+          ?>
+          @if(($experiences->isNotEmpty() or $sn==1) && count($experiences)>0)
+            @if($sn == 1)
+              <div class="hackathon_section">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h2 class="block-title" style="<?php echo $btn_style ?>">@if($i == "1970"){{date("Y")}}@else{{$i}}@endif</h2>
+                  </div>
+                  <div class="col-md-12 hackathon_header">
+                    <h3>HACKATHONS</h3>
+                    <hr />
+                  </div>
+                  <div class="col-md-12 hackathon_data_section">
+                    @foreach($experiences as $experience)
+                      <div class="hackathon_data">
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-2 col-md-1 hackathon_thumbnail">
+                              <img class="img img-responsive" src="{{ asset('uploads/hackonton/hackathon.svg') }}" alt="hackathon_logo">
+                            </div>
+                            <div class="col-9 col-md-11">
+                              <a href="#" class="hackathon_share_btn only-desktop float-right share_hackathon"><img src="{{ asset('new-theme/images/share_icon.svg') }}" alt="share">&nbsp;Share</a>
+                              <h4>{{ $experience->name }}</h4>
+                              <h5>By {{ $experience->organized_by }} <br /> {{ Date('m-d-Y',strtotime($experience->from)) }} - {{ Date('m-d-Y',strtotime($experience->to)) }}</h5>
+                              <p class="only-desktop"><?php echo str_replace("\\","",nl2br($experience->description)) ?></p>
+                              <img src="{{ asset('uploads/badges/new_badges/place_1.svg') }}" class="hackathon_badge_img only-desktop" alt="badge information"><label class="hackathon_badge_title only-desktop">&nbsp;&nbsp;1st Place</label>
+                            </div>
+                            <div class="col-2 only-mobile">
+                              <a href="#" class="hackathon_share_btn only-mobile share_hackathon">
+                                <img src="{{ asset('new-theme/images/share_icon.svg') }}" alt="share">
+                              </a>
+                            </div>
+                            <div class="col-10 only-mobile">
+                              <p><?php echo str_replace("\\","",nl2br($experience->description)) ?></p>
+                              <img src="{{ asset('uploads/badges/new_badges/place_1.svg') }}" class="hackathon_badge_img" alt="badge information"><label class="hackathon_badge_title">&nbsp;&nbsp;1st Place</label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    @endforeach
+                  </div>
+                </div>
+              </div>
+            @else
+            <div class="hackathon_section">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h2 class="block-title" style="<?php echo $btn_style ?>">{{ $i }}</h2>
+                  </div>
+                  <div class="col-md-12 hackathon_header">
+                    <h3>HACKATHONS</h3>
+                    <hr />
+                  </div>
+                  <div class="col-md-12 hackathon_data_section">
+                    @foreach($experiences as $experience)
+                      <div class="hackathon_data">
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-2 col-md-1 hackathon_thumbnail">
+                              <img class="img img-responsive" src="{{ asset('uploads/hackonton/hackathon.svg') }}" alt="hackathon_logo">
+                            </div>
+                            <div class="col-9 col-md-11">
+                              <a href="#" class="hackathon_share_btn only-desktop float-right share_hackathon"><img src="{{ asset('new-theme/images/share_icon.svg') }}" alt="share">&nbsp;Share</a>
+                              <h4>{{ $experience->name }}</h4>
+                              <h5>By {{ $experience->organized_by }} <br /> {{ Date('m-d-Y',strtotime($experience->from)) }} - {{ Date('m-d-Y',strtotime($experience->to)) }}</h5>
+                              <p class="only-desktop"><?php echo str_replace("\\","",nl2br($experience->description)) ?></p>
+                              <img src="{{ asset('uploads/badges/new_badges/place_1.svg') }}" class="hackathon_badge_img only-desktop" alt="badge information"><label class="hackathon_badge_title only-desktop">&nbsp;&nbsp;1st Place</label>
+                            </div>
+                            <div class="col-2 only-mobile">
+                              <a href="#" class="hackathon_share_btn only-mobile share_hackathon">
+                                <img src="{{ asset('new-theme/images/share_icon.svg') }}" alt="share">
+                              </a>
+                            </div>
+                            <div class="col-10 only-mobile">
+                              <p><?php echo str_replace("\\","",nl2br($experience->description)) ?></p>
+                              <img src="{{ asset('uploads/badges/new_badges/place_1.svg') }}" class="hackathon_badge_img" alt="badge information"><label class="hackathon_badge_title">&nbsp;&nbsp;1st Place</label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    @endforeach
+                  </div>
+                </div>
+              </div>
+            @endif
+          @endif
+          <?php 
+          }
           ?>
         </div>
       </div>
