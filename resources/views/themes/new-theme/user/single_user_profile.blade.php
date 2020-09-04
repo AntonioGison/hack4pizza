@@ -157,6 +157,23 @@
       </div>
     </div>
   </div>
+  <?php
+  if($user->performance){
+    $perf = [];
+    $perf['pitch']=$user->performance->pitch;
+    $perf['front_end']=$user->performance->front_end;
+    $perf['back_end']=$user->performance->back_end;
+    $perf['team_player']=$user->performance->team_player;
+    $perf['problem_solving']=$user->performance->problem_solving;
+    $perf['ux_design']=$user->performance->ux_design;
+    
+    $max_skill_key= array_keys($perf,max($perf));
+    $max_skill_key;
+    $max_skill = $perf[$max_skill_key[0]];
+  }else{
+    $max_skill=6;
+  }
+  ?>
   <div class="hackathon_sections">
     <div class="container">
       <div class="row">
@@ -544,20 +561,26 @@
           padding:20,
         },
         scale: {
-          pointLabels:{
-            fontColor:"#00FFC2",
-            fontFamily:'Monument',
-            fontSize:8,
+          gridLines: {
+            color: '#666666'
+          },
+          angleLines: {
+            color: '#666666'
           },
           ticks: {
             fontColor:'#ffffff',
             backdropColor:'transparent',
-            stepSize:1,
+            stepSize:2,
             min:0,
-            max:10,
+            max:{{ $max_skill }},
             fontFamily:'Monument',
             fontSize:12,
             beginAtZero: true
+          },
+          pointLabels: {
+            fontColor: '#00F9FF',
+            fontSize: 8,
+            fontFamily:'Monument',
           },
           Axes: [{
             display: false, //this will remove all the x-axis grid lines

@@ -686,7 +686,7 @@
           ticks: {
             fontColor:'#ffffff',
             backdropColor:'transparent',
-            stepSize:1,
+            stepSize:2,
             min:0,
             max:10,
             fontFamily:'Monument',
