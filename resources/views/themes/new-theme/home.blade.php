@@ -39,7 +39,7 @@
             <input type="text" name="suf_phone" placeholder="Telephone number*" class="form-control suf_input suf_phone">  
           </div>
           <div class="col-md-6">
-            <input type="text" name="suf_address" placeholder="Address (Optional)" class="form-control suf_input suf_address">  
+            <input type="text" name="suf_address" placeholder="City" class="form-control suf_input suf_address">  
           </div>
           <div class="col-md-12">
             <div class="checkbox_input">

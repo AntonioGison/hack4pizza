@@ -84,12 +84,12 @@
           <div class="col-4 logged_menu_right">
             <?php
               if(Auth::user()->profile_picture==''){
-                $user_profile_picture = "placeholder.jpg";
+                $user_profile_picture = Storage::url("uploads/user-pic/placeholder.jpg");
               }else{
                 if(Auth::user()->facebook_id=='' && 
                   Auth::user()->linked_id=='' && 
                   Auth::user()->github_id==''){
-                    $user_profile_picture = asset('uploads/user-pic/'.Auth::user()->profile_picture);
+                    $user_profile_picture = Storage::url(Auth::user()->profile_picture);
                 }else{
                     $user_profile_picture =  Auth::user()->profile_picture;
                 }
