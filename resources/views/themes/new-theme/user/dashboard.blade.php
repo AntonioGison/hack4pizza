@@ -26,7 +26,7 @@
         if(Auth::user()->facebook_id=='' && 
           Auth::user()->linked_id=='' && 
           Auth::user()->github_id==''){
-            $profile_picture = asset('uploads/user-pic/'.$user_profile_picture);
+            $profile_picture = Storage::url($user_profile_picture);
         }else{
             $profile_picture =  $user_profile_picture;
         }
