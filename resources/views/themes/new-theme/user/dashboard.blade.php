@@ -8,7 +8,6 @@
   <div id="main_info">
     <?php
       $user = Auth::user(); 
-      $badges = \App\Badge::all();
       $m_badges = \App\MasterBadge::all();
       $max = (date("Y",strtotime($user->experiences->max("from"))));
       $min =(date("Y",strtotime($user->experiences->min("from"))));
@@ -262,22 +261,7 @@
               </div>
             @endif
           @else
-          <?php
-            $link = "https://www.linkedin.com/profile/add?";
-            $link.="name=TOP RATED DEVELOPER&";
-            $link.="organizationId=69410802&";
-            $link.="issueYear=2020&";
-            $link.="issueMonth=9&";
-            $link.="issueMonth=9&";
-            $link.="certId=000212&";
-            $link.="certUrl=".route('user.profile',['slug'=>$user->slug]);
-          ?>
-          <div>
-            <a href="{{ $link }}" rel="nofollow" target="_blank">
-            <img src="https://download.linkedin.com/desktop/add2profile/buttons/en_US.png " alt="LinkedIn Add to Profile button">
-            </a>
-          </div>
-
+          
           @endif
           <?php 
           }
@@ -593,8 +577,8 @@
       </div>
     </div>
   </div>
-  <div class="modal fade" id="all_badges" tabindex="-1" role="dialog" aria-labelledby="all_badgesLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+  <div class="modal fade" id="all_badges" tabindex="-1" role="dialog" aria-labelledby="all_badgesLabel" aria-hidden="true" align="center">
+    <div class="modal-dialog modal-lg2">
       <div class="modal-content">
         <div class="new_modal_section">
           <div class="container">
@@ -607,14 +591,21 @@
                 </div>
                 <hr />
               </div>
-              <div class="col-md-12 badges_container">
+              <div class="col-md-12 badges_container" style="height:600px;">
                 <div class="container">
                   <div class="row">
                     <?php
-                    for($i=0;$i<22;$i++){ ?>
-                    <div class="col-md-2 col-4">
-                      <div class="single_badge_info">
-                        <img src="{{ asset('uploads/badges/1.svg') }}" alt="Badge" />
+                    foreach($badges as $badge){
+                    ?>
+                    <div class="col-4 col-md-2 p-0 badge_section">
+                      <div class="badge_box">
+                        <div class="badge_name_sec">
+                          <div class="badge_name">{{ $badge->name }}</div>
+                        </div>
+                        <div class="badge_image_sec">
+                          <img class="badge_image" src="{{ Storage::url($badge->pic) }}" alt="Badge">
+                        </div>
+                        <div class="badge_count">x1</div>
                       </div>
                     </div>
                     <?php } ?>
@@ -623,9 +614,57 @@
               </div>
             </div>
           </div>
+        </div>
       </div>
     </div>
   </div>
+  <div class="modal fade" id="earned_badge" tabindex="-1" role="dialog" aria-labelledby="all_badgesLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="new_modal_section">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="new_modal_header">
+                  <button type="button" class="btn-close new_modal_close_btn" data-dismiss="modal" aria-label="Close">
+                    <img alt="" src="{{asset('new-theme/images/icon_close.png')}}"></button>
+                  <h2 class="new_modal_header_title">All Badges</h2>
+                </div>
+                <hr />
+              </div>
+              <div class="col-md-12 badges_container">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-12 col-12">
+                      <div class="earned_badge_info">
+                        <div class="earned_badge" align="center">
+                          <img src="{{ asset('uploads/badges/1.svg') }}" alt="Badge" /><br /><br />
+                          <p>Congratulations! You unlocked</p>
+                          <h3>1st Place</h3><br />
+                          <?php
+                            $link = "https://www.linkedin.com/profile/add?";
+                            $link.="name=God of Internet&";
+                            $link.="organizationId=69410802&";
+                            $link.="issueYear=2020&";
+                            $link.="issueMonth=9&";
+                            $link.="issueMonth=9&";
+                            $link.="certId=000212&";
+                            $link.="certUrl=".route('user.profile',['slug'=>$user->slug]);
+                          ?>
+                          <a href="{{ $link }}" class="add_to_linkedin">Add to your Linkedin <span>CV</span></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
 @endsection
 @section("additional_js")
   <script src="{{ asset('theme/hack4pizza/js/Chart.min.js')}}"></script>
@@ -717,7 +756,7 @@
 
     $(function() {
       // pop up by default;
-      // $("#hackathon_add").modal();
+      $("#earned_badge").modal();
 
       // Display Badges Modal
       $(".see_all_badges").click(function(e){

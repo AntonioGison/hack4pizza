@@ -1,6 +1,6 @@
 @font-face {
   font-family: Monument;
-  src: url("../fonts/monument/monument.otf") format("opentype");
+  src: url("../fonts/monument2/monument.otf") format("opentype");
 }
 .only-mobile{
   display:none;
@@ -626,6 +626,7 @@ body{
   text-transform: uppercase;
   border-radius: 1px;
 }
+
 /* Dropdown Button */
 .dropbtn {
   color: white;
@@ -766,6 +767,39 @@ body{
   font-family: Monument;
   border-radius:4px;
 }
+.earned_badge_info{
+  position: relative;
+  height:400px;
+}
+.earned_badge{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color:#fff;
+  transform: translate(-50%, -50%);
+}
+.add_to_linkedin{
+  color:#fff;
+  background-color:#D90088;
+  padding:10px 20px;
+}
+.add_to_linkedin:hover{
+  text-decoration:none;
+  color:#fff;
+}
+.add_to_linkedin span{
+  font-weight:bold;  
+  color:#ddd;
+  font-size:16px;
+  font-family: Monument;
+  text-transform: uppercase;
+}
+.modal-xl{
+  margin:auto;
+}
+.modal-xl .modal-content{
+  width:1000px;
+}
 /* Change the background color of the dropdown button when the dropdown content is shown */
 
 /* Scroll bar */
@@ -783,6 +817,11 @@ body{
 ::-webkit-scrollbar-thumb {
   background: #DEDCFF;
   border-radius: 10px;
+}
+@media (min-width: 992px){
+  .modal-lg2 {
+      max-width: 980px !important;
+  }
 }
 @media only screen and (max-width: 600px) {
   .only-desktop{
