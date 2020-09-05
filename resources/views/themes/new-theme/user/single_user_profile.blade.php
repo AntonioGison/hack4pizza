@@ -195,7 +195,7 @@
               $btn_style = "background-color:#00F9FF; color:#000";
             }
             //finding year
-            $experiences = \App\Experience::where("user_id",$user->id)->whereYear("from",$i)->get();
+            $experiences = \App\Experience::where("user_id",$user->id)->whereYear("from",$i)->orderBy('from','desc')->get();
           ?>
           @if(($experiences->isNotEmpty() or $sn==1) && count($experiences)>0)
             @if($sn == 1)
@@ -219,7 +219,7 @@
                             <div class="col-9 col-md-11">
                               <a href="#" class="hackathon_share_btn only-desktop float-right share_hackathon"><img src="{{ asset('new-theme/images/share_icon.svg') }}" alt="share">&nbsp;Share</a>
                               <h4>{{ $experience->name }}</h4>
-                              <h5>By {{ $experience->organized_by }} <br /> {{ Date('m-d-Y',strtotime($experience->from)) }} - {{ Date('m-d-Y',strtotime($experience->to)) }}</h5>
+                              <h5>By {{ $experience->organized_by }} <br /> {{ Date('d-M-Y',strtotime($experience->from)) }} - {{ Date('d-M-Y',strtotime($experience->to)) }}</h5>
                               <p class="only-desktop"><?php echo str_replace("\\","",nl2br($experience->description)) ?></p>
                               <img src="{{ asset('uploads/badges/new_badges/place_1.svg') }}" class="hackathon_badge_img only-desktop" alt="badge information"><label class="hackathon_badge_title only-desktop">&nbsp;&nbsp;1st Place</label>
                             </div>
@@ -260,7 +260,7 @@
                             <div class="col-9 col-md-11">
                               <a href="#" class="hackathon_share_btn only-desktop float-right share_hackathon"><img src="{{ asset('new-theme/images/share_icon.svg') }}" alt="share">&nbsp;Share</a>
                               <h4>{{ $experience->name }}</h4>
-                              <h5>By {{ $experience->organized_by }} <br /> {{ Date('m-d-Y',strtotime($experience->from)) }} - {{ Date('m-d-Y',strtotime($experience->to)) }}</h5>
+                              <h5>By {{ $experience->organized_by }} <br /> {{ Date('d-M-Y',strtotime($experience->from)) }} - {{ Date('d-M-Y',strtotime($experience->to)) }}</h5>
                               <p class="only-desktop"><?php echo str_replace("\\","",nl2br($experience->description)) ?></p>
                               <img src="{{ asset('uploads/badges/new_badges/place_1.svg') }}" class="hackathon_badge_img only-desktop" alt="badge information"><label class="hackathon_badge_title only-desktop">&nbsp;&nbsp;1st Place</label>
                             </div>
