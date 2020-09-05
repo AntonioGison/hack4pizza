@@ -127,7 +127,12 @@
             <h2 class="badge_block_title">Badges</h2>
             <hr />
             <div class="row justify-content-center">
-              <?php foreach($badges as $badge){ ?>
+              <?php 
+              $i=0;
+              foreach($badges as $badge){
+                $i++;
+                if($i<9){
+              ?>
               <div class="col-4 col-md-3 p-0 badge_section">
                 <div class="badge_box">
                   <div class="badge_name_sec">
@@ -136,10 +141,10 @@
                   <div class="badge_image_sec">
                     <img class="badge_image" src="{{ Storage::url($badge->pic) }}" alt="Badge">
                   </div>
-                  <div class="badge_count">X1</div>
+                  <div class="badge_count">x1</div>
                 </div>
               </div>
-              <?php } ?>
+              <?php }} ?>
             </div>
             <div class="row justify-content-center">
               <a href="#" class="see_all see_all_badges">See all</a>
@@ -196,7 +201,7 @@
                               <h4>{{ $experience->name }}</h4>
                               <h5>By {{ $experience->organized_by }} <br /> {{ Date('d-M-Y',strtotime($experience->from)) }} - {{ Date('d-M-Y',strtotime($experience->to)) }}</h5>
                               <p class="only-desktop"><?php echo str_replace("\\","",nl2br($experience->description)) ?></p>
-                              <img src="{{ asset('uploads/badges/new_badges/place_1.svg') }}" class="hackathon_badge_img only-desktop" alt="badge information"><label class="hackathon_badge_title only-desktop">&nbsp;&nbsp;1st Place</label>
+                              <img src="{{ asset('uploads/badges/1.svg') }}" class="hackathon_badge_img only-desktop" alt="badge information"><label class="hackathon_badge_title only-desktop">&nbsp;&nbsp;1st Place</label>
                             </div>
                             <div class="col-2 only-mobile">
                               <a href="#" class="hackathon_share_btn only-mobile share_hackathon">
@@ -205,7 +210,7 @@
                             </div>
                             <div class="col-10 only-mobile">
                               <p><?php echo str_replace("\\","",nl2br($experience->description)) ?></p>
-                              <img src="{{ asset('uploads/badges/new_badges/place_1.svg') }}" class="hackathon_badge_img" alt="badge information"><label class="hackathon_badge_title">&nbsp;&nbsp;1st Place</label>
+                              <img src="{{ asset('uploads/badges/1.svg') }}" class="hackathon_badge_img" alt="badge information"><label class="hackathon_badge_title">&nbsp;&nbsp;1st Place</label>
                             </div>
                           </div>
                         </div>
@@ -237,7 +242,7 @@
                               <h4>{{ $experience->name }}</h4>
                               <h5>By {{ $experience->organized_by }} <br /> {{ Date('d-M-Y',strtotime($experience->from)) }} - {{ Date('d-M-Y',strtotime($experience->to)) }}</h5>
                               <p class="only-desktop"><?php echo str_replace("\\","",nl2br($experience->description)) ?></p>
-                              <img src="{{ asset('uploads/badges/new_badges/place_1.svg') }}" class="hackathon_badge_img only-desktop" alt="badge information"><label class="hackathon_badge_title only-desktop">&nbsp;&nbsp;1st Place</label>
+                              <img src="{{ asset('uploads/badges/1.svg') }}" class="hackathon_badge_img only-desktop" alt="badge information"><label class="hackathon_badge_title only-desktop">&nbsp;&nbsp;1st Place</label>
                             </div>
                             <div class="col-2 only-mobile">
                               <a href="#" class="hackathon_share_btn only-mobile share_hackathon">
@@ -246,7 +251,7 @@
                             </div>
                             <div class="col-10 only-mobile">
                               <p><?php echo str_replace("\\","",nl2br($experience->description)) ?></p>
-                              <img src="{{ asset('uploads/badges/new_badges/place_1.svg') }}" class="hackathon_badge_img" alt="badge information"><label class="hackathon_badge_title">&nbsp;&nbsp;1st Place</label>
+                              <img src="{{ asset('uploads/badges/1.svg') }}" class="hackathon_badge_img" alt="badge information"><label class="hackathon_badge_title">&nbsp;&nbsp;1st Place</label>
                             </div>
                           </div>
                         </div>
@@ -278,10 +283,7 @@
           }
           ?>
         </div>
-        <div class="row">
-          <div class="col-12">
-            div>
-      div>
+      </div>
     </div>
   </div>
 </div>
@@ -612,7 +614,7 @@
                     for($i=0;$i<22;$i++){ ?>
                     <div class="col-md-2 col-4">
                       <div class="single_badge_info">
-                        <img src="{{ asset('uploads/badges/new_badges/place_1.svg') }}" alt="Badge" />
+                        <img src="{{ asset('uploads/badges/1.svg') }}" alt="Badge" />
                       </div>
                     </div>
                     <?php } ?>
