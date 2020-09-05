@@ -208,14 +208,14 @@
                         <div class="container">
                           <div class="row">
                             <div class="col-2 col-md-1 hackathon_thumbnail">
-                              <img class="img img-responsive" src="{{ asset('uploads/hackonton/hackathon.svg') }}" alt="hackathon_logo">
+                              <img class="img img-responsive" src="{{ Storage::url($experience->pic) }}" alt="hackathon_logo">
                             </div>
                             <div class="col-9 col-md-11">
                               <a href="#" class="hackathon_share_btn only-desktop float-right share_hackathon"><img src="{{ asset('new-theme/images/share_icon.svg') }}" alt="share">&nbsp;Share</a>
                               <h4>{{ $experience->name }}</h4>
                               <h5>By {{ $experience->organized_by }} <br /> {{ Date('d-M-Y',strtotime($experience->from)) }} - {{ Date('d-M-Y',strtotime($experience->to)) }}</h5>
                               <p class="only-desktop"><?php echo str_replace("\\","",nl2br($experience->description)) ?></p>
-                              <img src="{{ asset('uploads/badges/new_badges/place_1.svg') }}" class="hackathon_badge_img only-desktop" alt="badge information"><label class="hackathon_badge_title only-desktop">&nbsp;&nbsp;1st Place</label>
+                              <img src="{{ Storage::url($experience->badge->pic) }}" class="hackathon_badge_img only-desktop" alt="badge information"><label class="hackathon_badge_title only-desktop">&nbsp;&nbsp;{{ $experience->badge->name }}</label>
                             </div>
                             <div class="col-2 only-mobile">
                               <a href="#" class="hackathon_share_btn only-mobile share_hackathon">
@@ -224,7 +224,7 @@
                             </div>
                             <div class="col-10 only-mobile">
                               <p><?php echo str_replace("\\","",nl2br($experience->description)) ?></p>
-                              <img src="{{ asset('uploads/badges/new_badges/place_1.svg') }}" class="hackathon_badge_img" alt="badge information"><label class="hackathon_badge_title">&nbsp;&nbsp;1st Place</label>
+                              <img src="{{ Storage::url($experience->badge->pic) }}" class="hackathon_badge_img" alt="badge information"><label class="hackathon_badge_title">&nbsp;&nbsp;{{ $experience->badge->name }}</label>
                             </div>
                           </div>
                         </div>
@@ -249,14 +249,14 @@
                         <div class="container">
                           <div class="row">
                             <div class="col-2 col-md-1 hackathon_thumbnail">
-                              <img class="img img-responsive" src="{{ asset('uploads/hackonton/hackathon.svg') }}" alt="hackathon_logo">
+                              <img class="img img-responsive" src="{{ Storage::url($experience->pic) }}" alt="hackathon_logo">
                             </div>
                             <div class="col-9 col-md-11">
                               <a href="#" class="hackathon_share_btn only-desktop float-right share_hackathon"><img src="{{ asset('new-theme/images/share_icon.svg') }}" alt="share">&nbsp;Share</a>
                               <h4>{{ $experience->name }}</h4>
                               <h5>By {{ $experience->organized_by }} <br /> {{ Date('d-M-Y',strtotime($experience->from)) }} - {{ Date('d-M-Y',strtotime($experience->to)) }}</h5>
                               <p class="only-desktop"><?php echo str_replace("\\","",nl2br($experience->description)) ?></p>
-                              <img src="{{ asset('uploads/badges/new_badges/place_1.svg') }}" class="hackathon_badge_img only-desktop" alt="badge information"><label class="hackathon_badge_title only-desktop">&nbsp;&nbsp;1st Place</label>
+                              <img src="{{ Storage::url($experience->badge->pic) }}" class="hackathon_badge_img only-desktop" alt="badge information"><label class="hackathon_badge_title only-desktop">&nbsp;&nbsp;{{ $experience->badge->name }}</label>
                             </div>
                             <div class="col-2 only-mobile">
                               <a href="#" class="hackathon_share_btn only-mobile share_hackathon">
@@ -265,7 +265,7 @@
                             </div>
                             <div class="col-10 only-mobile">
                               <p><?php echo str_replace("\\","",nl2br($experience->description)) ?></p>
-                              <img src="{{ asset('uploads/badges/new_badges/place_1.svg') }}" class="hackathon_badge_img" alt="badge information"><label class="hackathon_badge_title">&nbsp;&nbsp;1st Place</label>
+                              <img src="{{ Storage::url($experience->badge->pic) }}" class="hackathon_badge_img" alt="badge information"><label class="hackathon_badge_title">&nbsp;&nbsp;{{ $experience->badge->name }}</label>
                             </div>
                           </div>
                         </div>
@@ -457,8 +457,8 @@
     </div>
   </div>
 
-  <div class="modal fade" id="all_badges" tabindex="-1" role="dialog" aria-labelledby="all_badgesLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+  <div class="modal fade" id="all_badges" tabindex="-1" role="dialog" aria-labelledby="all_badgesLabel" aria-hidden="true" align="center">
+    <div class="modal-dialog modal-lg2">
       <div class="modal-content">
         <div class="new_modal_section">
           <div class="container">
@@ -471,14 +471,21 @@
                 </div>
                 <hr />
               </div>
-              <div class="col-md-12 badges_container">
+              <div class="col-md-12 badges_container" style="height:600px;">
                 <div class="container">
                   <div class="row">
                     <?php
-                    for($i=0;$i<22;$i++){ ?>
-                    <div class="col-md-2 col-4">
-                      <div class="single_badge_info">
-                        <img src="{{ asset('uploads/badges/new_badges/place_1.svg') }}" alt="Badge" />
+                    foreach($badges as $badge){
+                    ?>
+                    <div class="col-4 col-md-2 p-0 badge_section">
+                      <div class="badge_box">
+                        <div class="badge_name_sec">
+                          <div class="badge_name">{{ $badge->name }}</div>
+                        </div>
+                        <div class="badge_image_sec">
+                          <img class="badge_image" src="{{ Storage::url($badge->pic) }}" alt="Badge">
+                        </div>
+                        <div class="badge_count">x1</div>
                       </div>
                     </div>
                     <?php } ?>
@@ -487,6 +494,7 @@
               </div>
             </div>
           </div>
+        </div>
       </div>
     </div>
   </div>
