@@ -127,30 +127,19 @@
             <h2 class="badge_block_title">Badges</h2>
             <hr />
             <div class="row justify-content-center">
-              <div class="col-4 col-md-3 display_badge_block">
-                <img src="{{ asset('uploads/badges/new_badges/place_1.svg') }}" alt="Badge">
+              <?php foreach($badges as $badge){ ?>
+              <div class="col-4 col-md-3 p-0 badge_section">
+                <div class="badge_box">
+                  <div class="badge_name_sec">
+                    <div class="badge_name">{{ $badge->name }}</div>
+                  </div>
+                  <div class="badge_image_sec">
+                    <img class="badge_image" src="{{ Storage::url($badge->pic) }}" alt="Badge">
+                  </div>
+                  <div class="badge_count">X1</div>
+                </div>
               </div>
-              <div class="col-4 col-md-3 display_badge_block">
-                <img src="{{ asset('uploads/badges/new_badges/place_3.svg') }}" alt="Badge">
-              </div>
-              <div class="col-4 col-md-3 display_badge_block">
-                <img src="{{ asset('uploads/badges/new_badges/taste_4_gold.svg') }}" alt="Badge">
-              </div>
-              <div class="col-4 col-md-3 display_badge_block">
-                <img src="{{ asset('uploads/badges/new_badges/here_4_pizza.svg') }}" alt="Badge">
-              </div>
-              <div class="col-4 col-md-3 display_badge_block">
-                <img src="{{ asset('uploads/badges/new_badges/place_1.svg') }}" alt="Badge">
-              </div>
-              <div class="col-4 col-md-3 display_badge_block">
-                <img src="{{ asset('uploads/badges/new_badges/place_3.svg') }}" alt="Badge">
-              </div>
-              <div class="col-4 col-md-3 display_badge_block">
-                <img src="{{ asset('uploads/badges/new_badges/taste_4_gold.svg') }}" alt="Badge">
-              </div>
-              <div class="col-4 col-md-3 display_badge_block">
-                <img src="{{ asset('uploads/badges/new_badges/here_4_pizza.svg') }}" alt="Badge">
-              </div>
+              <?php } ?>
             </div>
             <div class="row justify-content-center">
               <a href="#" class="see_all see_all_badges">See all</a>
@@ -267,12 +256,32 @@
                 </div>
               </div>
             @endif
+          @else
+          <?php
+            $link = "https://www.linkedin.com/profile/add?";
+            $link.="name=TOP RATED DEVELOPER&";
+            $link.="organizationId=69410802&";
+            $link.="issueYear=2020&";
+            $link.="issueMonth=9&";
+            $link.="issueMonth=9&";
+            $link.="certId=000212&";
+            $link.="certUrl=".route('user.profile',['slug'=>$user->slug]);
+          ?>
+          <div>
+            <a href="{{ $link }}" rel="nofollow" target="_blank">
+            <img src="https://download.linkedin.com/desktop/add2profile/buttons/en_US.png " alt="LinkedIn Add to Profile button">
+            </a>
+          </div>
+
           @endif
           <?php 
           }
           ?>
         </div>
-      </div>
+        <div class="row">
+          <div class="col-12">
+            div>
+      div>
     </div>
   </div>
 </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Experience;
 use App\Performance;
 use App\User;
+use App\Badge;
 use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Validator;
@@ -29,7 +30,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('themes.new-theme.user.dashboard');
+        $badges = Badge::get();
+        return view('themes.new-theme.user.dashboard',compact('badges'));
         // return view('user.dashboard.index');
     }
     public function top_hackers(){

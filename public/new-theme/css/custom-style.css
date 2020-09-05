@@ -298,9 +298,6 @@ input:checked + .slider:before {
   color:var(--light-color);
   font-size:24px;
 }
-.display_badge_block{
-  padding:20px;
-}
 .badge_block_title{
   font-family: Monument;
   padding-left:20px;
@@ -729,7 +726,47 @@ body{
   color: var(--light-color);
   background-color: #af1d6b;
 }
-
+.badge_box{
+  background-image: url('../images/badge_bg.svg'); 
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position:center;
+  height:100%;
+  margin:0px 10px;
+  padding:10px 0px;
+}
+.badge_section{
+  margin-bottom:1px;
+}
+.badge_name{
+  display: table-cell;
+  vertical-align: middle;
+  text-align:center;
+  font-size:10px;
+  font-family: Monument;
+  width:300px;
+  height:50px;
+  padding-top:20px;
+  color:#fff;
+}
+.badge_box .badge_image_sec{
+  text-align:center;
+}
+.badge_box .badge_image{
+  padding:0px 10px;
+  padding-bottom:0px;
+  width:100%;
+}
+.badge_box .badge_count{
+  float:right;
+  background-color:#D90088;
+  padding:5px 10px;
+  font-size:8px;
+  color:#fff;
+  margin-bottom:25px;
+  font-family: Monument;
+  border-radius:4px;
+}
 /* Change the background color of the dropdown button when the dropdown content is shown */
 
 /* Scroll bar */
