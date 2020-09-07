@@ -1,6 +1,6 @@
 @font-face {
   font-family: Monument;
-  src: url("../fonts/monument2/monument.otf") format("opentype");
+  src: url("../fonts/monument3/regular.otf");
 }
 .only-mobile{
   display:none;
@@ -788,7 +788,6 @@ body{
   color:#fff;
 }
 .add_to_linkedin span{
-  font-weight:bold;  
   color:#ddd;
   font-size:16px;
   font-family: Monument;
