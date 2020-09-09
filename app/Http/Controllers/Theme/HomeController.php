@@ -7,6 +7,7 @@ use App\Experience;
 use App\Setting;
 
 use App\User;
+use App\Badge;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
@@ -35,16 +36,17 @@ class HomeController extends Controller
     }
     public function getProfile($slug)
     {
+        $badges = Badge::all();
         $user = User::where('slug','=',$slug)->first();
         $title = "Profile-".$slug;
         if (Auth::user()){
             if (Auth::user()->slug == $slug){
-                return view('themes.new-theme.user.dashboard',['title'=>$title,'user'=>$user]);
+                return view('themes.new-theme.user.dashboard',['title'=>$title,'user'=>$user,'badges'=>$badges]);
             }else{
-                return view('themes.new-theme.user.single_user_profile',['title'=>$title,'user'=>$user]);
+                return view('themes.new-theme.user.single_user_profile',['title'=>$title,'user'=>$user,'badges'=>$badges]);
             }
         }else{
-            return view('themes.new-theme.user.single_user_profile',['title'=>$title,'user'=>$user]);
+            return view('themes.new-theme.user.single_user_profile',['title'=>$title,'user'=>$user,'badges'=>$badges]);
         }
     }
     function picUpload(Request $request)

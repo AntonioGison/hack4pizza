@@ -99,5 +99,17 @@ class ExperienceSeeder extends Seeder
             'created_at'=>'2020-04-20 10:13:35',
             'updated_at'=>'2020-04-20 10:16:47'
         ]);
+        DB::table('experiences')->insert([
+            'name'=>'Startup Weekend COVID-19 Italy',
+            'organized_by'=>'Techstars',
+            'from'=>'2020-04-17',
+            'to'=>'2020-04-19',
+            'description'=>'I\'ve been a <pizza style=\"color:green;\">Mentor</pizza> at this event. I just loved the experience. Due the coronavirus the event was online <a href="http://communities.techstars.com/italy/roma/startup-weekend/16171">Startup Weekend</a>',
+            'pic'=>'uploads/hackathon/7.png',
+            'user_id'=>2,
+            'badge_id'=>1,
+            'created_at'=>'2020-04-20 10:13:35',
+            'updated_at'=>'2020-04-20 10:16:47'
+        ]);
     }
 }
