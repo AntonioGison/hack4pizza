@@ -32,6 +32,14 @@ class LoginController extends Controller
      */
     protected $redirectTo = 'user/dashboard';
 
+    protected function redirectTo()
+    {
+        if (!empty($this->profile_slug)) {
+            return 'user/'.$this->profile_slug;
+        }
+        return '/user/dashboard';
+    }
+
     /**
      * Create a new controller instance.
      *
@@ -42,6 +50,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    protected $profile_slug;
 
 //    public function login(Request $request)
 //    {
@@ -112,7 +121,7 @@ class LoginController extends Controller
 
         Auth::login($authUser, true);
 
-        return redirect('user/dashboard');
+        return redirect('user/'.$authUser->slug);
         // $user->token;
     }
     public function handleProviderLinkedinCallback()
@@ -127,7 +136,7 @@ class LoginController extends Controller
 
         Auth::login($authUser, true);
 
-        return redirect('user/dashboard');
+        return redirect('user/'.$authUser->slug);
         // $user->token;
     }
     public function handleProviderFacebookCallback()
@@ -142,7 +151,7 @@ class LoginController extends Controller
 
         Auth::login($authUser, true);
 
-        return redirect('user/dashboard');
+        return redirect('user/'.$authUser->slug);
         // $user->token;
     }
     private function findOrCreateUser($githubUser)

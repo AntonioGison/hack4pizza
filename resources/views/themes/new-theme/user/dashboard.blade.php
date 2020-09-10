@@ -184,8 +184,9 @@
                     <h2 class="block-title" style="<?php echo $btn_style ?>">@if($i == "1970"){{date("Y")}}@else{{$i}}@endif</h2>
                   </div>
                   <div class="col-md-12 hackathon_header">
+                    <a href="#" class="add_hackathon float-right"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add Hackathon</a>
                     <h3>HACKATHONS</h3>
-                    <hr />
+                    <hr class="hr-white"/>
                   </div>
                   <div class="col-md-12 hackathon_data_section">
                     @foreach($experiences as $experience)
@@ -193,7 +194,7 @@
                         <div class="container">
                           <div class="row">
                             <div class="col-2 col-md-1 hackathon_thumbnail">
-                              <img class="img img-responsive" src="{{ asset('uploads/hackonton/hackathon.svg') }}" alt="hackathon_logo">
+                              <img class="img img-responsive" src="{{ Storage::url($experience->pic) }}" alt="hackathon_logo">
                             </div>
                             <div class="col-9 col-md-11">
                               <a href="#" class="hackathon_share_btn only-desktop float-right share_hackathon"><img src="{{ asset('new-theme/images/share_icon.svg') }}" alt="share">&nbsp;Share</a>
@@ -698,12 +699,12 @@
       type: 'radar',
       data: {
         labels: [
-          "Pitch Presentation ", 
-          "Front End ", 
-          "Back End ", 
-          "Team player ", 
-          "Problem Solving ", 
-          "UX Design "
+          "PITCH PRESENTATION ", 
+          "FRONT END ", 
+          "BACK END ", 
+          "TEAM PLAYER ", 
+          "PROBLEM SOLVING ", 
+          "UX DESIGN "
         ],
         datasets: [{
           label: 'Performance',
@@ -731,7 +732,7 @@
           pointLabels:{
             fontColor:"#00FFC2",
             fontFamily:'Monument',
-            fontSize:8,
+            fontSize: 20,
           },
           ticks: {
             fontColor:'#ffffff',

@@ -34,6 +34,14 @@ class RegisterController extends Controller
      */
     protected $redirectTo = 'user/dashboard';
 
+    protected function redirectTo()
+    {
+        if (!empty($this->profile_slug)) {
+            return 'user/'.$this->profile_slug;
+        }
+        return '/user/dashboard';
+    }
+
     /**
      * Create a new controller instance.
      *
@@ -43,6 +51,8 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
+
+    protected $profile_slug;
 
     /**
      * Get a validator for an incoming registration request.
@@ -64,7 +74,7 @@ class RegisterController extends Controller
 
     protected function create(array $data)
     {       
-        $profile_slug =  $this->createSlug($data['first_name']." ".$data['last_name']);
+        $this->profile_slug =  $this->createSlug($data['first_name']." ".$data['last_name']);
         return User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
@@ -72,7 +82,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'phone_number'=>$data['phone_number'],
             'password' => bcrypt($data['password']),
-            'slug' => $profile_slug,
+            'slug' => $this->profile_slug,
             'address'=> $data['address'],
         ]);
     }
@@ -149,13 +159,13 @@ class RegisterController extends Controller
         } else {
             $input = $request->all();
             $slug =  $this->createSlug($request->name);
-            $profile_slug =  $this->createSlug($request->first_name." ".$request->last_name);
+            $this->profile_slug =  $this->createSlug($request->first_name." ".$request->last_name);
 
-            $input['slug'] = $profile_slug;
+            $input['slug'] = $this->profile_slug;
             $user = $this->create($input);
             Auth::login($user);
             if (Auth::user()) {
-                return response()->json(['status' => '0','slug' => $profile_slug]);
+                return response()->json(['status' => '0','slug' => $this->profile_slug]);
             }
         }
     }

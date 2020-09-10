@@ -41,12 +41,12 @@ class HomeController extends Controller
         $title = "Profile-".$slug;
         if (Auth::user()){
             if (Auth::user()->slug == $slug){
-                return view('themes.new-theme.user.dashboard',['title'=>$title,'user'=>$user,'badges'=>$badges]);
+                return view('themes.new-theme.user.single_user_profile',['title'=>$title,'user'=>$user,'badges'=>$badges,'authuser'=>true]);
             }else{
-                return view('themes.new-theme.user.single_user_profile',['title'=>$title,'user'=>$user,'badges'=>$badges]);
+                return view('themes.new-theme.user.single_user_profile',['title'=>$title,'user'=>$user,'badges'=>$badges,'authuser'=>true]);
             }
         }else{
-            return view('themes.new-theme.user.single_user_profile',['title'=>$title,'user'=>$user,'badges'=>$badges]);
+            return view('themes.new-theme.user.single_user_profile',['title'=>$title,'user'=>$user,'badges'=>$badges,'authuser'=>true]);
         }
     }
     function picUpload(Request $request)
@@ -92,17 +92,17 @@ class HomeController extends Controller
         {
             $image = $request->file('file');
             $new_name = rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(base_path('uploads/hackonton/'), $new_name);
+            $image->move(base_path('public/uploads/hackathon/'), $new_name);
 
-            $newImage = base_path()."/uploads/hackonton/".$new_name;
+            $newImage = base_path()."/public/uploads/hackathon/".$new_name;
             $thumb_image = Image::make($newImage);
             $thumb_image->fit(200);
-            $newThumb = base_path()."/uploads/hackonton/".$new_name;
+            $newThumb = base_path()."/public/uploads/hackathon/".$new_name;
             $thumb_image->save($newThumb);
             return response()->json([
                 'pic'       => $new_name,
                 'message'   => 'Image Upload Successfully',
-                'uploaded_image' => '<img src="/uploads/hackonton/'.$new_name.'" class="img-thumbnail" width="100%" />',
+                'uploaded_image' => '<img src="/uploads/hackathon/'.$new_name.'" class="img-thumbnail" width="100%" />',
                 'class_name'  => 'alert-success'
             ]);
 

@@ -142,7 +142,7 @@ class UserController extends Controller
         $experience->badge_id = $input['result'];
         $experience->from = date('Y-m-d', strtotime($input['from']));
         $experience->to = date('Y-m-d', strtotime($input['to']));
-        $experience->pic = $input['pic'];
+        $experience->pic = 'uploads/hackathon/'.$input['pic'];
         $experience->organized_by = $input['organized_by'];
         $experience->user_id = $id;
 

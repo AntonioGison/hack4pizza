@@ -199,8 +199,11 @@
                     <h2 class="block-title" style="<?php echo $btn_style ?>">@if($i == "1970"){{date("Y")}}@else{{$i}}@endif</h2>
                   </div>
                   <div class="col-md-12 hackathon_header">
+                    @if(isset($authuser) && $authuser)
+                    <a href="#" class="add_hackathon float-right"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add Hackathon</a>
+                    @endif
                     <h3>HACKATHONS</h3>
-                    <hr />
+                    <hr class="hr-white"/>
                   </div>
                   <div class="col-md-12 hackathon_data_section">
                     @foreach($experiences as $experience)
@@ -240,8 +243,11 @@
                     <h2 class="block-title" style="<?php echo $btn_style ?>">{{ $i }}</h2>
                   </div>
                   <div class="col-md-12 hackathon_header">
+                    @if(isset($authuser) && $authuser)
+                    <a href="#" class="add_hackathon float-right"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add Hackathon</a>
+                    @endif
                     <h3>HACKATHONS</h3>
-                    <hr />
+                    <hr class="hr-white"/>
                   </div>
                   <div class="col-md-12 hackathon_data_section">
                     @foreach($experiences as $experience)
@@ -353,6 +359,75 @@
             </div>
             <div class="form-group text-right ">
               <button type="button" id="profile_submit"  class="btn btn-success">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="hackathon_add" tabindex="-1" role="dialog" aria-labelledby="hackathon_addLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="new_modal_section">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="new_modal_header">
+                  <button type="button" class="btn-close new_modal_close_btn" data-dismiss="modal" aria-label="Close">
+                    <img alt="" src="{{asset('new-theme/images/icon_close.png')}}"></button>
+                  <h2 class="new_modal_header_title">Add Hackathon</h2>
+                </div>
+                <hr />
+              </div>
+            </div>
+          </div>
+          <form id="hackathon_add_form" class="form_class add_hackathon_form" enctype="multipart/form-data">
+            @csrf
+            <input type="hidden" id="ha_pic" >
+            <div class="form-group">
+              <input type="text" placeholder="Hackathon's name*" class="form-control hackathon_input" id="ha_name">
+            </div>
+            <div class="form-group ha_organized">
+              <input type="text" class="form-control hackathon_input" placeholder="Hosted/Organized by*" id="ha_organized">
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-4 ha_from">
+                <input type="text" placeholder="From*" class="form-control datepicker hackathon_input " id="ha_from">
+              </div>
+              <div class="form-group col-md-4">
+                <input type="text" placeholder="To*" class="form-control datepicker hackathon_input" id="ha_to">
+              </div>
+              <div class="form-group col-md-4 place_msg">
+                <select class="form-control hackathon_input" id="ha_result">
+                  <option value="" selected>Select Result*</option>
+                  @foreach($badges as $badge)
+                    <option value="{{$badge->id}}">{{$badge->name}}</option>
+                  @endforeach
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="ha_description" class="hackathon_input_label">Description (HTML editor)*</label>
+              <textarea class="form-control hackathon_input_textarea" rows="5" id="ha_description"></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label class="hackathon_input_label">Upload Hackathon's logo/IMG</label>
+                <div class="custom-file">
+                  <input type="file" name="file" class="custom-file-input hackathon_input" id="new_hackathon_img">
+                  <label class="custom-file-label add_hackathon_file_label" for="hackathon_img"></label>
+                </div>
+
+              </div>
+              <div class="form-group col-sm-2 ha_pic_msg">
+
+              </div>
+
+            </div>
+            <div class="form-group text-right ha_success">
+            </div>
+            <div class="form-group text-right">
+              <button type="button" id="ha_submit" class="btn add_hackathon_submit_btn">SAVE</button>
             </div>
           </form>
         </div>
@@ -531,12 +606,12 @@
       type: 'radar',
       data: {
         labels: [
-          "Pitch Presentation ", 
-          "Front End ", 
-          "Back End ", 
-          "Team player ", 
-          "Problem Solving ", 
-          "UX Design "
+          "PITCH PRESENTATION ", 
+          "FRONT END ", 
+          "BACK END ", 
+          "TEAM PLAYER ", 
+          "PROBLEM SOLVING ", 
+          "UX DESIGN "
         ],
         datasets: [{
           label: 'Performance',
@@ -564,10 +639,10 @@
         },
         scale: {
           gridLines: {
-            color: '#666666'
+            color: '#ffffff'
           },
           angleLines: {
-            color: '#666666'
+            color: '#ffffff'
           },
           ticks: {
             fontColor:'#ffffff',
@@ -581,7 +656,7 @@
           },
           pointLabels: {
             fontColor: '#00F9FF',
-            fontSize: 8,
+            fontSize: 14,
             fontFamily:'Monument',
           },
           Axes: [{
@@ -647,6 +722,87 @@
     $(".hackathon_winBadges").click(function () {
        $(this).hide();
        $(this).parent().parent().find(".collapse").addClass("show");
+    });
+    $('#hackathon_add_form').on('change','.custom-file-input', function(event){
+      $.LoadingOverlay("show");
+      var form = $('form#hackathon_add_form')[0];
+      event.preventDefault();
+      $.ajax({
+        url:"{{ route('ajaxuploadhackon.action') }}",
+        method:"POST",
+        data:new FormData(form),
+        dataType:'JSON',
+        contentType: false,
+        cache: false,
+        processData: false,
+        success:function(data)
+        {
+          $.LoadingOverlay("hide");
+          $(".ha_pic_msg").children().remove();
+          $("#ha_pic").val(data.pic);
+
+          if (data.pic == ""){
+            $('<span class="umsg">' + data.massage + '</span>').appendTo(".ha_pic_msg").css('color', 'red');
+          }else{
+            $(".ha_pic_msg").append(data.uploaded_image);
+          }
+          // $('#message').css('display', 'block');
+          // $('#message').html(data.message);
+          // $('#message').addClass(data.class_name);
+          // $('#uploaded_image').html(data.uploaded_image);
+        }
+      })
+    });
+    $("#ha_submit").click(function () {
+      $.LoadingOverlay("show");
+      $("#hackathon_add").find('.emsg').remove();
+      var token = $("input[name=_token]").val();
+      var name = $("#ha_name").val();
+      var organized_by = $("#ha_organized").val();
+      var from = $("#ha_from").val();
+      var to = $("#ha_to").val();
+      var result = $("#ha_result").val();
+      var description = $("#ha_description").val();
+      var pic = $("#ha_pic").val();
+      $.ajax({
+        type: 'POST',
+        url: "{{route("add-hackonton")}}",
+        data: {_token: token, name: name, organized_by: organized_by, from: from, to: to, result: result, description: description, pic: pic},
+        dataType: 'JSON',
+        success: function (resp) {
+          $.LoadingOverlay("hide");
+          if (resp.status == 0) {
+            $('<span class="emsg">Congrats..Your Hackonton has been Added!</span>').appendTo(".ha_success").css('color', 'green');
+            var delay = 1000; //Your delay in milliseconds
+            setTimeout(function () {
+              window.location = '/user/dashboard';
+            }, delay);
+          } else {
+            if (typeof resp.name != "undefined") {
+              $("#ha_name").parent().append('<span class="emsg">' + resp.name + '</span>').css('color', 'red');
+            }
+            if (typeof resp.description != "undefined") {
+              $("#ha_description").parent().append('<span class="emsg">' + resp.description + '</span>').css('color', 'red');
+            }
+            if (typeof resp.result != "undefined") {
+              $("#ha_result").parent().append('<span class="emsg">' + resp.result + '</span>').css('color', 'red');
+            }
+            if (typeof resp.from != "undefined") {
+              $("#ha_from").parent().append('<span class="emsg">' + resp.from + '</span>').css('color', 'red');
+            }
+            if (typeof resp.to != "undefined") {
+              $("#ha_to").parent().append('<span class="emsg">' + resp.to + '</span>').css('color', 'red');
+            }
+            if (typeof resp.organized_by != "undefined") {
+              $("#ha_organized").parent().append('<span class="emsg">' + resp.organized_by + '</span>').css('color', 'red');
+            }
+
+
+          }
+
+        },
+
+      });
     });
   </script>
 @endsection
