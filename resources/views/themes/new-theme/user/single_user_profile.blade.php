@@ -2,6 +2,25 @@
 @section('additional_css')
   <link href="{{ asset('theme/hack4pizza/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
   <link href="{{ asset('new-theme/plugins/sweetalert/css/sweetalert.css') }}" rel="stylesheet">
+  @if($user->theme == 'light')
+    <style>
+      :root {
+        --very-dark-bg: #09062A;
+        --dark-bg: #333333;
+        --dark-blue: #f3f3f3;
+        --light-color : #ffffff;
+      }
+    </style>
+  @else
+    <style>
+      :root {
+        --very-dark-bg: #09062A;
+        --dark-bg: #ffffff;
+        --dark-blue: #25215A;
+        --light-color : #3B3677;
+      }
+    </style>
+  @endif
 @endsection
 @section('content')
 <div class="dashboard_body">
@@ -199,14 +218,15 @@
                     <h2 class="block-title" style="<?php echo $btn_style ?>">@if($i == "1970"){{date("Y")}}@else{{$i}}@endif</h2>
                   </div>
                   <div class="col-md-12 hackathon_header">
-                    @if(isset($authuser) && $authuser)
+                    @if(isset($ownprofile) && $ownprofile)
                     <a href="#" class="add_hackathon float-right"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add Hackathon</a>
                     @endif
                     <h3>HACKATHONS</h3>
                     <hr class="hr-white"/>
                   </div>
                   <div class="col-md-12 hackathon_data_section">
-                    @foreach($experiences as $experience)
+                    @foreach($experiences as $key => $experience)
+                      @if($key < 1)
                       <div class="hackathon_data">
                         <div class="container">
                           <div class="row">
@@ -232,18 +252,56 @@
                           </div>
                         </div>
                       </div>
+                      @else
+                      <div class="hackathon_data_{{$i}}" style="display:none;">
+                        <div class="hackathon_data">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-2 col-md-1 hackathon_thumbnail">
+                                <img class="img img-responsive" src="{{ Storage::url($experience->pic) }}" alt="hackathon_logo">
+                              </div>
+                              <div class="col-9 col-md-11">
+                                <a href="#" class="hackathon_share_btn only-desktop float-right share_hackathon"><img src="{{ asset('new-theme/images/share_icon.svg') }}" alt="share">&nbsp;Share</a>
+                                <h4>{{ $experience->name }}</h4>
+                                <h5>By {{ $experience->organized_by }} <br /> {{ Date('d-M-Y',strtotime($experience->from)) }} - {{ Date('d-M-Y',strtotime($experience->to)) }}</h5>
+                                <p class="only-desktop"><?php echo str_replace("\\","",nl2br($experience->description)) ?></p>
+                                <img src="{{ Storage::url($experience->badge->pic) }}" class="hackathon_badge_img only-desktop" alt="badge information"><label class="hackathon_badge_title only-desktop">&nbsp;&nbsp;{{ $experience->badge->name }}</label>
+                              </div>
+                              <div class="col-2 only-mobile">
+                                <a href="#" class="hackathon_share_btn only-mobile share_hackathon">
+                                  <img src="{{ asset('new-theme/images/share_icon.svg') }}" alt="share">
+                                </a>
+                              </div>
+                              <div class="col-10 only-mobile">
+                                <p><?php echo str_replace("\\","",nl2br($experience->description)) ?></p>
+                                <img src="{{ Storage::url($experience->badge->pic) }}" class="hackathon_badge_img" alt="badge information"><label class="hackathon_badge_title">&nbsp;&nbsp;{{ $experience->badge->name }}</label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      @endif
                     @endforeach
+                    
+                    @if(count($experiences) > 1)
+                    <!-- <div class="col-md-12"> -->
+                      <div class="row justify-content-center">
+                        <a href="javascript:void(0);" class="see_all see_all_hackathon_btn_{{$i}}" onclick="seeAllHackathon('{{$i}}')">See all</a>
+                      </div>
+                    <!-- </div> -->
+                    @endif
+
                   </div>
                 </div>
               </div>
             @else
-            <div class="hackathon_section">
+              <div class="hackathon_section">
                 <div class="row">
                   <div class="col-md-12">
                     <h2 class="block-title" style="<?php echo $btn_style ?>">{{ $i }}</h2>
                   </div>
                   <div class="col-md-12 hackathon_header">
-                    @if(isset($authuser) && $authuser)
+                    @if(isset($ownprofile) && $ownprofile)
                     <a href="#" class="add_hackathon float-right"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add Hackathon</a>
                     @endif
                     <h3>HACKATHONS</h3>
@@ -804,5 +862,18 @@
 
       });
     });
+    //see all hackathon function
+    function seeAllHackathon(key) {
+      var moreText = document.getElementsByClassName("hackathon_data_"+key);
+      var btnText = document.getElementsByClassName("see_all_hackathon_btn_"+key);
+    
+      if(moreText.style.display === "none") {
+        moreText.style.display = "inline";
+        btnText.innerHTML = "See less";
+      } else {
+        moreText.style.display = "none";
+        btnText.innerHTML = "See all";
+      }
+    }
   </script>
 @endsection

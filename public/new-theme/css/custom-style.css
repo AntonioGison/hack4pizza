@@ -314,8 +314,10 @@ input:checked + .slider:before {
 }
 .see_all{
   font-family:Monument;
-  font-size:14px;
+  font-size:12px;
   margin-top:10px;
+  color:#D90088;
+  text-decoration: underline;
 }
 .hackathon_section{
   background-color:var(--dark-blue);
@@ -940,3 +942,25 @@ body{
   }
 }
 .hr-white { background: #ffffff; }
+#select_theme .dark_mode {
+  background-color:#000000;
+  color:#ffffff;
+  padding:50px 50px;
+  text-decoration:none;
+  border-radius:2px;
+  margin-top:-10px;
+  font-family: Monument;
+  font-size:24px;
+  margin: 50px 20px;
+}
+#select_theme .light_mode {
+  background-color:#ffffff;
+  color:#000000;
+  padding:50px 50px;
+  text-decoration:none;
+  border-radius:2px;
+  margin-top:-10px;
+  font-family: Monument;
+  font-size:24px;
+  margin: 50px 20px;
+}

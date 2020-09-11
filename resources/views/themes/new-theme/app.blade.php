@@ -17,12 +17,21 @@
       --very-dark-bg: {{ $very_dark_bg }};
       --dark-bg: {{ $dark_bg }};
       --dark-blue: {{ $dark_blue }};
-      --light-color : {{ $light_color }}
+      --light-color : {{ $light_color }};
     }
   </style>
   @include('themes.new-theme.includes.load_css')
   @yield('additional_css')
 </head>
+@php
+  $isLoggedin = 0;
+  $loggedUserTheme = 0;
+  if(Auth::check()) {
+    $isLoggedin = 1;
+    $loggedUser = auth()->user();
+    $loggedUserTheme = $loggedUser->theme;
+  }
+@endphp
 <body>
   @if(Auth::check())
     @include('themes.new-theme.includes.logged_header')
@@ -32,7 +41,7 @@
   @yield('content')
   @include('themes.new-theme.includes.footer')
   @yield('models')
-  @include('themes.new-theme.includes.load_js')
+  @include('themes.new-theme.includes.load_js',['isLoggedin'=>$isLoggedin,'loggedUserTheme'=>$loggedUserTheme])
   @yield('additional_js')
   
 </body>

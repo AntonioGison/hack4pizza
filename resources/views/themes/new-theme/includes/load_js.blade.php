@@ -33,5 +33,15 @@
     $(".dropdown-content").click(function(e){
       e.stopPropagation();
     });
+
+    //select theme modal
+    var isLoggedin = "{{$isLoggedin}}";
+    
+    if(isLoggedin!=0) {
+      var userTheme  = "{{$loggedUserTheme}}";
+      if(userTheme != 'dark' && userTheme != 'light') {
+        $('#select_theme').modal('show');
+      }
+    }
   })
 </script>

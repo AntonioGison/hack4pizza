@@ -40,6 +40,7 @@ Route::get('login/facebook', 'Auth\LoginController@redirectToFacebookProvider')-
 Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback');
 Route::get('login/linkedin/callback', 'Auth\LoginController@handleProviderLinkedinCallback');
 Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderFacebookCallback');
+Route::get('user/select_theme/{theme}', 'UserController@select_theme')->name('user.select_theme');
 
 Route::prefix('admin')->group(function() {
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');

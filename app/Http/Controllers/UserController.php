@@ -255,4 +255,16 @@ class UserController extends Controller
         Session::flash('success_message', 'Hackonthon successfully deleted!');
         return redirect()->route('user.dashboard');
     }
+
+    public function select_theme($theme)
+    {
+        if(Auth::check()) {
+            $user = auth()->user();
+            $user->theme = $theme;
+            $user->save();
+            return redirect()->route('user.profile',$user->slug);
+        } else {
+            return Redirect::back()->with('message','Please log in to select the default theme!');
+        }
+    }
 }

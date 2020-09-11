@@ -41,12 +41,12 @@ class HomeController extends Controller
         $title = "Profile-".$slug;
         if (Auth::user()){
             if (Auth::user()->slug == $slug){
-                return view('themes.new-theme.user.single_user_profile',['title'=>$title,'user'=>$user,'badges'=>$badges,'authuser'=>true]);
+                return view('themes.new-theme.user.single_user_profile',['title'=>$title,'user'=>$user,'badges'=>$badges,'ownprofile'=>true]);
             }else{
-                return view('themes.new-theme.user.single_user_profile',['title'=>$title,'user'=>$user,'badges'=>$badges,'authuser'=>true]);
+                return view('themes.new-theme.user.single_user_profile',['title'=>$title,'user'=>$user,'badges'=>$badges,'ownprofile'=>false]);
             }
         }else{
-            return view('themes.new-theme.user.single_user_profile',['title'=>$title,'user'=>$user,'badges'=>$badges,'authuser'=>true]);
+            return view('themes.new-theme.user.single_user_profile',['title'=>$title,'user'=>$user,'badges'=>$badges,'ownprofile'=>false]);
         }
     }
     function picUpload(Request $request)

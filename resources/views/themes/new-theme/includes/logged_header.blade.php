@@ -109,7 +109,10 @@
                 <div class="dark_mode_switch">
                   Dark Mode
                   <label class="switch">
-                    <input type="checkbox" name="dark_mode_input" class="dark_mode_input" checked>
+                    <input type="checkbox" name="dark_mode_input" class="dark_mode_input" 
+                    @if($isLoggedin && $loggedUser->theme=='dark') checked="checked" 
+                    @elseif($isLoggedin && empty($loggedUser->theme)) checked="checked" 
+                    @endif>
                     <span class="slider round"></span>
                   </label>
                 </div>
@@ -156,7 +159,7 @@
             <div class="dark_mode_switch">
               Dark Mode
               <label class="switch">
-                <input type="checkbox" name="dark_mode_input" class="dark_mode_input" checked>
+                <input type="checkbox" name="dark_mode_input" class="dark_mode_input" @if(!empty($loggedUser) && $loggedUser->theme=='dark') checked @elseif(empty($loggedUser)) checked @endif>
                 <span class="slider round"></span>
               </label>
             </div>
@@ -171,4 +174,33 @@
       </div>
   </div>
 </div>
+</div>
+
+<div class="modal fade" id="select_theme" tabindex="-1" role="dialog" aria-labelledby="select_themeLabel" aria-hidden="true" align="center">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="new_modal_section">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="new_modal_header">
+                <button type="button" class="btn-close new_modal_close_btn" data-dismiss="modal" aria-label="Close">
+                  <img alt="" src="{{asset('new-theme/images/icon_close.png')}}"></button>
+                <h2 class="new_modal_header_title">Select Theme</h2>
+              </div>
+              <hr />
+            </div>
+            <div class="col-md-12 select_theme_container" style="height:300px;">
+              <div class="container">
+                <div class="row d-flex justify-content-center">
+                  <a href="{{route('user.select_theme','dark')}}" class="dark_mode">Dark Mode</a>
+                  <a href="{{route('user.select_theme','light')}}" class="light_mode">Light Mode</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
