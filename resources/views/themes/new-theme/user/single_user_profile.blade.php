@@ -6,18 +6,18 @@
     <style>
       :root {
         --very-dark-bg: #09062A;
-        --dark-bg: #333333;
-        --dark-blue: #f3f3f3;
-        --light-color : #ffffff;
+        --light-color : #333333;
+        --dark-bg: #f3f3f3;
+        --dark-blue: #ffffff;
       }
     </style>
   @else
     <style>
       :root {
         --very-dark-bg: #09062A;
-        --dark-bg: #ffffff;
-        --dark-blue: #25215A;
-        --light-color : #3B3677;
+        --light-color : #ffffff;
+        --dark-bg: #25215A;
+        --dark-blue: #3B3677;
       }
     </style>
   @endif
@@ -335,6 +335,14 @@
                         </div>
                       </div>
                     @endforeach
+
+                    @if(count($experiences) > 1)
+                    <!-- <div class="col-md-12"> -->
+                      <div class="row justify-content-center">
+                        <a href="javascript:void(0);" class="see_all see_all_hackathon_btn_{{$i}}" onclick="seeAllHackathon('{{$i}}')">See all</a>
+                      </div>
+                    <!-- </div> -->
+                    @endif
                   </div>
                 </div>
               </div>
@@ -864,15 +872,16 @@
     });
     //see all hackathon function
     function seeAllHackathon(key) {
-      var moreText = document.getElementsByClassName("hackathon_data_"+key);
-      var btnText = document.getElementsByClassName("see_all_hackathon_btn_"+key);
-    
-      if(moreText.style.display === "none") {
-        moreText.style.display = "inline";
-        btnText.innerHTML = "See less";
+      var moreText = $(".hackathon_data_"+key);
+      var btnText = $(".see_all_hackathon_btn_"+key);
+      console.log(moreText);
+        
+      if(moreText.css('display') == 'none') {
+        moreText.css("display", "block");
+        btnText.text("See less");
       } else {
-        moreText.style.display = "none";
-        btnText.innerHTML = "See all";
+        moreText.css("display", "none");
+        btnText.text("See all");
       }
     }
   </script>
