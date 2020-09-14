@@ -308,7 +308,8 @@
                     <hr class="hr-white"/>
                   </div>
                   <div class="col-md-12 hackathon_data_section">
-                    @foreach($experiences as $experience)
+                    @foreach($experiences as $key => $experience)
+                      @if($key < 1)
                       <div class="hackathon_data">
                         <div class="container">
                           <div class="row">
@@ -334,6 +335,35 @@
                           </div>
                         </div>
                       </div>
+                      @else
+                      <div class="hackathon_data_{{$i}}" style="display:none;">
+                        <div class="hackathon_data">
+                          <div class="container">
+                            <div class="row">
+                              <div class="col-2 col-md-1 hackathon_thumbnail">
+                                <img class="img img-responsive" src="{{ Storage::url($experience->pic) }}" alt="hackathon_logo">
+                              </div>
+                              <div class="col-9 col-md-11">
+                                <a href="#" class="hackathon_share_btn only-desktop float-right share_hackathon"><img src="{{ asset('new-theme/images/share_icon.svg') }}" alt="share">&nbsp;Share</a>
+                                <h4>{{ $experience->name }}</h4>
+                                <h5>By {{ $experience->organized_by }} <br /> {{ Date('d-M-Y',strtotime($experience->from)) }} - {{ Date('d-M-Y',strtotime($experience->to)) }}</h5>
+                                <p class="only-desktop"><?php echo str_replace("\\","",nl2br($experience->description)) ?></p>
+                                <img src="{{ Storage::url($experience->badge->pic) }}" class="hackathon_badge_img only-desktop" alt="badge information"><label class="hackathon_badge_title only-desktop">&nbsp;&nbsp;{{ $experience->badge->name }}</label>
+                              </div>
+                              <div class="col-2 only-mobile">
+                                <a href="#" class="hackathon_share_btn only-mobile share_hackathon">
+                                  <img src="{{ asset('new-theme/images/share_icon.svg') }}" alt="share">
+                                </a>
+                              </div>
+                              <div class="col-10 only-mobile">
+                                <p><?php echo str_replace("\\","",nl2br($experience->description)) ?></p>
+                                <img src="{{ Storage::url($experience->badge->pic) }}" class="hackathon_badge_img" alt="badge information"><label class="hackathon_badge_title">&nbsp;&nbsp;{{ $experience->badge->name }}</label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      @endif
                     @endforeach
 
                     @if(count($experiences) > 1)
