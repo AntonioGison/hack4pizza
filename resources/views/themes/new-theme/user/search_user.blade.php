@@ -12,28 +12,39 @@
           <div class="row">
             <div class="col-md-12">
               <div class="search_result_data">
-                <h4>About <span id="result_count">325</span> results</h4>
+                <h4>About <span id="result_count">{{$users->count()}}</span> results</h4>
               </div>
             </div>
           </div>
           <div class="row align-items-center">
-            <?php
-            for($i=1; $i<10; $i++){
-            ?>
+            @foreach($users as $user)
+            @php
+              $user_profile_picture = $user->profile_picture;
+            
+              if($user_profile_picture==''){
+                  $profile_picture = asset('uploads/user-pic/placeholder.jpg');
+              }else{
+                  if($user->facebook_id=='' && 
+                  $user->linked_id=='' && 
+                  $user->github_id==''){
+                      $profile_picture = Storage::url($user_profile_picture);
+                  }else{
+                      $profile_picture =  $user_profile_picture;
+                  }
+              }
+            @endphp
             <div class="col-md-2">
-              <a href="#" class="search_user_link">
+              <a href="{{route('user.profile',$user->slug)}}" class="search_user_link">
                 <div class="search_user_info">
-                  <img src="{{ asset('uploads/user-pic/search1.png') }}" alt="user">
-                  <h5>John Break</h5>
-                  <p>CEO - London, England</p>
+                  <img src="{{ $profile_picture }}" alt="user">
+                  <h5>{{$user->name}}</h5>
+                  <p>CEO - {{$user->address}}</p>
                   <hr />
-                  <p>4 Hackathon</p>
+                  <p>{{$user->experiences_count}} Hackathon</p>
                 </div>
               </a>
             </div>
-            <?php 
-            }
-            ?>
+            @endforeach
           </div>
         </div>
       </div>

@@ -37,8 +37,20 @@ class UserController extends Controller
     public function top_hackers(){
         return view('themes.new-theme.user.top_hackers');
     }
-    public function search_user(){
-        return view('themes.new-theme.user.search_user');
+    public function search_user(Request $request){
+        $name = $request->q;
+        $users = User::where('name','LIKE','%'.$name.'%')->orWhere('email','LIKE','%'.$name.'%')->orWhere('address','LIKE','%'.$name.'%')->select('id','name','profile_picture','slug','address')->withCount('experiences')->get();
+
+        return view('themes.new-theme.user.search_user')->with('users',$users);
+    }
+    public function search_users_ajax(Request $request)
+    {
+        $name = $request->name;
+        $users = User::where('name','LIKE','%'.$name.'%')->orWhere('email','LIKE','%'.$name.'%')->orWhere('address','LIKE','%'.$name.'%')->select('id','name','profile_picture','slug')->get()->take(7);
+        $userCount = User::where('name','LIKE','%'.$name.'%')->orWhere('email','LIKE','%'.$name.'%')->orWhere('address','LIKE','%'.$name.'%')->count();
+
+        $returnHTML = view('themes.new-theme.ajax_view.search_user')->with('users', $users)->with('count',$userCount)->with('search_name',$name)->render();
+        return response()->json(array('success' => true, 'html'=>$returnHTML));
     }
     /**
      * Store a newly created resource in storage.

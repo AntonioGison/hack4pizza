@@ -184,7 +184,7 @@
     $max_skill_key;
     $max_skill = $perf[$max_skill_key[0]];
   }else{
-    $max_skill=6;
+    $max_skill=10;
   }
   ?>
   <div class="hackathon_sections">
@@ -745,7 +745,7 @@
             backdropColor:'transparent',
             stepSize:2,
             min:0,
-            max:{{ $max_skill }},
+            max:10,
             fontFamily:'Monument',
             fontSize:12,
             beginAtZero: true

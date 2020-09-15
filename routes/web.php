@@ -25,6 +25,7 @@ Route::get('user/dashboard', 'UserController@index')->name('user.dashboard');
 Route::get('user/{slug}','Theme\HomeController@getProfile')->where('slug','[\w\d\-\_]+')->name('user.profile');
 Route::get('top-hackers', 'UserController@top_hackers')->name('user.top.hackers');
 Route::get('search-user', 'UserController@search_user')->name('user.search.index');
+Route::post('search-user-ajax', 'UserController@search_users_ajax')->name('user.search_users_ajax');
 Route::post('/ajax_upload/action', 'Theme\HomeController@picUpload')->name('ajaxupload.action');
 Route::post('/ajax_upload_hackon/action', 'Theme\HomeController@picUploadHackon')->name('ajaxuploadhackon.action');
 Route::post('user-update', 'UserController@profileUpdate')->name('user-update');

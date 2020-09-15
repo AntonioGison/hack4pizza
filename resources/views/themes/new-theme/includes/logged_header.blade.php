@@ -1,3 +1,6 @@
+@php
+  $user = Auth::user();
+@endphp
 <div id="header" class="top-bar-admin">
   <div class="container">
     <div class="row align-items-center">
@@ -13,67 +16,26 @@
         <div class="row">
           <div class="col-8 less-padding">
             <div class="dropdown_search">
-              <input type="text" id="searchUser" class="form-control search_user" placeholder="Search"> 
+              <input type="text" id="searchUser" class="form-control search_user" placeholder="Search" oninput="onSearchInput(this)"> 
               <div class="search_area_content only-desktop">
                 <div class="arrow-up-white"></div>
                 <div class="search_area">
-                  <div class="search_result_number">
-                    About <span class="number_search">35</span> Results
+                  @if($user->count())
+                  <div class="col-md-12">
+                    <p class="recent-search-title">Recent</p>
+                    @foreach($user->recent_searches as $recent_search)
+                    <a href="{{route('user.search.index')}}?q={{$recent_search->search_query}}" class="recent-search">{{$recent_search->search_query}}</a>
+                    @endforeach
                   </div>
-                  <div class="row justify-content-md-center" >
-                    <div class="col-md-3">
-                      <div class="user_search_box">
-                        <img src="{{ asset('uploads/user-pic/search1.png') }}" alt="User" class="img img-responsive">
-                        <div class="user_name"><h4>Rick Jones</h4></div>
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="user_search_box">
-                        <img src="{{ asset('uploads/user-pic/search2.png') }}" alt="User" class="img img-responsive">
-                        <div class="user_name"><h4>Rick Brando</h4></div>
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="user_search_box">
-                        <img src="{{ asset('uploads/user-pic/search3.png') }}" alt="User" class="img img-responsive">
-                        <div class="user_name"><h4>Rick Smith</h4></div>
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="user_search_box">
-                        <img src="{{ asset('uploads/user-pic/search4.png') }}" alt="User" class="img img-responsive">
-                        <div class="user_name"><h4>Rick Saurez</h4></div>
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="user_search_box">
-                        <img src="{{ asset('uploads/user-pic/search5.png') }}" alt="User" class="img img-responsive">
-                        <div class="user_name"><h4>Rick James</h4></div>
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="user_search_box">
-                        <img src="{{ asset('uploads/user-pic/search1.png') }}" alt="User" class="img img-responsive">
-                        <div class="user_name"><h4>Rick Jones</h4></div>
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="user_search_box">
-                        <img src="{{ asset('uploads/user-pic/search2.png') }}" alt="User" class="img img-responsive">
-                        <div class="user_name"><h4>Rick Brando</h4></div>
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="user_search_box">
-                        <a href="{{ route('user.search.index') }}">
-                          <img src="{{ asset('uploads/see_all.png') }}" alt="User" class="img img-responsive">
-                          <div class="user_name"><h4>See All</h4></div>
-                        </a>
-                      </div>
-                    </div>
+                  <hr />
+                  @endif
+                  <div class="row">
                     <div class="col-md-12">
-                      <div class="close_btn_sec">
-                        <a href="#" class="close_btn">Close Search Result</a>
+                      <div class="search_area_html">
+                        <p>Start searching with name or email</p>
+                        <div class="close_btn_sec">
+                          <a href="#" class="close_btn">Close Search Result</a>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -204,3 +166,21 @@
     </div>
   </div>
 </div>
+
+<script>
+function onSearchInput(e) {
+  var token = $("input[name=_token]").val();
+  var name = e.value;
+  $.ajax({
+    type: 'POST',
+    url: "{{route("user.search_users_ajax")}}",
+    data: {_token: token, name: name},
+    dataType: 'JSON',
+    success: function (resp) {
+      if(resp.html) {
+        $('.search_area_html').html(resp.html)
+      }
+    },
+  });
+}
+</script>

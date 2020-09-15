@@ -24,6 +24,12 @@ class User extends Authenticatable
     public function performance(){
         return $this->hasOne('App\Performance','user_id');
     }
+    public function getRecentSearchesAttribute(){
+        $searches = RecentSearch::where('user_id',$this->id)->orderBy('id','desc')->get()->take(5);
+        return $searches;
+        // return $this->hasMany('App\RecentSearch','user_id');
+    }
+    
     /**
      * The attributes that should be hidden for arrays.
      *
