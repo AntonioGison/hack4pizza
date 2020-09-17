@@ -334,13 +334,6 @@ canvas {
   transform: translate(-50%, 0);
 }
 
-#chartjs-radar {
-  width:438px;
-  margin: 0 auto;
-  padding: 0;
-  margin-top:-60px;
-}
-
 #canvas #canvas {
   margin: -8px 0;
   color:#fff;

@@ -6,7 +6,7 @@
   display:none;
 }
 .top-bar{
-  background-color:var(--dark-bg);
+  background-color:var(--very-dark-bg);
 }
 .top-bar-admin{
   background-color:var(--very-dark-bg);
@@ -312,7 +312,16 @@ input:checked + .slider:before {
   margin:0px;
   margin-top:40px;
 }
-.see_all{
+.range_slider:focus{
+  box-shadow:none;
+}
+.edit-performance-link{
+  padding:10px;
+  padding-top:0px;
+  position:absolute;
+  z-index: 1000;
+}
+a.edit-link, .see_all{
   font-family:Monument;
   font-size:12px;
   margin-top:10px;
@@ -325,6 +334,26 @@ input:checked + .slider:before {
   margin-bottom:40px;
 }
 .hackathon_section .add_hackathon{
+  background-color:#D90088;
+  color:var(--light-color);
+  padding:10px 20px;
+  text-decoration:none;
+  border-radius:2px;
+  margin-top:-10px;
+  font-family: Monument;
+  font-size:14px;
+}
+.add_new_hackathon{ 
+  background-color:#D90088;
+  color:var(--light-color);
+  padding:10px 20px;
+  text-decoration:none;
+  border-radius:2px;
+  margin-top:-10px;
+  font-family: Monument;
+  font-size:14px;
+}
+.add_new_hackathon:hover{ 
   background-color:#D90088;
   color:var(--light-color);
   padding:10px 20px;
@@ -592,6 +621,11 @@ input:checked + .slider:before {
   font-family:Monument;
   padding:7px 20px;
 }
+.form_submit_btn{
+  background-color:#00FFC2;
+  font-family:Monument;
+  padding:7px 20px;
+}
 .hackathon_input_textarea,.hackathon_input_textarea:hover,.hackathon_input_textarea:focus{
   background-color:#47427e;
   color:var(--light-color);
@@ -801,6 +835,10 @@ body{
 .modal-xl .modal-content{
   width:1000px;
 }
+.profile_save{
+  color:#fff;
+}
+
 /* Change the background color of the dropdown button when the dropdown content is shown */
 
 /* Scroll bar */
@@ -885,6 +923,11 @@ body{
   #chartjs-radar{
     width:477px;
     padding:0px;
+    margin: 0 auto;
+  }
+  
+  #canvas{
+    margin-top:-100px;
   }
   .basic_info_block h2{
     font-size:16px;
@@ -964,3 +1007,73 @@ body{
   font-size:24px;
   margin: 50px 20px;
 }
+a.search_profile {
+  text-decoration: none;
+  text-decoration-line: none;
+  color: var(--dark-blue) !important;
+}
+.recent-search-title {
+  color: grey;
+}
+.recent-search {
+  padding: 5px 15px;
+  background-color: var(--dark-blue);
+  color: var(--light-color);
+  border-radius: 3px;
+  text-decoration: none;
+}
+a.recent-search:hover, a.recent-search:active {
+  background-color: var(--light-color);
+  color: var(--dark-blue);
+  border: 1px solid var(--dark-blue);
+  text-decoration-line: none;
+}
+/* IMAGES OVERLAY */
+.img_hvr_container {
+  position: relative;
+  width: 100%;
+}
+.img_hvr_container2{
+  width: 100%;
+}
+.user_headshot {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.img_hvr_container:hover .user_headshot {
+  opacity: 0.3;
+}
+
+.img_hvr_container:hover .middle {
+  opacity: 1;
+}
+.imghv_container{
+  padding:20px;
+  padding-top:0px;
+}
+.text {
+  background-color: #e84c89;
+  color: white;
+  font-size: 16px;
+  padding: 7px 30px;
+  cursor: pointer;
+}
+/* IMAGE OVERLAY ENDS */
+.btn-year-toggle { cursor: pointer; }
+.single_hackathon_wrap { width: 100%; }

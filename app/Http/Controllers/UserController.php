@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
+use App\RecentSearch;
 
 class UserController extends Controller
 {
@@ -52,6 +53,14 @@ class UserController extends Controller
         $returnHTML = view('themes.new-theme.ajax_view.search_user')->with('users', $users)->with('count',$userCount)->with('search_name',$name)->render();
         return response()->json(array('success' => true, 'html'=>$returnHTML));
     }
+    public function store_recent_search(Request $request)
+    {
+        $search = new RecentSearch;
+        $search->user_id = auth()->user()->id;
+        $search->search_query = $request->q;
+        $search->save();
+        return response()->json(['success'=>true, 'msg'=>'search stored successfully']);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -66,7 +75,6 @@ class UserController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
-            'email' => 'required|unique:users,email,'.$data['id'],
         ]);
     }
     protected function performanceValidator(array $data)
@@ -124,20 +132,30 @@ class UserController extends Controller
     public function profileUpdate(Request $request)
     {
         $id = Auth::user()->id;
-        $user = User::findOrFail($id);
         $validation = $this->validator($request->all());
-        $input = $request->all();
-        if (empty($input['password'])) {
-            $input['password'] = $user->password;
-        } else {
-            $input['password'] = bcrypt($input['password']);
-        }
         if ($validation->fails()) {
             return response()->json($validation->errors()->toArray());
         } else {
-            $slug =  $this->createSlug($request->name);
-            $input['slug'] = $slug;
-            if ($user->fill($input)->save()) {
+            $name = $request->name;
+            $bio = $request->bio;
+            $user = User::where('id',$id)->update([
+                'name'=>$name,
+                'bio'=>$bio,
+            ]);
+
+            if ($image = $request->file('pic')) {
+                $filename = time() . '.' . $image->getClientOriginalExtension();
+                //$location = storage_path('app/public/new_images/') . $filename;
+                //Storage::disk('local')->put($filename, 'test');
+                $image->storeAs('uploads/user-pic', $filename, ['disk' => 'local']);
+                //Image::make($image)->save($location);
+                $new_filename = "uploads/user-pic/".$filename;
+                User::where('id',$id)->update([
+                    'profile_picture'=>$new_filename,
+                ]);
+            }else{
+            }
+            if ($user) {
                 return response()->json(['status' => '0']);
             }
         }
@@ -194,7 +212,6 @@ class UserController extends Controller
 
     public function updatePerformance(Request $request)
     {
-
         $id = Auth::user()->id;
         $validation = $this->performanceValidator($request->all());
         $input = $request->all();

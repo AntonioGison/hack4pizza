@@ -306,7 +306,7 @@
 
             });
         });
-         $("#login_submit").on('click', function () {
+        $("#login_submit").on('click', function () {
             $.LoadingOverlay("show");
             $("#loginBox").find('.emsg').remove();
             $("#loginBox").find('.pmsg').remove();

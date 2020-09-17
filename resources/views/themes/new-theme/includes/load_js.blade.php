@@ -43,5 +43,77 @@
         $('#select_theme').modal('show');
       }
     }
-  })
+  });
+
+  function store_recent_search(url) {
+    var token = $("input[name=_token]").val();
+    var q = $('#searchUser').val();
+    $.ajax({
+      type: 'POST',
+      url: "{{route("user.store_recent_search")}}",
+      data: {_token: token, q: q},
+      dataType: 'JSON',
+      success: function (resp) {
+        window.location.href = url;
+      },
+    });
+  }
+
+  $(document).ready(function(){
+    // For Login Form
+    $("#loginEmail").keyup(function(){
+      $("#loginEmail").css('background-color','#ffffff');
+    });
+    $("#loginPassword").keyup(function(){
+      $("#loginPassword").css('background-color','#ffffff');
+    });
+
+    $("#login_submit").on('click', function () {
+      
+      var token = '{{ csrf_token() }}';
+      var email = $("#loginEmail").val();
+      var password = $("#loginPassword").val();
+
+      if(email==''){
+        $("#loginEmail").css('background-color','#ff7272');
+        return false;
+      }
+      if(password==''){
+        $("#loginPassword").css('background-color','#ff7272');
+        return false;
+      }
+
+      $.LoadingOverlay("show");
+
+      $.ajax({
+        type: 'POST',
+        url: '{{ route("login") }}',
+        data: {_token: token, name: name, email: email, password: password},
+        dataType: 'JSON',
+        success: function (resp) {
+          $.LoadingOverlay("hide");
+          if (resp.status == 0) {
+            $('<span class="smsg">You have successfully logedin</span>').appendTo(".login-success").css('color', 'green');
+            var delay = 1000; //Your delay in milliseconds
+            if (resp.slug != null){
+              setTimeout(function () {
+                window.location = '/user/'+resp.slug;
+              }, delay);
+            }else{
+              setTimeout(function () {
+                window.location = '/user/dashboard';
+              }, delay);
+            }
+
+          } else {
+            alertify.alert(
+              "Login Failed",
+              "<span class='login_form_error'>Email/Password Invalid.Try again.</span>");
+          }
+
+        },
+
+      });
+    });
+  });
 </script>
