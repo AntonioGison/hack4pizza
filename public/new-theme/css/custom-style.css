@@ -838,7 +838,9 @@ body{
 .profile_save{
   color:#fff;
 }
-
+.earned_badge_data{
+  filter:grayscale(100%);
+}
 /* Change the background color of the dropdown button when the dropdown content is shown */
 
 /* Scroll bar */

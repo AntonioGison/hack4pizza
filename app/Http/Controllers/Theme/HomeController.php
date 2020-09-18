@@ -41,16 +41,43 @@ class HomeController extends Controller
         $id = $user->id;
         $badges = Badge::whereNotIn('id',[12,14,13,22,11,4,5,6,10,21])->get();
         $earned_badges = EarnedBadge::where('user_id',$id)->with('badge')->get();
+        $earned_ids = [];
+        $all_user_badges = [];
+        $i=0;
+        foreach($earned_badges as $erbg){
+            array_push($earned_ids,$erbg->id);  
+            array_push($all_user_badges,$erbg->badge);
+            $all_user_badges[$i]['status']="earned";
+            $all_user_badges[$i]['count']=$erbg->count;
+            $i++;
+        }   
+        $unearned_badges = Badge::whereNotIn('id',$earned_ids)->get();
+        foreach($unearned_badges as $uerbg){
+            array_push($all_user_badges,$uerbg);
+            $all_user_badges[$i]['status']="unearned";           
+            $all_user_badges[$i]['count']= 0;
+            $i++;
+        }
+
         $title = "Profile-".$slug;
         if (Auth::user()){
             if (Auth::user()->slug == $slug){
-                return view('themes.new-theme.user.single_user_profile',['title'=>$title,'user'=>$user,'badges'=>$badges,'ownprofile'=>true,'earned_badges'=>$earned_badges]);
+                $ownprofile = true;
             }else{
-                return view('themes.new-theme.user.single_user_profile',['title'=>$title,'user'=>$user,'badges'=>$badges,'ownprofile'=>false,'earned_badges'=>$earned_badges]);
+                $ownprofile = false;
             }
         }else{
-            return view('themes.new-theme.user.single_user_profile',['title'=>$title,'user'=>$user,'badges'=>$badges,'ownprofile'=>false,'earned_badges'=>$earned_badges]);
+            $ownprofile = false;
         }
+        return view('themes.new-theme.user.single_user_profile',compact(
+            'title',
+            'user',
+            'badges',
+            'ownprofile',
+            'all_user_badges',
+            'earned_badges',
+            'unearned_badges',
+        ));
     }
     function picUpload(Request $request)
     {

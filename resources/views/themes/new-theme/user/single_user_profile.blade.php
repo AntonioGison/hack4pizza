@@ -184,7 +184,7 @@
               <?php 
               $i=0;
               
-              foreach($earned_badges as $exp){
+              foreach($all_user_badges as $badge){
                 $i++;
 
                 if($i<9){
@@ -192,12 +192,12 @@
                   <div class="col-4 col-md-3 p-0 badge_section">
                     <div class="badge_box">
                       <div class="badge_name_sec">
-                        <div class="badge_name">{{ $exp->badge->name }}</div>
+                        <div class="badge_name">{{ $badge->name }}</div>
                       </div>
                       <div class="badge_image_sec">
-                        <img class="badge_image" src="{{ Storage::url($exp->badge->pic) }}" alt="Badge">
+                        <img class="badge_image <?php if($badge->status=="unearned"){ echo "earned_badge_data"; } ?>" src="{{ Storage::url($badge->pic) }}" alt="Badge">
                       </div>
-                      <div class="badge_count">x{{$exp->count}}</div>
+                      <div class="badge_count">x{{ $badge->count}}</div>
                     </div>
                   </div>
               <?php 
@@ -703,7 +703,7 @@
                 <div class="container">
                   <div class="row">
                     <?php
-                    foreach($badges as $badge){
+                    foreach($all_user_badges as $badge){
                     ?>
                     <div class="col-4 col-md-2 p-0 badge_section">
                       <div class="badge_box">
@@ -711,9 +711,9 @@
                           <div class="badge_name">{{ $badge->name }}</div>
                         </div>
                         <div class="badge_image_sec">
-                          <img class="badge_image" src="{{ Storage::url($badge->pic) }}" alt="Badge">
+                          <img class="badge_image <?php if($badge->status=="unearned"){ echo "earned_badge_data"; } ?>" src="{{ Storage::url($badge->pic) }}" alt="Badge">
                         </div>
-                        <div class="badge_count">x1</div>
+                        <div class="badge_count">x{{ $badge->count}}</div>
                       </div>
                     </div>
                     <?php } ?>
