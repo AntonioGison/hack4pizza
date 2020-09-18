@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PerformanceSeeder::class);
         $this->call(ExperienceSeeder::class);
         $this->call(SettingsSeeder::class);
+        $this->call(EarnedBadgesTableSeeder::class);
     }
 }

@@ -37,9 +37,10 @@ class HomeController extends Controller
     }
     public function getProfile($slug)
     {
-        $badges = Badge::whereNotIn('id',[12,14,13,22,11,4,5,6,10,21])->get();
-        $earned_badges = EarnedBadge::where('user_id',Auth::user()->id)->with('badge')->get();
         $user = User::where('slug','=',$slug)->first();
+        $id = $user->id;
+        $badges = Badge::whereNotIn('id',[12,14,13,22,11,4,5,6,10,21])->get();
+        $earned_badges = EarnedBadge::where('user_id',$id)->with('badge')->get();
         $title = "Profile-".$slug;
         if (Auth::user()){
             if (Auth::user()->slug == $slug){
