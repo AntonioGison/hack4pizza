@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Session;
 use Mail;
 use Validator;
 use Image;
+use App\EarnedBadge;
 
 class HomeController extends Controller
 {
@@ -36,17 +37,18 @@ class HomeController extends Controller
     }
     public function getProfile($slug)
     {
-        $badges = Badge::all();
+        $badges = Badge::whereNotIn('id',[12,14,13,22,11,4,5,6,10,21])->get();
+        $earned_badges = EarnedBadge::where('user_id',Auth::user()->id)->with('badge')->get();
         $user = User::where('slug','=',$slug)->first();
         $title = "Profile-".$slug;
         if (Auth::user()){
             if (Auth::user()->slug == $slug){
-                return view('themes.new-theme.user.single_user_profile',['title'=>$title,'user'=>$user,'badges'=>$badges,'ownprofile'=>true]);
+                return view('themes.new-theme.user.single_user_profile',['title'=>$title,'user'=>$user,'badges'=>$badges,'ownprofile'=>true,'earned_badges'=>$earned_badges]);
             }else{
-                return view('themes.new-theme.user.single_user_profile',['title'=>$title,'user'=>$user,'badges'=>$badges,'ownprofile'=>false]);
+                return view('themes.new-theme.user.single_user_profile',['title'=>$title,'user'=>$user,'badges'=>$badges,'ownprofile'=>false,'earned_badges'=>$earned_badges]);
             }
         }else{
-            return view('themes.new-theme.user.single_user_profile',['title'=>$title,'user'=>$user,'badges'=>$badges,'ownprofile'=>false]);
+            return view('themes.new-theme.user.single_user_profile',['title'=>$title,'user'=>$user,'badges'=>$badges,'ownprofile'=>false,'earned_badges'=>$earned_badges]);
         }
     }
     function picUpload(Request $request)

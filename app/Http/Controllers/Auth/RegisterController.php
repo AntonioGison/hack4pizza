@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Mail;
 use Auth;
+use App\EarnedBadge;
 
 class RegisterController extends Controller
 {
@@ -37,7 +38,11 @@ class RegisterController extends Controller
     protected function redirectTo()
     {
         if (!empty($this->profile_slug)) {
-            return 'user/'.$this->profile_slug;
+            if($this->isBadgeAssigned > 0) {
+                return redirect()->route('user.profile',$this->profile_slug)->with('badgeId','22')->with('badgeName','Early Adopter');
+            } else {
+                return redirect()->route('user.profile',$this->profile_slug);
+            }
         }
         return '/user/dashboard';
     }
@@ -53,6 +58,7 @@ class RegisterController extends Controller
     }
 
     protected $profile_slug;
+    protected $isBadgeAssigned;
 
     /**
      * Get a validator for an incoming registration request.
@@ -165,8 +171,22 @@ class RegisterController extends Controller
             $user = $this->create($input);
             Auth::login($user);
             if (Auth::user()) {
+                $this->isBadgeAssigned = $this->assignBadge();
                 return response()->json(['status' => '0','slug' => $this->profile_slug]);
             }
         }
+    }
+
+    public function assignBadge()
+    {
+        if(date('Y') < 2021) {
+            $badge = new EarnedBadge;
+            $badge->user_id = auth()->user()->id;
+            $badge->badge_id = '22';
+            $badge->count = '1';
+            $badge->save();
+            return $badge->badge_id;
+        }
+        return 0;
     }
 }

@@ -27,16 +27,27 @@
   <div id="main_info">
     <?php
       // $badges = \App\Badge::all();
-      $exp_count = \App\Experience::where("user_id",$user->id)->count();
-      $exp_count_rank123 = \App\Experience::where("user_id",$user->id)->whereHas('badge', function ($q) {
-        $q->whereIn('id',['1','2','3']);
-      })->count();
+      $badgeId = isset($_GET['badgeId'])?$_GET['badgeId']:'';
+      if($badgeId != '') {
+        $earnedBadgePopup = \App\Badge::find($badgeId);
+        $badgeName = $earnedBadgePopup->name;
+      } else {
+        $badgeName = '';
+      }
+      // $exp_count = \App\Experience::where("user_id",$user->id)->count();
+      // $exp_count_rank123 = \App\Experience::where("user_id",$user->id)->whereHas('badge', function ($q) {
+      //   $q->whereIn('id',['1','2','3']);
+      // })->count();
 
-      $exp_count_not_rank123 = \App\Experience::where("user_id",$user->id)->whereHas('badge', function ($q) {
-        $q->whereNotIn('id',['1','2','3']);
-      })->count();
+      // $exp_count_not_rank123 = \App\Experience::where("user_id",$user->id)->whereHas('badge', function ($q) {
+      //   $q->whereNotIn('id',['1','2','3']);
+      // })->count();
 
-      $exp_badges = \App\Experience::select('*',DB::raw('count(*) as total'))->where("user_id",$user->id)->with('badge')->groupBy('badge_id')->get();
+      // try {
+      //   $exp_badges = \App\Experience::select('*',DB::raw('count(*) as total'))->where("user_id",$user->id)->with('badge')->groupBy('badge_id')->get();
+      // } catch(Exception $e) {
+      //   $exp_badges = [];
+      // }
       // dd($exp_badges);
       $m_badges = \App\MasterBadge::all();
       $max = (date("Y",strtotime($user->experiences->max("from"))));
@@ -172,121 +183,11 @@
             <div class="row justify-content-center">
               <?php 
               $i=0;
-
-              //implement When you don’t win an hackathon but attend it logic
-              if($exp_count_not_rank123 > 0) {
-                ?>
-                  <div class="col-4 col-md-3 p-0 badge_section">
-                    <div class="badge_box">
-                      <div class="badge_name_sec">
-                        <div class="badge_name">Here 4 Pizza</div>
-                      </div>
-                      <div class="badge_image_sec">
-                        <img class="badge_image" src="{{ Storage::url('uploads/badges/12.svg') }}" alt="Badge">
-                      </div>
-                      <div class="badge_count">x{{$exp_count_not_rank123}}</div>
-                    </div>
-                  </div> 
-                <?php
-                $i = $i + 1;
-              }
-
-              //implement When you reach x10 hackathons and you don’t win logic
-              if($exp_count >= 10 && $exp_count_rank123 < 1) {
-                ?>
-                  <div class="col-4 col-md-3 p-0 badge_section">
-                    <div class="badge_box">
-                      <div class="badge_name_sec">
-                        <div class="badge_name">King of pizza</div>
-                      </div>
-                      <div class="badge_image_sec">
-                        <img class="badge_image" src="{{ Storage::url('uploads/badges/14.svg') }}" alt="Badge">
-                      </div>
-                      <!-- <div class="badge_count">x</div> -->
-                    </div>
-                  </div> 
-                <?php
-                $i = $i + 1;
-              }
-
-              //implement When you reach x50 hackathons and you don’t win logic
-              if($exp_count >= 50 && $exp_count_rank123 < 1) {
-                ?>
-                  <div class="col-4 col-md-3 p-0 badge_section">
-                    <div class="badge_box">
-                      <div class="badge_name_sec">
-                        <div class="badge_name">In pizza we crust</div>
-                      </div>
-                      <div class="badge_image_sec">
-                        <img class="badge_image" src="{{ Storage::url('uploads/badges/13.svg') }}" alt="Badge">
-                      </div>
-                      <!-- <div class="badge_count">x</div> -->
-                    </div>
-                  </div> 
-                <?php
-                $i = $i + 1;
-              }
-
-              //implment If you sign up before the year 2021 logic
-              if(date('Y',strtotime($user->created_at)) < 2021) {
-                ?>
-                  <div class="col-4 col-md-3 p-0 badge_section">
-                    <div class="badge_box">
-                      <div class="badge_name_sec">
-                        <div class="badge_name">Early adopter</div>
-                      </div>
-                      <div class="badge_image_sec">
-                        <img class="badge_image" src="{{ Storage::url('uploads/badges/22.svg') }}" alt="Badge">
-                      </div>
-                      <!-- <div class="badge_count">x</div> -->
-                    </div>
-                  </div> 
-                <?php
-                $i = $i + 1;
-              }
-
-              // implement When you always win 1/2/3th place in all your hackathons, unlock afteradding x10 hackathons and always win logic
-              if($exp_count == $exp_count_rank123) {
-                ?>
-                  <div class="col-4 col-md-3 p-0 badge_section">
-                    <div class="badge_box">
-                      <div class="badge_name_sec">
-                        <div class="badge_name">Most wanted</div>
-                      </div>
-                      <div class="badge_image_sec">
-                        <img class="badge_image" src="{{ Storage::url('uploads/badges/11.svg') }}" alt="Badge">
-                      </div>
-                      <!-- <div class="badge_count">x</div> -->
-                    </div>
-                  </div> 
-                <?php
-                $i = $i + 1;
-              }
-
-              foreach($exp_badges as $exp){
+              
+              foreach($earned_badges as $exp){
                 $i++;
 
                 if($i<9){
-
-                  //implment 1st,2nd,3rd rank 3 times logic
-                  if( ($exp->badge->id == 1 || $exp->badge->id == 2 || $exp->badge->id == 3) && $exp->total > 2) {
-                    $badge1Name = $exp->badge->id == 1 ? 'Taste 4 gold' : ($exp->badge->id == 2 ? 'Taste 4 silver' : 'Taste 4 bronze');                    $badge1Pic = 'uploads/badges/'.($exp->badge->id+1).'.svg';
-                    $total1badge = floor($exp->total / 3);
-                    ?>
-                      <div class="col-4 col-md-3 p-0 badge_section">
-                        <div class="badge_box">
-                          <div class="badge_name_sec">
-                            <div class="badge_name">{{$badge1Name}}</div>
-                          </div>
-                          <div class="badge_image_sec">
-                            <img class="badge_image" src="{{ Storage::url($badge1Pic) }}" alt="Badge">
-                          </div>
-                          <div class="badge_count">x{{$total1badge}}</div>
-                        </div>
-                      </div> 
-                    <?php
-                    $i = $i + $total1badge;
-                  }
                   ?>
                   <div class="col-4 col-md-3 p-0 badge_section">
                     <div class="badge_box">
@@ -296,12 +197,12 @@
                       <div class="badge_image_sec">
                         <img class="badge_image" src="{{ Storage::url($exp->badge->pic) }}" alt="Badge">
                       </div>
-                      <div class="badge_count">x{{$exp->total}}</div>
+                      <div class="badge_count">x{{$exp->count}}</div>
                     </div>
                   </div>
               <?php 
                 }
-              } ?>
+              }  ?>
             </div>
             @if($i > 9)
             <div class="row justify-content-center">
@@ -825,6 +726,53 @@
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="earned_badge" tabindex="-1" role="dialog" aria-labelledby="all_badgesLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="new_modal_section">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="new_modal_header">
+                  <button type="button" class="btn-close new_modal_close_btn" data-dismiss="modal" aria-label="Close">
+                    <img alt="" src="{{asset('new-theme/images/icon_close.png')}}"></button>
+                  <!-- <h2 class="new_modal_header_title"></h2> -->
+                </div>
+                <hr />
+              </div>
+              <div class="col-md-12 badges_container">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-12 col-12">
+                      <div class="earned_badge_info">
+                        <div class="earned_badge" align="center">
+                          <img id="earnedBadgeImg" src="" alt="Badge" /><br /><br />
+                          <p>Congratulations! You unlocked</p>
+                          <h3 id='earnedBadgeTitle'></h3><br />
+                          <?php
+                            $link = "https://www.linkedin.com/profile/add?";
+                            $link.="name=God of Internet&";
+                            $link.="organizationId=69410802&";
+                            $link.="issueYear=2020&";
+                            $link.="issueMonth=9&";
+                            $link.="issueMonth=9&";
+                            $link.="certId=000212&";
+                            $link.="certUrl=".route('user.profile',['slug'=>$user->slug]);
+                          ?>
+                          <a href="{{ $link }}" class="add_to_linkedin">Add to your Linkedin <span>CV</span></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection
 @section("additional_js")
   <script src="{{ asset('theme/hack4pizza/js/Chart.min.js')}}"></script>
@@ -923,7 +871,19 @@
     var colorNames = Object.keys(window.chartColors);
 
     $(function() {
-      // pop up by default;
+      // earned badge
+      var earnedBadgeId = "{{$badgeId}}";
+      var earnedBadgeName = "{{$badgeName}}";
+      // var earnedBadgeImageUrl = 'uploads/badges/'+earnedBadgeId+'.svg';
+      var earnedBadgeImage = '{{ URL::asset('/uploads/badges/') }}/' + earnedBadgeId + '.svg';
+      
+      if(earnedBadgeId != '' && earnedBadgeName != '') {
+        $('#earnedBadgeTitle').text(earnedBadgeName);
+        $('#earnedBadgeImg').attr('src',earnedBadgeImage);
+        $("#earned_badge").modal();
+      }
+      
+
       // $("#hackathon_add").modal();
       $("#canvas").css('margin-top','-100px');
       //RANGE SLIDER

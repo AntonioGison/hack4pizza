@@ -139,7 +139,7 @@
 </div>
 
 <div class="modal fade" id="select_theme" tabindex="-1" role="dialog" aria-labelledby="select_themeLabel" aria-hidden="true" align="center">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
       <div class="new_modal_section">
         <div class="container">
