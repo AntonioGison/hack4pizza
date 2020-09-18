@@ -31,6 +31,15 @@
       if($badgeId != '') {
         $earnedBadgePopup = \App\Badge::find($badgeId);
         $badgeName = $earnedBadgePopup->name;
+        
+        $link = "https://www.linkedin.com/profile/add?";
+        $link.="name=".$badgeName."&";
+        $link.="organizationId=69410802&";
+        $link.="issueYear=".Date('Y')."&";
+        $link.="issueMonth=".Date('m')."&";
+        $link.="certId=000".$badgeId."&";
+        $link.="certUrl=".route('user.profile',['slug'=>$user->slug]);
+        $linkedInLink = $link;
       } else {
         $badgeName = '';
       }
@@ -750,17 +759,7 @@
                           <img id="earnedBadgeImg" src="" alt="Badge" /><br /><br />
                           <p>Congratulations! You unlocked</p>
                           <h3 id='earnedBadgeTitle'></h3><br />
-                          <?php
-                            $link = "https://www.linkedin.com/profile/add?";
-                            $link.="name=God of Internet&";
-                            $link.="organizationId=69410802&";
-                            $link.="issueYear=2020&";
-                            $link.="issueMonth=9&";
-                            $link.="issueMonth=9&";
-                            $link.="certId=000212&";
-                            $link.="certUrl=".route('user.profile',['slug'=>$user->slug]);
-                          ?>
-                          <a href="{{ $link }}" class="add_to_linkedin">Add to your Linkedin <span>CV</span></a>
+                          <a href="" id="earnedBadgeLinkedInLink" class="add_to_linkedin">Add to your Linkedin <span>CV</span></a>
                         </div>
                       </div>
                     </div>
@@ -876,10 +875,12 @@
       var earnedBadgeName = "{{$badgeName}}";
       // var earnedBadgeImageUrl = 'uploads/badges/'+earnedBadgeId+'.svg';
       var earnedBadgeImage = '{{ URL::asset('/uploads/badges/') }}/' + earnedBadgeId + '.svg';
-      
+      var linkedinLink = "<?php echo $linkedInLink ?>";
+
       if(earnedBadgeId != '' && earnedBadgeName != '') {
         $('#earnedBadgeTitle').text(earnedBadgeName);
         $('#earnedBadgeImg').attr('src',earnedBadgeImage);
+        $("#earnedBadgeLinkedInLink").attr('href',linkedinLink);
         $("#earned_badge").modal();
       }
       

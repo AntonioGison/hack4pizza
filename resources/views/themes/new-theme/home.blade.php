@@ -135,8 +135,12 @@
 </div>
 @endsection
 @section('additional_js')
+<script src="{{ asset('js/phone_mask.js')}}"></script>
 <script>
    $(document).ready(function(){
+
+     $(".suf_phone").usPhoneFormat();
+
     // For SignUp Form
       function signup_keyup(name){
         $("."+name).keyup(function(){
