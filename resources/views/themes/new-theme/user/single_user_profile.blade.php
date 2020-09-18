@@ -875,7 +875,7 @@
       var earnedBadgeName = "{{$badgeName}}";
       // var earnedBadgeImageUrl = 'uploads/badges/'+earnedBadgeId+'.svg';
       var earnedBadgeImage = '{{ URL::asset('/uploads/badges/') }}/' + earnedBadgeId + '.svg';
-      var linkedinLink = "<?php echo $linkedInLink ?>";
+      var linkedinLink = "<?php if(isset($linkedInLink)){ echo $linkedInLink; }else { echo ''; } ?>";
 
       if(earnedBadgeId != '' && earnedBadgeName != '') {
         $('#earnedBadgeTitle').text(earnedBadgeName);
