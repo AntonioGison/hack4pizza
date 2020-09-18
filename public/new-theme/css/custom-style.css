@@ -922,11 +922,6 @@ body{
   .logged_menu_right{
     text-align:right;
   }
-  #chartjs-radar{
-    width:477px;
-    padding:0px;
-    margin: 0 auto;
-  }
   
   #canvas{
     margin-top:-100px;

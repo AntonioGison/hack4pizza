@@ -333,7 +333,12 @@ canvas {
   -webkit-transform: translate(-50%, 0);
   transform: translate(-50%, 0);
 }
-
+#chartjs-radar{
+  width:477px;
+  padding:0px;
+  height:474px;
+  margin: 0 auto;
+}
 #canvas #canvas {
   margin: -8px 0;
   color:#fff;

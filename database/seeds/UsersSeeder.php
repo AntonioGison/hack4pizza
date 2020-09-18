@@ -32,10 +32,10 @@ class UsersSeeder extends Seeder
                 'last_name'=>'Chauhan',
                 'email'=>'akramchauhan@gmail.com',
                 'phone_number'=>'960-110-6151',
-                'profile_picture'=>'uploads/user-pic/headshot_full.png',
+                'profile_picture'=>'uploads/user-pic/headshot_akram.jpg',
                 'slug'=>'akram-chauhan',
                 'address'=>'Gujarat, India',
-                'bio'=>'This is a bio, empty but always a bio.',
+                'bio'=>'I love Pizzaaa. :) ',
                 'password'=> bcrypt('password'),
                 'created_at'=>'2019-08-07 06:26:02',
                 'updated_at'=>'2019-09-20 05:04:13'

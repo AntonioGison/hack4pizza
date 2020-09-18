@@ -138,9 +138,9 @@
               <div class="bio_info social_media_info">
                 <h2>Social
                   @if(isset($ownprofile) && $ownprofile)
-                  <a href="#" class="edit-social-icon" title="Edit Social profiles">
+                  <!-- <a href="#" class="edit-social-icon" title="Edit Social profiles">
                     <i class="fa fa-xs fa-edit"></i>
-                  </a>
+                  </a> -->
                   @endif
                 </h2>
                 <a href="#">
