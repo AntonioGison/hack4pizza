@@ -850,6 +850,100 @@ body{
 .earned_badge_data{
   filter:grayscale(100%);
 }
+.hr-white { background: #ffffff; }
+#select_theme .dark_mode {
+  background-color:#000000;
+  color:#ffffff;
+  padding:50px 50px;
+  text-decoration:none;
+  border-radius:2px;
+  margin-top:-10px;
+  font-family: 'Monument Regular';
+  font-size:24px;
+  margin: 50px 20px;
+}
+#select_theme .light_mode {
+  background-color:#ffffff;
+  color:#000000;
+  padding:50px 50px;
+  text-decoration:none;
+  border-radius:2px;
+  margin-top:-10px;
+  font-family: 'Monument Regular';
+  font-size:24px;
+  margin: 50px 20px;
+}
+a.search_profile {
+  text-decoration: none;
+  text-decoration-line: none;
+  color: var(--dark-blue) !important;
+}
+.recent-search-title {
+  color: grey;
+}
+.recent-search {
+  padding: 5px 15px;
+  background-color: var(--dark-blue);
+  color: var(--light-color);
+  border-radius: 3px;
+  text-decoration: none;
+}
+a.recent-search:hover, a.recent-search:active {
+  background-color: var(--light-color);
+  color: var(--dark-blue);
+  border: 1px solid var(--dark-blue);
+  text-decoration-line: none;
+}
+/* IMAGES OVERLAY */
+.img_hvr_container {
+  position: relative;
+  width: 100%;
+}
+.img_hvr_container2{
+  width: 100%;
+}
+.user_headshot {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.img_hvr_container:hover .user_headshot {
+  opacity: 0.3;
+}
+
+.img_hvr_container:hover .middle {
+  opacity: 1;
+}
+.imghv_container{
+  padding:20px;
+  padding-top:0px;
+}
+.text {
+  background-color: #e84c89;
+  color: white;
+  font-size: 16px;
+  padding: 7px 30px;
+  cursor: pointer;
+}
+/* IMAGE OVERLAY ENDS */
+.btn-year-toggle { cursor: pointer; }
+.single_hackathon_wrap { width: 100%; }
+
 /* Change the background color of the dropdown button when the dropdown content is shown */
 
 /* Scroll bar */
@@ -879,6 +973,9 @@ body{
   }
   .only-mobile{
     display:block;
+  }
+  .imghv_container{
+    padding:0px;
   }
   #header .logo img {
     width: 60px;
@@ -973,7 +1070,7 @@ body{
     font-size:10px;
   }
   .hackathon_section .add_hackathon{
-    font-size:10px;
+    font-size:8px;
   }
   .hackathon_badge_img{
     width:30px;
@@ -989,97 +1086,18 @@ body{
     background-color: #47427e;
     font-size: 12px;
   }
+  .imghv_container{
+    padding:0px;
+  }
+  .share_block{
+    text-align:center;
+  }
+  #chartjs-radar{
+    width:100%;
+    height:auto;
+  }
+  canvas{
+    width:100%;
+    height:auto;
+  }
 }
-.hr-white { background: #ffffff; }
-#select_theme .dark_mode {
-  background-color:#000000;
-  color:#ffffff;
-  padding:50px 50px;
-  text-decoration:none;
-  border-radius:2px;
-  margin-top:-10px;
-  font-family: 'Monument Regular';
-  font-size:24px;
-  margin: 50px 20px;
-}
-#select_theme .light_mode {
-  background-color:#ffffff;
-  color:#000000;
-  padding:50px 50px;
-  text-decoration:none;
-  border-radius:2px;
-  margin-top:-10px;
-  font-family: 'Monument Regular';
-  font-size:24px;
-  margin: 50px 20px;
-}
-a.search_profile {
-  text-decoration: none;
-  text-decoration-line: none;
-  color: var(--dark-blue) !important;
-}
-.recent-search-title {
-  color: grey;
-}
-.recent-search {
-  padding: 5px 15px;
-  background-color: var(--dark-blue);
-  color: var(--light-color);
-  border-radius: 3px;
-  text-decoration: none;
-}
-a.recent-search:hover, a.recent-search:active {
-  background-color: var(--light-color);
-  color: var(--dark-blue);
-  border: 1px solid var(--dark-blue);
-  text-decoration-line: none;
-}
-/* IMAGES OVERLAY */
-.img_hvr_container {
-  position: relative;
-  width: 100%;
-}
-.img_hvr_container2{
-  width: 100%;
-}
-.user_headshot {
-  opacity: 1;
-  display: block;
-  width: 100%;
-  height: auto;
-  transition: .5s ease;
-  backface-visibility: hidden;
-}
-
-.middle {
-  transition: .5s ease;
-  opacity: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-.img_hvr_container:hover .user_headshot {
-  opacity: 0.3;
-}
-
-.img_hvr_container:hover .middle {
-  opacity: 1;
-}
-.imghv_container{
-  padding:20px;
-  padding-top:0px;
-}
-.text {
-  background-color: #e84c89;
-  color: white;
-  font-size: 16px;
-  padding: 7px 30px;
-  cursor: pointer;
-}
-/* IMAGE OVERLAY ENDS */
-.btn-year-toggle { cursor: pointer; }
-.single_hackathon_wrap { width: 100%; }
