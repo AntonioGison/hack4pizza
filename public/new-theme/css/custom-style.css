@@ -1,6 +1,10 @@
 @font-face {
-  font-family: Monument;
-  src: url("../fonts/monument3/regular.otf");
+  font-family: 'Monument Regular';
+  src: url("../fonts/monument-extended/regular.otf");
+}
+@font-face {
+  font-family: 'Monument Bold';
+  src: url("../fonts/monument-extended/ultra-bold.otf");
 }
 .only-mobile{
   display:none;
@@ -109,7 +113,7 @@ input:checked + .slider:before {
   padding-top:20px;
 }
 .first_section .right_section h3{
-  font-family:Monument;
+  font-family:'Monument Regular';
   letter-spacing: 3px;
   font-size:22px;
 }
@@ -143,7 +147,7 @@ input:checked + .slider:before {
   color:#333;
   background-color:yellow;
   border:0px;
-  font-family:Monument;
+  font-family:'Monument Regular';
       
   box-shadow:none;
 }
@@ -160,7 +164,7 @@ input:checked + .slider:before {
 }
 .steps_section h3, .steps_section h4{
   color:var(--light-color);
-  font-family: Monument;
+  font-family: 'Monument Regular';
 }
 .steps_section p{
   color:#999;
@@ -181,7 +185,7 @@ input:checked + .slider:before {
   align-items: center;
   color:var(--light-color);
   text-align: center;
-  font-family:Monument;
+  font-family:'Monument Regular';
 }
 .social_login_hr_line::before, .social_login_hr_line::after {
   content: '';
@@ -207,7 +211,7 @@ input:checked + .slider:before {
 }
 .footer_section h3{
   font-size:18px;
-  font-family:Monument;
+  font-family:'Monument Regular';
 }
 .footer_section ul li a{
   font-size:14px; 
@@ -234,7 +238,7 @@ input:checked + .slider:before {
   margin-top:0px;
 }
 .basic_info_block h2{
-  font-family: Monument;
+  font-family: 'Monument Regular';
   font-size:28px;
   color:var(--light-color);
 }
@@ -246,7 +250,7 @@ input:checked + .slider:before {
   padding-left:30px;
 }
 .bio_info h2{
-  font-family: Monument;
+  font-family: 'Monument Regular';
   font-size:22px;
   color:var(--light-color);
 }
@@ -254,7 +258,9 @@ input:checked + .slider:before {
   padding:10px;
   border:1px solid var(--light-color);
   color:var(--light-color);
-  margin:10px;
+  margin:5px;
+  font-family:'Monument Regular';
+  font-size:12px;
   border-radius:1px;
   text-decoration:none;
 }
@@ -293,16 +299,18 @@ input:checked + .slider:before {
   padding:20px 25px 30px 25px;
 }
 .performance_block_title{
-  font-family: Monument;
-  padding-left:20px;
+  font-family: 'Monument Regular';
+  padding-left:0px;
   color:var(--light-color);
-  font-size:24px;
+  font-size:20px;
+  text-transform: uppercase;
 }
 .badge_block_title{
-  font-family: Monument;
-  padding-left:20px;
+  font-family: 'Monument Regular';
+  padding-left:0px;
   color:var(--light-color);
-  font-size:24px;  
+  text-transform: uppercase;
+  font-size:20px;
 }
 .no-padding{
   padding:0px;
@@ -322,9 +330,9 @@ input:checked + .slider:before {
   z-index: 1000;
 }
 a.edit-link, .see_all{
-  font-family:Monument;
+  font-family:'Monument Regular';
   font-size:12px;
-  margin-top:10px;
+  margin-top:3px;
   color:#D90088;
   text-decoration: underline;
 }
@@ -340,8 +348,8 @@ a.edit-link, .see_all{
   text-decoration:none;
   border-radius:2px;
   margin-top:-10px;
-  font-family: Monument;
-  font-size:14px;
+  font-family: 'Monument Regular';
+  font-size:12px;
 }
 .add_new_hackathon{ 
   background-color:#D90088;
@@ -350,7 +358,7 @@ a.edit-link, .see_all{
   text-decoration:none;
   border-radius:2px;
   margin-top:-10px;
-  font-family: Monument;
+  font-family: 'Monument Regular';
   font-size:14px;
 }
 .add_new_hackathon:hover{ 
@@ -360,22 +368,23 @@ a.edit-link, .see_all{
   text-decoration:none;
   border-radius:2px;
   margin-top:-10px;
-  font-family: Monument;
+  font-family: 'Monument Regular';
   font-size:14px;
 }
 .hackathon_section .block-title{
   top:-45px;
   background-color:#00F9FF;
   color:#333333;
-  font-family:'Monument';
+  font-family:'Monument Regular';
   font-size:20px;
   border:none;
 }
 
 .hackathon_header h3{
-  font-family:'Monument';
+  font-family:'Monument Regular';
   color:var(--light-color);   
-  font-size:24px;
+  font-size:20px;
+  text-transform: uppercase;
 }
 .hackathon_data_section{
   padding:0px 10px;
@@ -387,16 +396,16 @@ a.edit-link, .see_all{
   color:var(--light-color);
 }
 .hackathon_data h4{
-  font-family:Monument;
-  font-size:22px;
+  font-family:'Monument Regular';
+  font-size:20px;
 }
 .hackathon_data h5{
-  font-family:Monument;
+  font-family:'Monument Regular';
   font-size:14px;
   letter-spacing: 1px;
 }
 .hackathon_share_btn, .hackathon_share_btn:hover{
-  font-family:Monument;
+  font-family:'Monument Regular';
   font-size:14px;
   text-decoration:none;
   background-color:transparent;
@@ -408,7 +417,7 @@ a.edit-link, .see_all{
   width:50px;
 }  
 .hackathon_badge_title{
-  font-family:Monument;
+  font-family:'Monument Regular';
   color:var(--light-color);
 }
 /* TOP HACKERS */
@@ -418,14 +427,14 @@ a.edit-link, .see_all{
 .display_rank{
   font-size:200px;
   color:#4f4b84;
-  font-family:Monument;
+  font-family:'Monument Regular';
   margin-top:-120px;
 }
 .top_section{
   padding:20px 0px;
 }
 .top_hackers_header h3{
-  font-family:Monument;
+  font-family:'Monument Regular';
   color:var(--light-color);
   text-align: left;
   font-size:20px;
@@ -433,11 +442,11 @@ a.edit-link, .see_all{
 .hacker_prizes{
   text-align:center;
   padding:40px 40px 10px 40px;
-  font-family:Monument;
+  font-family:'Monument Regular';
   background-color:var(--dark-blue); 
 }
 .hacker_prizes h3{
-  font-family:Monument;
+  font-family:'Monument Regular';
   color:var(--light-color);
   font-size:20px;
   text-align: left;
@@ -473,7 +482,7 @@ a.edit-link, .see_all{
   padding-top:20px;
 }
 .invite_share_btns a{
-  font-family:Monument;
+  font-family:'Monument Regular';
   padding:10px 12px;
   color:var(--light-color);
   font-size:10px;
@@ -488,7 +497,7 @@ a.edit-link, .see_all{
 .top_hackers_header{
   text-align:center;
   padding:40px 40px 10px 40px;
-  font-family:Monument;
+  font-family:'Monument Regular';
   background-color:var(--dark-blue);
 }
 .hacker_rank_info{
@@ -501,7 +510,7 @@ a.edit-link, .see_all{
   background-color:var(--dark-blue);
   padding:10px 40px 10px 40px;
   text-align:center;
-  font-family:Monument;
+  font-family:'Monument Regular';
   font-size:12px;
 }
 .hacker_rank.hacker_rank_active{
@@ -524,7 +533,7 @@ a.edit-link, .see_all{
   text-align:center;
 }
 .top_hacker_see_all_btn{
-  font-family:Monument;
+  font-family:'Monument Regular';
   font-size:12px;
 }
 /* Search User */
@@ -547,7 +556,7 @@ a.edit-link, .see_all{
   padding-bottom:20px;
 }
 .search_result_data h4{
-  font-family:Monument;
+  font-family:'Monument Regular';
   color:#999999;
   font-size:18px;
 }
@@ -585,7 +594,7 @@ a.edit-link, .see_all{
 }
 .new_modal_header .new_modal_header_title{
   color:var(--light-color);
-  font-family:Monument;
+  font-family:'Monument Regular';
   font-size:18px;
 }
 .share_pop_social_media_links{
@@ -618,12 +627,12 @@ a.edit-link, .see_all{
 }
 .add_hackathon_submit_btn{
   background-color:#00FFC2;
-  font-family:Monument;
+  font-family:'Monument Regular';
   padding:7px 20px;
 }
 .form_submit_btn{
   background-color:#00FFC2;
-  font-family:Monument;
+  font-family:'Monument Regular';
   padding:7px 20px;
 }
 .hackathon_input_textarea,.hackathon_input_textarea:hover,.hackathon_input_textarea:focus{
@@ -656,7 +665,7 @@ body{
 .primary-btn-clr{
   background-color: #9842F4;
   color: var(--light-color);
-  font-family: Monument;
+  font-family: 'Monument Regular';
   padding: 6px 20px;
   font-size: 14px;
   text-transform: uppercase;
@@ -711,7 +720,7 @@ body{
   cursor: pointer;
 }
 .user_search_box .user_name h4{
-  font-family:Monument;
+  font-family:'Monument Regular';
   font-size:16px;
 }
 .user_name{
@@ -780,7 +789,7 @@ body{
   vertical-align: middle;
   text-align:center;
   font-size:10px;
-  font-family: Monument;
+  font-family: 'Monument Regular';
   width:300px;
   color:#fff;
   padding:10px 0px 5px 0px;
@@ -800,7 +809,7 @@ body{
   font-size:8px;
   color:#fff;
   margin-bottom:10px;
-  font-family: Monument;
+  font-family: 'Monument Regular';
   border-radius:4px;
 }
 .earned_badge_info{
@@ -826,7 +835,7 @@ body{
 .add_to_linkedin span{
   color:#ddd;
   font-size:16px;
-  font-family: Monument;
+  font-family: 'Monument Regular';
   text-transform: uppercase;
 }
 .modal-xl{
@@ -877,7 +886,7 @@ body{
   }
   .header_mobile_btns{
     padding:6px 15px;
-    font-family:Monument;
+    font-family:'Monument Regular';
     font-size:12px;
   }
   .signup_mobile{
@@ -900,7 +909,7 @@ body{
   .intro_section h3{
     color:var(--light-color);
     font-size:20px;
-    font-family:Monument;
+    font-family:'Monument Regular';
   }
   .intro_section p{
     color:var(--light-color);
@@ -908,7 +917,7 @@ body{
   .intro_section p a{
     color:var(--light-color);
     text-decoration:none;
-    font-family:Monument;
+    font-family:'Monument Regular';
   }
   .first_section{
     padding:30px 0px;
@@ -989,7 +998,7 @@ body{
   text-decoration:none;
   border-radius:2px;
   margin-top:-10px;
-  font-family: Monument;
+  font-family: 'Monument Regular';
   font-size:24px;
   margin: 50px 20px;
 }
@@ -1000,7 +1009,7 @@ body{
   text-decoration:none;
   border-radius:2px;
   margin-top:-10px;
-  font-family: Monument;
+  font-family: 'Monument Regular';
   font-size:24px;
   margin: 50px 20px;
 }

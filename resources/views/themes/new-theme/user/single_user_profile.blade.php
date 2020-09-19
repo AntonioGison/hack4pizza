@@ -124,7 +124,7 @@
               <div class="share_block">
                 <a href="#"><i class="fab fa-facebook-f"></i> &nbsp;Share</a>
                 <a href="#"><i class="fab fa-linkedin-in"></i>&nbsp;Share</a>
-                <a href="#"><i class="fa fa-copy"></i> &nbsp;Copy</a>
+                <a href="#" class="share_hackathon"><img src="{{ asset('new-theme/images/share_icon.svg') }}" alt="share">&nbsp;Share</a>
               </div>
             </div>
             <div class="col-12 only-mobile"><hr /></div>
