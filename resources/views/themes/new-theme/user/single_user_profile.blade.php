@@ -288,15 +288,16 @@
                                 <img class="img img-responsive" src="{{ Storage::url($experience->pic) }}" alt="hackathon_logo">
                               </div>
                               <div class="col-9 col-md-11">
-                                <a href="#" class="hackathon_share_btn only-desktop float-right share_hackathon"><img src="{{ asset('new-theme/images/share_icon.svg') }}" alt="share">&nbsp;Share</a>
+                                <a href="#" data-id="{{ $experience->id }}" class="hackathon_share_btn hackathon_edit only-desktop float-right">
+                                <i class="fa fa-edit"></i> Edit</a>
                                 <h4>{{ $experience->name }}</h4>
                                 <h5>By {{ $experience->organized_by }} <br /> {{ Date('d-M-Y',strtotime($experience->from)) }} - {{ Date('d-M-Y',strtotime($experience->to)) }}</h5>
                                 <p class="only-desktop"><?php echo str_replace("\\","",nl2br($experience->description)) ?></p>
                                 <img src="{{ Storage::url($experience->badge->pic) }}" class="hackathon_badge_img only-desktop" alt="badge information"><label class="hackathon_badge_title only-desktop">&nbsp;&nbsp;{{ $experience->badge->name }}</label>
                               </div>
                               <div class="col-2 only-mobile">
-                                <a href="#" class="hackathon_share_btn only-mobile share_hackathon">
-                                  <img src="{{ asset('new-theme/images/share_icon.svg') }}" alt="share">
+                                <a href="#" data-id="{{ $experience->id }}" class="hackathon_share_btn hackathon_edit only-mobile">
+                                  <i class="fa fa-edit"></i>
                                 </a>
                               </div>
                               <div class="col-10 only-mobile">
@@ -315,15 +316,16 @@
                                   <img class="img img-responsive" src="{{ Storage::url($experience->pic) }}" alt="hackathon_logo">
                                 </div>
                                 <div class="col-9 col-md-11">
-                                  <a href="#" class="hackathon_share_btn only-desktop float-right share_hackathon"><img src="{{ asset('new-theme/images/share_icon.svg') }}" alt="share">&nbsp;Share</a>
+                                  <a href="#" data-id="{{ $experience->id }}" class="hackathon_share_btn hackathon_edit only-desktop float-right">
+                                  <i class="fa fa-edit"></i> Edit</a>
                                   <h4>{{ $experience->name }}</h4>
                                   <h5>By {{ $experience->organized_by }} <br /> {{ Date('d-M-Y',strtotime($experience->from)) }} - {{ Date('d-M-Y',strtotime($experience->to)) }}</h5>
                                   <p class="only-desktop"><?php echo str_replace("\\","",nl2br($experience->description)) ?></p>
                                   <img src="{{ Storage::url($experience->badge->pic) }}" class="hackathon_badge_img only-desktop" alt="badge information"><label class="hackathon_badge_title only-desktop">&nbsp;&nbsp;{{ $experience->badge->name }}</label>
                                 </div>
                                 <div class="col-2 only-mobile">
-                                  <a href="#" class="hackathon_share_btn only-mobile share_hackathon">
-                                    <img src="{{ asset('new-theme/images/share_icon.svg') }}" alt="share">
+                                  <a href="#" data-id="{{ $experience->id }}" class="hackathon_share_btn hackathon_edit only-mobile">
+                                    <i class="fa fa-edit"></i>
                                   </a>
                                 </div>
                                 <div class="col-10 only-mobile">
@@ -344,7 +346,6 @@
                         </div>
                       <!-- </div> -->
                       @endif
-  
                     </div>
                   </div>
                 </div>
@@ -373,15 +374,16 @@
                                 <img class="img img-responsive" src="{{ Storage::url($experience->pic) }}" alt="hackathon_logo">
                               </div>
                               <div class="col-9 col-md-11">
-                                <a href="#" class="hackathon_share_btn only-desktop float-right share_hackathon"><img src="{{ asset('new-theme/images/share_icon.svg') }}" alt="share">&nbsp;Share</a>
+                                <a href="#" data-id="{{ $experience->id }}" class="hackathon_share_btn hackathon_edit only-desktop float-right">
+                                <i class="fa fa-edit"></i> Edit</a>
                                 <h4>{{ $experience->name }}</h4>
                                 <h5>By {{ $experience->organized_by }} <br /> {{ Date('d-M-Y',strtotime($experience->from)) }} - {{ Date('d-M-Y',strtotime($experience->to)) }}</h5>
                                 <p class="only-desktop"><?php echo str_replace("\\","",nl2br($experience->description)) ?></p>
                                 <img src="{{ Storage::url($experience->badge->pic) }}" class="hackathon_badge_img only-desktop" alt="badge information"><label class="hackathon_badge_title only-desktop">&nbsp;&nbsp;{{ $experience->badge->name }}</label>
                               </div>
                               <div class="col-2 only-mobile">
-                                <a href="#" class="hackathon_share_btn only-mobile share_hackathon">
-                                  <img src="{{ asset('new-theme/images/share_icon.svg') }}" alt="share">
+                                <a href="#" data-id="{{ $experience->id }}" class="hackathon_share_btn hackathon_edit only-mobile">
+                                  <i class="fa fa-edit"></i>
                                 </a>
                               </div>
                               <div class="col-10 only-mobile">
@@ -400,15 +402,16 @@
                                   <img class="img img-responsive" src="{{ Storage::url($experience->pic) }}" alt="hackathon_logo">
                                 </div>
                                 <div class="col-9 col-md-11">
-                                  <a href="#" class="hackathon_share_btn only-desktop float-right share_hackathon"><img src="{{ asset('new-theme/images/share_icon.svg') }}" alt="share">&nbsp;Share</a>
+                                  <a href="#" data-id="{{ $experience->id }}" class="hackathon_share_btn hackathon_edit only-desktop float-right">
+                                  <i class="fa fa-edit"></i> Edit</a>
                                   <h4>{{ $experience->name }}</h4>
                                   <h5>By {{ $experience->organized_by }} <br /> {{ Date('d-M-Y',strtotime($experience->from)) }} - {{ Date('d-M-Y',strtotime($experience->to)) }}</h5>
                                   <p class="only-desktop"><?php echo str_replace("\\","",nl2br($experience->description)) ?></p>
                                   <img src="{{ Storage::url($experience->badge->pic) }}" class="hackathon_badge_img only-desktop" alt="badge information"><label class="hackathon_badge_title only-desktop">&nbsp;&nbsp;{{ $experience->badge->name }}</label>
                                 </div>
                                 <div class="col-2 only-mobile">
-                                  <a href="#" class="hackathon_share_btn only-mobile share_hackathon">
-                                    <img src="{{ asset('new-theme/images/share_icon.svg') }}" alt="share">
+                                  <a href="#" data-id="{{ $experience->id }}" class="hackathon_share_btn hackathon_edit only-mobile">
+                                    <i class="fa fa-edit"></i> Edit
                                   </a>
                                 </div>
                                 <div class="col-10 only-mobile">
@@ -579,7 +582,16 @@
       </div>
     </div>
   </div>
-
+  
+  <div class="modal fade" id="hackathon_edit" tabindex="-1" role="dialog" aria-labelledby="hackathon_addLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="new_modal_section">
+          <div class="hackathon_edit_data"></div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="modal fade" id="hackathon_share" tabindex="-1" role="dialog" aria-labelledby="hackathon_shareLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
@@ -922,6 +934,37 @@
       $("#edit-performance").click(function(e){
         e.preventDefault();
         $("#performance_model").modal();
+      });
+
+      // Display Edit Hackathon Modal
+      $(".hackathon_edit").click(function(e){
+        e.preventDefault();
+        var id = $(this).attr('data-id');
+        console.log(id);
+        $("#hackathon_edit").modal();
+        
+        $.ajax({
+          type: 'GET',
+          url: "{{route('edit-hackonton')}}",
+          data: {id: id},
+          success: function (resp) {
+            $(".hackathon_edit_data").html(resp);
+
+            $(".custom-file-input").on("change", function() {
+              var fileName = $(this).val().split("\\").pop();
+              $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            });
+
+            $('.datepicker').datetimepicker({
+              format: 'D/M/YYYY',
+              widgetPositioning: {
+                horizontal: "auto",
+                vertical: "bottom"
+              }
+            });
+            //do something.
+          }
+        });
       });
 
       // Display share pop up for each hackathon

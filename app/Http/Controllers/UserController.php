@@ -296,4 +296,12 @@ class UserController extends Controller
             return Redirect::back()->with('message','Please log in to select the default theme!');
         }
     }
+
+    public function edit_hackathon(Request $request){
+        $hackathon_id = $request->id;
+        $experience = Experience::where('id',$hackathon_id)->first();
+        $badges = Badge::whereNotIn('id',[12,14,13,22,11,4,5,6,10,21])->get();
+
+        return view('themes.new-theme.user.edit_hackathon',compact('experience','badges'));
+    }
 }
