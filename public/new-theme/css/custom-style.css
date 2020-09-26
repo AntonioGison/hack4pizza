@@ -10,11 +10,17 @@
   .container{
     min-width: 1340px;
   }
+  .badge-min-height {
+    min-height: 411px;
+  }  
 }
 @media (min-width: 1300){
   .container{
     min-width: 1240px;
   }
+  .badge-min-height {
+    min-height: 411px;
+  } 
 }
 .only-mobile{
   display:none;
