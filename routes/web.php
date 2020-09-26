@@ -32,6 +32,7 @@ Route::post('/ajax_upload_hackon/action', 'Theme\HomeController@picUploadHackon'
 Route::post('user-update', 'UserController@profileUpdate')->name('user-update');
 Route::post('add-hackonton', 'UserController@addHackonton')->name('add-hackonton');
 Route::get('edit-hackonton', 'UserController@edit_hackathon')->name('edit-hackonton');
+Route::post('edit-hackonton', 'UserController@update_hackathon')->name('edit-hackonton');
 Route::post('update-hackonton', 'UserController@updateHackonton')->name('update-hackonton');
 Route::post('update-performance', 'UserController@updatePerformance')->name('update-performance');
 //Route::get('get-pound', 'Theme\HomeController@GetPoundEuro')->name('get-pound');

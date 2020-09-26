@@ -288,17 +288,21 @@
                                 <img class="img img-responsive" src="{{ Storage::url($experience->pic) }}" alt="hackathon_logo">
                               </div>
                               <div class="col-9 col-md-11">
+                                @if(isset($ownprofile) && $ownprofile)
                                 <a href="#" data-id="{{ $experience->id }}" class="hackathon_share_btn hackathon_edit only-desktop float-right">
                                 <i class="fa fa-edit"></i> Edit</a>
+                                @endif
                                 <h4>{{ $experience->name }}</h4>
                                 <h5>By {{ $experience->organized_by }} <br /> {{ Date('d-M-Y',strtotime($experience->from)) }} - {{ Date('d-M-Y',strtotime($experience->to)) }}</h5>
                                 <p class="only-desktop"><?php echo str_replace("\\","",nl2br($experience->description)) ?></p>
                                 <img src="{{ Storage::url($experience->badge->pic) }}" class="hackathon_badge_img only-desktop" alt="badge information"><label class="hackathon_badge_title only-desktop">&nbsp;&nbsp;{{ $experience->badge->name }}</label>
                               </div>
                               <div class="col-2 only-mobile">
+                              @if(isset($ownprofile) && $ownprofile)
                                 <a href="#" data-id="{{ $experience->id }}" class="hackathon_share_btn hackathon_edit only-mobile">
                                   <i class="fa fa-edit"></i>
                                 </a>
+                              @endif
                               </div>
                               <div class="col-10 only-mobile">
                                 <p><?php echo str_replace("\\","",nl2br($experience->description)) ?></p>
@@ -316,17 +320,21 @@
                                   <img class="img img-responsive" src="{{ Storage::url($experience->pic) }}" alt="hackathon_logo">
                                 </div>
                                 <div class="col-9 col-md-11">
+                                  @if(isset($ownprofile) && $ownprofile)
                                   <a href="#" data-id="{{ $experience->id }}" class="hackathon_share_btn hackathon_edit only-desktop float-right">
                                   <i class="fa fa-edit"></i> Edit</a>
+                                  @endif
                                   <h4>{{ $experience->name }}</h4>
                                   <h5>By {{ $experience->organized_by }} <br /> {{ Date('d-M-Y',strtotime($experience->from)) }} - {{ Date('d-M-Y',strtotime($experience->to)) }}</h5>
                                   <p class="only-desktop"><?php echo str_replace("\\","",nl2br($experience->description)) ?></p>
                                   <img src="{{ Storage::url($experience->badge->pic) }}" class="hackathon_badge_img only-desktop" alt="badge information"><label class="hackathon_badge_title only-desktop">&nbsp;&nbsp;{{ $experience->badge->name }}</label>
                                 </div>
                                 <div class="col-2 only-mobile">
+                                @if(isset($ownprofile) && $ownprofile)
                                   <a href="#" data-id="{{ $experience->id }}" class="hackathon_share_btn hackathon_edit only-mobile">
                                     <i class="fa fa-edit"></i>
                                   </a>
+                                @endif
                                 </div>
                                 <div class="col-10 only-mobile">
                                   <p><?php echo str_replace("\\","",nl2br($experience->description)) ?></p>
@@ -374,17 +382,21 @@
                                 <img class="img img-responsive" src="{{ Storage::url($experience->pic) }}" alt="hackathon_logo">
                               </div>
                               <div class="col-9 col-md-11">
+                                @if(isset($ownprofile) && $ownprofile)
                                 <a href="#" data-id="{{ $experience->id }}" class="hackathon_share_btn hackathon_edit only-desktop float-right">
                                 <i class="fa fa-edit"></i> Edit</a>
+                                @endif
                                 <h4>{{ $experience->name }}</h4>
                                 <h5>By {{ $experience->organized_by }} <br /> {{ Date('d-M-Y',strtotime($experience->from)) }} - {{ Date('d-M-Y',strtotime($experience->to)) }}</h5>
                                 <p class="only-desktop"><?php echo str_replace("\\","",nl2br($experience->description)) ?></p>
                                 <img src="{{ Storage::url($experience->badge->pic) }}" class="hackathon_badge_img only-desktop" alt="badge information"><label class="hackathon_badge_title only-desktop">&nbsp;&nbsp;{{ $experience->badge->name }}</label>
                               </div>
                               <div class="col-2 only-mobile">
+                                @if(isset($ownprofile) && $ownprofile)
                                 <a href="#" data-id="{{ $experience->id }}" class="hackathon_share_btn hackathon_edit only-mobile">
                                   <i class="fa fa-edit"></i>
                                 </a>
+                                @endif
                               </div>
                               <div class="col-10 only-mobile">
                                 <p><?php echo str_replace("\\","",nl2br($experience->description)) ?></p>
@@ -402,17 +414,21 @@
                                   <img class="img img-responsive" src="{{ Storage::url($experience->pic) }}" alt="hackathon_logo">
                                 </div>
                                 <div class="col-9 col-md-11">
+                                @if(isset($ownprofile) && $ownprofile)
                                   <a href="#" data-id="{{ $experience->id }}" class="hackathon_share_btn hackathon_edit only-desktop float-right">
                                   <i class="fa fa-edit"></i> Edit</a>
+                                @endif
                                   <h4>{{ $experience->name }}</h4>
                                   <h5>By {{ $experience->organized_by }} <br /> {{ Date('d-M-Y',strtotime($experience->from)) }} - {{ Date('d-M-Y',strtotime($experience->to)) }}</h5>
                                   <p class="only-desktop"><?php echo str_replace("\\","",nl2br($experience->description)) ?></p>
                                   <img src="{{ Storage::url($experience->badge->pic) }}" class="hackathon_badge_img only-desktop" alt="badge information"><label class="hackathon_badge_title only-desktop">&nbsp;&nbsp;{{ $experience->badge->name }}</label>
                                 </div>
                                 <div class="col-2 only-mobile">
+                                @if(isset($ownprofile) && $ownprofile)
                                   <a href="#" data-id="{{ $experience->id }}" class="hackathon_share_btn hackathon_edit only-mobile">
                                     <i class="fa fa-edit"></i> Edit
                                   </a>
+                                @endif
                                 </div>
                                 <div class="col-10 only-mobile">
                                   <p><?php echo str_replace("\\","",nl2br($experience->description)) ?></p>
@@ -949,18 +965,60 @@
           data: {id: id},
           success: function (resp) {
             $(".hackathon_edit_data").html(resp);
-
-            $(".custom-file-input").on("change", function() {
-              var fileName = $(this).val().split("\\").pop();
-              $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            
+            $(".hklogo").change(function(){
+                previewFile('hklogo');
             });
 
             $('.datepicker').datetimepicker({
-              format: 'D/M/YYYY',
+              format: 'DD-MM-YYYY',
               widgetPositioning: {
                 horizontal: "auto",
                 vertical: "bottom"
               }
+            });
+
+            $("form#hackathon_update_form").submit(function(e) {  
+              e.preventDefault();
+              var formData = new FormData(this);    
+            
+              $.ajax({
+                url: "{{route('edit-hackonton')}}",
+                type: 'POST',
+                data: formData,
+
+                success: function (resp) {
+                  if (resp.status == 0) {
+                    $('<div class="ha_update_success"><span class="emsg">Congrats..Your Hackonton has been Updated!</span></div>').appendTo(".ha_success").css('color', 'green');
+                    var delay = 1000; //Your delay in milliseconds
+                    setTimeout(function () {
+                      location.reload(true);
+                    }, delay);
+                  } else {
+                    if (typeof resp.name != "undefined") {
+                      $(".name").parent().append('<span class="emsg">' + resp.name + '</span>').css('color', 'red');
+                    }
+                    if (typeof resp.description != "undefined") {
+                      $(".description").parent().append('<span class="emsg">' + resp.description + '</span>').css('color', 'red');
+                    }
+                    if (typeof resp.result != "undefined") {
+                      $(".result").parent().append('<span class="emsg">' + resp.result + '</span>').css('color', 'red');
+                    }
+                    if (typeof resp.from != "undefined") {
+                      $(".from").parent().append('<span class="emsg">' + resp.from + '</span>').css('color', 'red');
+                    }
+                    if (typeof resp.to != "undefined") {
+                      $(".to").parent().append('<span class="emsg">' + resp.to + '</span>').css('color', 'red');
+                    }
+                    if (typeof resp.organized_by != "undefined") {
+                      $(".organized_by").parent().append('<span class="emsg">' + resp.organized_by + '</span>').css('color', 'red');
+                    }
+                  }
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+              });
             });
             //do something.
           }
@@ -1196,7 +1254,22 @@
 
       });
     });
+    function previewFile(inputclass) {
+      var preview = document.querySelector(".display_"+inputclass+" img");
+      var file    = document.querySelector('.'+inputclass).files[0];
+      /*var files   = document.querySelector('.'+inputclass).files;*/
+      var reader  = new FileReader();
 
+      reader.onloadend = function () {
+          preview.src = reader.result;
+      }
+
+      if (file) {
+          reader.readAsDataURL(file);
+      } else {
+          preview.src = "";
+      }
+    }
     function toggleHackathon(id) {
       var item = $('#hackathon_detail_'+id);
       item.slideToggle();

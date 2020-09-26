@@ -151,6 +151,11 @@ input:checked + .slider:before {
       
   box-shadow:none;
 }
+.ha_update_success{
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 3px;
+}
 .suf_btn:focus{
   outline:none;
   box-shadow:none;
@@ -1059,6 +1064,7 @@ a.recent-search:hover, a.recent-search:active {
   .hackathon_thumbnail{
     padding:0px;    
   }
+  
   .hackathon_data h4{
     font-size:13px;
   }

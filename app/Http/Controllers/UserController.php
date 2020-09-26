@@ -304,4 +304,47 @@ class UserController extends Controller
 
         return view('themes.new-theme.user.edit_hackathon',compact('experience','badges'));
     }
+
+    public function update_hackathon(Request $request)
+    {
+        $id = Auth::user()->id;
+
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string'],
+            'description' => ['required', 'string'],
+            'result' => ['required', 'string'],
+            'from' => ['required'],
+            'to' => ['required'],
+            'organized_by' => ['required'],
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors()->toArray());
+        }
+
+        $experience = Experience::findOrFail($request->id);
+        
+        $experience->name = $request->name;
+        $experience->description = $request->description;
+        $experience->badge_id = $request->result;
+        
+        $experience->from = date('Y-m-d', strtotime($request->from));
+        $experience->to = date('Y-m-d', strtotime($request->to));
+        $experience->organized_by = $request->organized_by;
+        $experience->user_id = $id;
+       
+        if ($image = $request->file('file')) {
+            $image_uploaded = true;
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('uploads/hackathon', $filename, ['disk' => 'local']);
+            $new_filename = "uploads/hackathon/".$filename;
+            $experience->pic = $new_filename;
+        }else{
+            $image_uploaded = false;
+        }
+
+        if ($experience->save()) {
+            return response()->json(['status' => '0', 'image_uploaded'=>$image_uploaded]);
+        }
+    }
+
 }
