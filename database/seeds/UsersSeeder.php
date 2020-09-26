@@ -22,7 +22,7 @@ class UsersSeeder extends Seeder
                 'slug'=>'antonio',
                 'address'=>'Naples, Italy',
                 'bio'=>'This is a bio, empty but always a bio.',
-                'password'=>'$2y$10$3ZF/4a/6NzrDtDKuHqcoQuqy2lg681PYMXgGhzzFstCEmwqWFGhEm',
+                'password'=> bcrypt('antonio.gison'),
                 'created_at'=>'2019-08-07 06:26:02',
                 'updated_at'=>'2019-09-20 05:04:13'
             ],

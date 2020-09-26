@@ -122,8 +122,8 @@
             <div class="col-12 only-mobile"><hr /></div>
             <div class="col-12 col-md-4 main_info_links">
               <div class="share_block">
-                <a href="#"><i class="fab fa-facebook-f"></i> &nbsp;Share</a>
-                <a href="#"><i class="fab fa-linkedin-in"></i>&nbsp;Share</a>
+                <a href="#"><i class="fab fa-facebook-f" style="color:#1778F2"></i> &nbsp;Share</a>
+                <a href="#"><i class="fab fa-linkedin-in" style="color:#0E76A8"></i>&nbsp;Share</a>
                 <a href="#" class="share_hackathon"><img src="{{ asset('new-theme/images/share_icon.svg') }}" alt="share">&nbsp;Share</a>
               </div>
             </div>
@@ -179,7 +179,7 @@
             <div class="row align-items-center justify-content-center badge-min-height">
               <div class="col-12 text-center">
                 <div id="chartjs-radar">
-                  <canvas id="canvas"></canvas>
+                  <canvas id="canvas" ></canvas>
                 </div>
               </div>
             </div>
@@ -833,12 +833,12 @@
       type: 'radar',
       data: {
         labels: [
-          "PITCH PRESENTATION ", 
-          "FRONT END ", 
+          ["PITCH PRESENTATION",""], 
+          ['FRONT END'], 
           "BACK END ", 
-          "TEAM PLAYER ", 
-          "PROBLEM SOLVING ", 
-          "UX DESIGN "
+          ["","TEAM PLAYER"], 
+          ["","PROBLEM","SOLVING"], 
+          ["UX DESIGN"]
         ],
         datasets: [{
           label: 'Performance',
@@ -877,14 +877,14 @@
             stepSize:2,
             min:0,
             max:10,
-            fontFamily:'Monument',
-            fontSize:12,
+            fontFamily:'Monument Regular',
+            fontSize:14,
             beginAtZero: true
           },
           pointLabels: {
             fontColor: '#00F9FF',
             fontSize: 14,
-            fontFamily:'Monument',
+            fontFamily:'Monument Regular',
           },
           Axes: [{
             display: false, //this will remove all the x-axis grid lines
@@ -914,7 +914,7 @@
       
 
       // $("#hackathon_add").modal();
-      $("#canvas").css('margin-top','-100px');
+      $("#canvas").css('margin-top','-50px');
       //RANGE SLIDER
       $(document).on('input', '.range_slider', function() {
         var slider = $(this).attr('data-slider');

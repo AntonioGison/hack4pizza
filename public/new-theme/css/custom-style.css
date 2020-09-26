@@ -6,6 +6,16 @@
   font-family: 'Monument Bold';
   src: url("../fonts/monument-extended/ultra-bold.otf");
 }
+@media (min-width: 1400px){
+  .container{
+    min-width: 1340px;
+  }
+}
+@media (min-width: 1300){
+  .container{
+    min-width: 1240px;
+  }
+}
 .only-mobile{
   display:none;
 }
