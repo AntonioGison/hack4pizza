@@ -11,6 +11,7 @@ use Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use App\RecentSearch;
+use App\EarnedBadge;
 
 class UserController extends Controller
 {
@@ -93,8 +94,8 @@ class UserController extends Controller
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'organized_by' => 'required',
-            'from' => 'required|date|',
-            'to' => 'required|date|after_or_equal:from',
+            'from' => 'required',
+            'to' => 'required',
             'description' => 'required|string|max:255',
             'result' => 'required',
         ]);
@@ -180,7 +181,9 @@ class UserController extends Controller
             return response()->json($validation->errors()->toArray());
         } else {
             if ($experience->save()) {
-                return response()->json(['status' => '0']);
+                $badge_id = $experience->badge_id;
+                $new_badge = $this->update_badge_info($badge_id);
+                return response()->json(['status' => '0', 'badge_id'=>$new_badge]);
             }
         }
     }
@@ -345,6 +348,32 @@ class UserController extends Controller
         if ($experience->save()) {
             return response()->json(['status' => '0', 'image_uploaded'=>$image_uploaded]);
         }
+    }
+    public function update_badge_info($badge_id){
+        $where = [
+            'user_id' => Auth::user()->id,
+            'badge_id' => $badge_id,
+        ];
+        $objexist = EarnedBadge::where($where);
+        if($objexist->count()>0){
+            $data = $objexist->first();
+            $old_count = $data->count;
+            $new_count = $old_count+1;
+
+            $updated = EarnedBadge::where($where)->update([
+                'count'=>$new_count
+            ]);
+            dd($updated);
+            $res = 0;      
+        }else{
+            EarnedBadge::create([
+                'user_id' => Auth::user()->id,
+                'badge_id' => $badge_id,
+                'count'=>1,
+            ]);
+            $res = $badge_id;
+        }
+        return $res;
     }
 
 }

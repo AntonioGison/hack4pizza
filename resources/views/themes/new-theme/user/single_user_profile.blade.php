@@ -453,7 +453,12 @@
                 </div>
               </div>
             @endif
-          @else
+          @endif
+          <?php
+          }
+          ?>
+          <?php 
+          if(isset($experience) && ($experience->count())==0){ ?>
           <div class="row">
             <div class="col-md-12" align="center">
               <a href="#" class="add_new_hackathon add_hackathon"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add Hackathon</a>
@@ -461,10 +466,7 @@
               <br />
             </div>
           </div>
-          @endif
-          <?php 
-          }
-          ?>
+          <?php } ?>
         </div>
       </div>
     </div>
