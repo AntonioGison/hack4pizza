@@ -45,7 +45,7 @@ class HomeController extends Controller
         $all_user_badges = [];
         $i=0;
         foreach($earned_badges as $erbg){
-            array_push($earned_ids,$erbg->id);  
+            array_push($earned_ids,$erbg->badge_id);  
             array_push($all_user_badges,$erbg->badge);
             $all_user_badges[$i]['status']="earned";
             $all_user_badges[$i]['count']=$erbg->count;
