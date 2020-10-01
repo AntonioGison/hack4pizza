@@ -9,13 +9,13 @@
 @media (min-width: 1400px){
  
   .badge-min-height {
-    min-height: 411px;
+    min-height: auto;
   }  
 }
 @media (min-width: 1300){
   
   .badge-min-height {
-    min-height: 411px;
+    min-height: auto;
   } 
 }
 .only-mobile{
@@ -309,7 +309,7 @@ input:checked + .slider:before {
 }
 .performance .performance_block{
   background-color:var(--dark-blue);
-  padding:20px 25px;
+  padding:18px 25px;
 }
 .badges .badge_block{
   background-color:var(--dark-blue);

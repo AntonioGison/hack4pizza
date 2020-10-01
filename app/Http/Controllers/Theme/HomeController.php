@@ -39,7 +39,7 @@ class HomeController extends Controller
     {
         $user = User::where('slug','=',$slug)->first();
         $id = $user->id;
-        $badges = Badge::whereNotIn('id',[12,14,13,22,11,4,5,6,10,21])->get();
+        $badges = Badge::whereIn('id',[1,2,3,12])->get();
         $earned_badges = EarnedBadge::where('user_id',$id)->with('badge')->get();
         $earned_ids = [];
         $all_user_badges = [];
@@ -76,7 +76,7 @@ class HomeController extends Controller
             'ownprofile',
             'all_user_badges',
             'earned_badges',
-            'unearned_badges',
+            'unearned_badges'
         ));
     }
     function picUpload(Request $request)

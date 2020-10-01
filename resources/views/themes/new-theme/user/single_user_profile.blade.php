@@ -565,7 +565,14 @@
                 <select class="form-control hackathon_input" id="ha_result">
                   <option value="" selected>Select Result*</option>
                   @foreach($badges as $badge)
-                    <option value="{{$badge->id}}">{{$badge->name}}</option>
+                    <?php
+                      if($badge->id==12){
+                        $badge_name = "Didn't win";
+                      }else{
+                        $badge_name = $badge->name;
+                      }
+                    ?>
+                    <option value="{{$badge->id}}">{{ $badge_name }}</option>
                   @endforeach
                 </select>
               </div>
