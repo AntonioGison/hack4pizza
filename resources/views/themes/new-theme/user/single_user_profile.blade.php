@@ -1071,18 +1071,16 @@
        $(this).hide();
        $(this).parent().parent().find(".collapse").addClass("show");
     });
-    $('#hackathon_add_form').on('change','.custom-file-input', function(event){
+    $('#hackathon_add_form').on('change','.custom-file-input', function(e){
+      e.preventDefault();
       $.LoadingOverlay("show");
       var form = $('form#hackathon_add_form')[0];
-      event.preventDefault();
+      
       $.ajax({
+        type: 'POST',
         url:"{{ route('ajaxuploadhackon.action') }}",
         method:"POST",
         data:new FormData(form),
-        dataType:'JSON',
-        contentType: false,
-        cache: false,
-        processData: false,
         success:function(data)
         {
           $.LoadingOverlay("hide");

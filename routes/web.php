@@ -28,7 +28,7 @@ Route::get('search-user', 'UserController@search_user')->name('user.search.index
 Route::post('search-user-ajax', 'UserController@search_users_ajax')->name('user.search_users_ajax');
 Route::post('store_recent_search', 'UserController@store_recent_search')->name('user.store_recent_search');
 Route::post('/ajax_upload/action', 'Theme\HomeController@picUpload')->name('ajaxupload.action');
-Route::post('/ajax_upload_hackon/action', 'Theme\HomeController@picUploadHackon')->name('ajaxuploadhackon.action');
+Route::post('/ajax_hackathon_img', 'Theme\HomeController@picUploadHackon')->name('ajaxuploadhackon.action');
 Route::post('user-update', 'UserController@profileUpdate')->name('user-update');
 Route::post('add-hackonton', 'UserController@addHackonton')->name('add-hackonton');
 Route::get('edit-hackonton', 'UserController@edit_hackathon')->name('edit-hackonton');

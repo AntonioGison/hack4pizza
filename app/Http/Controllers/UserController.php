@@ -176,7 +176,7 @@ class UserController extends Controller
         $experience->pic = 'uploads/hackathon/'.$input['pic'];
         $experience->organized_by = $input['organized_by'];
         $experience->user_id = $id;
-
+        
         if ($validation->fails()) {
             return response()->json($validation->errors()->toArray());
         } else {
@@ -303,7 +303,7 @@ class UserController extends Controller
     public function edit_hackathon(Request $request){
         $hackathon_id = $request->id;
         $experience = Experience::where('id',$hackathon_id)->first();
-        $badges = Badge::whereNotIn('id',[12,14,13,22,11,4,5,6,10,21])->get();
+        $badges = Badge::whereIn('id',[1,2,3,12])->get();
 
         return view('themes.new-theme.user.edit_hackathon',compact('experience','badges'));
     }
