@@ -176,7 +176,6 @@ class UserController extends Controller
         $experience->pic = 'uploads/hackathon/'.$input['pic'];
         $experience->organized_by = $input['organized_by'];
         $experience->user_id = $id;
-        
         if ($validation->fails()) {
             return response()->json($validation->errors()->toArray());
         } else {

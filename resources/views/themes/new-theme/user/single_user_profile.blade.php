@@ -587,15 +587,16 @@
               <div class="form-group col-md-6">
                 <label class="hackathon_input_label">Upload Hackathon's logo/IMG</label>
                 <div class="custom-file">
-                  <input type="file" name="file" class="custom-file-input hackathon_input" id="new_hackathon_img">
+                  <input type="file" name="file" class="custom-file-input new_hackathon_img hackathon_input " id="new_hackathon_img">
                   <label class="custom-file-label add_hackathon_file_label" for="hackathon_img"></label>
                 </div>
-
               </div>
-              <div class="form-group col-sm-2 ha_pic_msg">
-
+              
+              <div class="form-group col-sm-2 ha_pic_msg display_new_hackathon_img">
+                <label for="new_hackathon_img">
+                <img style="width:100px;" src="{{ asset('new-theme/images/logo.svg') }}">
+                </label>
               </div>
-
             </div>
             <div class="form-group text-right ha_success">
             </div>
@@ -953,6 +954,9 @@
       $(".add_hackathon").click(function(e){
         e.preventDefault();
         $("#hackathon_add").modal();
+        $(".new_hackathon_img").change(function(){
+            previewFile('new_hackathon_img');
+        });
       });
 
       // Display Edit Performance Modal
@@ -1071,34 +1075,34 @@
        $(this).hide();
        $(this).parent().parent().find(".collapse").addClass("show");
     });
-    $('#hackathon_add_form').on('change','.custom-file-input', function(e){
-      e.preventDefault();
-      $.LoadingOverlay("show");
-      var form = $('form#hackathon_add_form')[0];
+    // $('#hackathon_add_form').on('change','.custom-file-input', function(e){
+    //   e.preventDefault();
+    //   $.LoadingOverlay("show");
+    //   var form = $('form#hackathon_add_form')[0];
       
-      $.ajax({
-        type: 'POST',
-        url:"{{ route('ajaxuploadhackon.action') }}",
-        method:"POST",
-        data:new FormData(form),
-        success:function(data)
-        {
-          $.LoadingOverlay("hide");
-          $(".ha_pic_msg").children().remove();
-          $("#ha_pic").val(data.pic);
+    //   $.ajax({
+    //     type: 'POST',
+    //     url:"{{ route('ajaxuploadhackon.action') }}",
+    //     method:"POST",
+    //     data:new FormData(form),
+    //     success:function(data)
+    //     {
+    //       $.LoadingOverlay("hide");
+    //       $(".ha_pic_msg").children().remove();
+    //       $("#ha_pic").val(data.pic);
 
-          if (data.pic == ""){
-            $('<span class="umsg">' + data.massage + '</span>').appendTo(".ha_pic_msg").css('color', 'red');
-          }else{
-            $(".ha_pic_msg").append(data.uploaded_image);
-          }
-          // $('#message').css('display', 'block');
-          // $('#message').html(data.message);
-          // $('#message').addClass(data.class_name);
-          // $('#uploaded_image').html(data.uploaded_image);
-        }
-      })
-    });
+    //       if (data.pic == ""){
+    //         $('<span class="umsg">' + data.massage + '</span>').appendTo(".ha_pic_msg").css('color', 'red');
+    //       }else{
+    //         $(".ha_pic_msg").append(data.uploaded_image);
+    //       }
+    //       // $('#message').css('display', 'block');
+    //       // $('#message').html(data.message);
+    //       // $('#message').addClass(data.class_name);
+    //       // $('#uploaded_image').html(data.uploaded_image);
+    //     }
+    //   })
+    // });
     $("#profile_submit").click(function (e) {
       $("#signup_model").find('.umsg').remove();
       $("#signup_model").find('.emsg').remove();
