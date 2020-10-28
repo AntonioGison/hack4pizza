@@ -164,26 +164,47 @@ class UserController extends Controller
 
     public function addHackonton(Request $request)
     {
-        $id = Auth::user()->id;
-        $validation = $this->hackontonValidator($request->all());
-        $input = $request->all();
-        $experience = new Experience();
-        $experience->name = $input['name'];
-        $experience->description = $input['description'];
-        $experience->badge_id = $input['result'];
-        $experience->from = date('Y-m-d', strtotime($input['from']));
-        $experience->to = date('Y-m-d', strtotime($input['to']));
-        $experience->pic = 'uploads/hackathon/'.$input['pic'];
-        $experience->organized_by = $input['organized_by'];
-        $experience->user_id = $id;
-        if ($validation->fails()) {
-            return response()->json($validation->errors()->toArray());
-        } else {
-            if ($experience->save()) {
-                $badge_id = $experience->badge_id;
-                $new_badge = $this->update_badge_info($badge_id);
-                return response()->json(['status' => '0', 'badge_id'=>$new_badge]);
-            }
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string'],
+            'description' => ['required', 'string'],
+            'result' => ['required', 'string'],
+            'from' => ['required'],
+            'to' => ['required'],
+            'organized_by' => ['required'],
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors()->toArray());
+        }
+
+        $experience = new Experience;
+        
+        $experience->name = $request->name;
+        $experience->description = $request->description;
+        $experience->badge_id = $request->result;
+        
+        $experience->from = date('Y-m-d', strtotime($request->from));
+        $experience->to = date('Y-m-d', strtotime($request->to));
+        $experience->organized_by = $request->organized_by;
+        $experience->user_id = Auth::user()->id;
+       
+        if ($image = $request->file('file')) {
+            $image_uploaded = true;
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('uploads/hackathon', $filename, ['disk' => 'local']);
+            $new_filename = "uploads/hackathon/".$filename;
+            $experience->pic = $new_filename;
+        }else{
+            $image_uploaded = false;
+        }
+        if ($experience->save()) {
+
+            $badge_id = $experience->badge_id;
+            $new_badge = $this->update_badge_info($badge_id);
+            return response()->json([
+                'status' => '0', 
+                'badge_id'=>$new_badge,
+                'image_uploaded'=>$image_uploaded
+            ]);
         }
     }
 
@@ -362,7 +383,6 @@ class UserController extends Controller
             $updated = EarnedBadge::where($where)->update([
                 'count'=>$new_count
             ]);
-            dd($updated);
             $res = 0;      
         }else{
             EarnedBadge::create([

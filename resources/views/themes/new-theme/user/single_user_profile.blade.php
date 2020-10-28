@@ -551,20 +551,20 @@
             @csrf
             <input type="hidden" id="ha_pic" >
             <div class="form-group">
-              <input type="text" placeholder="Hackathon's name*" class="form-control hackathon_input" id="ha_name">
+              <input type="text" placeholder="Hackathon's name*" class="form-control hackathon_input" name="name" id="ha_name">
             </div>
             <div class="form-group ha_organized">
-              <input type="text" class="form-control hackathon_input" placeholder="Hosted/Organized by*" id="ha_organized">
+              <input type="text" class="form-control hackathon_input" placeholder="Hosted/Organized by*" name="organized_by" id="ha_organized">
             </div>
             <div class="form-row">
               <div class="form-group col-md-4 ha_from">
-                <input type="text" placeholder="From*" class="form-control datepicker hackathon_input " id="ha_from">
+                <input type="text" placeholder="From*" class="form-control datepicker datepicker_from hackathon_input " name="from" id="ha_from">
               </div>
               <div class="form-group col-md-4">
-                <input type="text" placeholder="To*" class="form-control datepicker hackathon_input" id="ha_to">
+                <input type="text" placeholder="To*" class="form-control datepicker datepicker_to hackathon_input" name="to" id="ha_to">
               </div>
               <div class="form-group col-md-4 place_msg">
-                <select class="form-control hackathon_input" id="ha_result">
+                <select class="form-control hackathon_input" name="result" id="ha_result">
                   <option value="" selected>Select Result*</option>
                   @foreach($badges as $badge)
                     <?php
@@ -581,7 +581,7 @@
             </div>
             <div class="form-group">
               <label for="ha_description" class="hackathon_input_label">Description (HTML editor)*</label>
-              <textarea class="form-control hackathon_input_textarea" rows="5" id="ha_description"></textarea>
+              <textarea class="form-control hackathon_input_textarea" rows="5" name="description" id="ha_description"></textarea>
             </div>
             <div class="form-row">
               <div class="form-group col-md-6">
@@ -1059,8 +1059,15 @@
       });
 
       /** datetimepicker **/
-      $('.datepicker').datetimepicker({
-        format: 'D/M/YYYY',
+      $('.datepicker_from').datetimepicker({
+        format: 'DD-MM-YYYY',
+        widgetPositioning: {
+          horizontal: "auto",
+          vertical: "bottom"
+        }
+      });
+      $('.datepicker_to').datetimepicker({
+        format: 'DD-MM-YYYY',
         widgetPositioning: {
           horizontal: "auto",
           vertical: "bottom"
@@ -1150,7 +1157,6 @@
       });
     });
     $("#ha_submit").click(function () {
-      $.LoadingOverlay("show");
       $("#hackathon_add").find('.emsg').remove();
       var token = $("input[name=_token]").val();
       var name = $("#ha_name").val();
@@ -1160,11 +1166,14 @@
       var result = $("#ha_result").val();
       var description = $("#ha_description").val();
       var pic = $("#ha_pic").val();
+      var form3 = $('form#hackathon_add_form')[0];
       $.ajax({
         type: 'POST',
-        url: "{{route("add-hackonton")}}",
-        data: {_token: token, name: name, organized_by: organized_by, from: from, to: to, result: result, description: description, pic: pic},
-        dataType: 'JSON',
+        url: "{{route('add-hackonton')}}",
+        data: new FormData(form3),
+        cache : false,
+        processData: false,
+        contentType: false,
         success: function (resp) {
           $.LoadingOverlay("hide");
           if (resp.status == 0) {
