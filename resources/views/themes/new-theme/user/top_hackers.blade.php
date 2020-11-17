@@ -95,21 +95,25 @@
               </div>
             </div>
             <?php
-              for($i=1;$i<11; $i++){
+              $i = 1;
+              foreach($topHackers as $key => $topHacker){
             ?>
-            <div class="hacker_rank <?php if($i==10){ echo "hacker_rank_active"; } ?>">
+            <div class="hacker_rank <?php if($topHacker->id==auth()->user()->id){ echo "hacker_rank_active"; } ?>">
               <div class="row align-items-center">
                 <div class="col-md-1 hacker_rank_info">{{ $i }}</div>
-                <div class="col-md-3 hacker_rank_info hacker_name">Rick Jones</div>
-                <div class="col-md-2 hacker_rank_info hacker_first">10</div>
-                <div class="col-md-2 hacker_rank_info hacker_second">8</div>
-                <div class="col-md-2 hacker_rank_info hacker_third">12</div>
-                <div class="col-md-2 hacker_rank_info">30</div>
+                <div class="col-md-3 hacker_rank_info hacker_name">{{ $topHacker->name }}</div>
+                <div class="col-md-2 hacker_rank_info hacker_first">{{ $topHacker->first_badges_count }}</div>
+                <div class="col-md-2 hacker_rank_info hacker_second">{{ $topHacker->second_badges_count }}</div>
+                <div class="col-md-2 hacker_rank_info hacker_third">{{ $topHacker->third_badges_count }}</div>
+                <div class="col-md-2 hacker_rank_info">{{ $topHacker->earned_badges_count }}</div>
               </div>
             </div>
-            <?php } ?>
+            <?php $i++; 
+                if($i > 11) { break; }
+              } 
+            ?>
             <div class="top_hacker_see_all">
-              <a href="#" class="top_hacker_see_all_btn">See All</a>
+              <a href="javascript:void(0)" data-toggle="modal" data-target="#allHackers" class="top_hacker_see_all_btn">See All</a>
             </div>
           </div>
         </div>
@@ -161,6 +165,61 @@
       </div>
     </div>
   </div>
+</div>
 
+<!-- top 100 hacker -->
+<div class="modal fade" id="allHackers" tabindex="-1" role="dialog" aria-labelledby="allHackersLabel" aria-hidden="true" align="center">
+  <div class="modal-dialog modal-lg2">
+    <div class="modal-content">
+      <div class="new_modal_section">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="new_modal_header">
+                <button type="button" class="btn-close new_modal_close_btn" data-dismiss="modal" aria-label="Close">
+                  <img alt="" src="{{asset('new-theme/images/icon_close.png')}}"></button>
+                <h2 class="new_modal_header_title">Top 100</h2>
+              </div>
+              <hr />
+            </div>
+            <div class="col-md-12 badges_container" style="height:600px;">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12 top_hackers">
+                    <div class="top_hackers_header mb-3">
+                      <!-- <h3>TOP 100</h3><hr /> -->
+                      <div class="row align-items-center">
+                        <div class="col-md-2 hacker_rank_info">POSITION</div>
+                        <div class="col-md-2 hacker_rank_info">NAME</div>
+                        <div class="col-md-2 hacker_rank_info"><img src="{{ asset('new-theme/images/badge1.png') }}" alt="badge"></div>
+                        <div class="col-md-2 hacker_rank_info"><img src="{{ asset('new-theme/images/badge2.png') }}" alt="badge"></div>
+                        <div class="col-md-2 hacker_rank_info"><img src="{{ asset('new-theme/images/badge3.png') }}" alt="badge"></div>
+                        <div class="col-md-2 hacker_rank_info">TOTAL</div>
+                      </div>
+                    </div>
+                    <?php
+                      $i = 1;
+                      foreach($topHackers as $key => $topHacker){
+                    ?>
+                    <div class="mb-0 mt-0 hacker_rank <?php if($topHacker->id==auth()->user()->id){ echo "hacker_rank_active"; } ?>">
+                      <div class="row align-items-center">
+                        <div class="col-md-1 hacker_rank_info">{{ $i }}</div>
+                        <div class="col-md-3 hacker_rank_info hacker_name">{{ $topHacker->name }}</div>
+                        <div class="col-md-2 hacker_rank_info hacker_first">{{ $topHacker->first_badges_count }}</div>
+                        <div class="col-md-2 hacker_rank_info hacker_second">{{ $topHacker->second_badges_count }}</div>
+                        <div class="col-md-2 hacker_rank_info hacker_third">{{ $topHacker->third_badges_count }}</div>
+                        <div class="col-md-2 hacker_rank_info">{{ $topHacker->earned_badges_count }}</div>
+                      </div>
+                    </div>
+                    <?php $i++; } ?>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 @endsection

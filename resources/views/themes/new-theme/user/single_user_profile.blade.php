@@ -28,7 +28,7 @@
     <?php
       // $badges = \App\Badge::all();
       $badgeId = isset($_GET['badgeId'])?$_GET['badgeId']:'';
-      if($badgeId != '') {
+      if($badgeId != '' && $badgeId > 0 && Auth::check()) {
         $earnedBadgePopup = \App\Badge::find($badgeId);
         $badgeName = $earnedBadgePopup->name;
         
@@ -138,9 +138,9 @@
               <div class="bio_info social_media_info">
                 <h2>Social
                   @if(isset($ownprofile) && $ownprofile)
-                  <!-- <a href="#" class="edit-social-icon" title="Edit Social profiles">
+                  <a href="javascript:void(0)" class="edit-social-icon" title="Edit Social profiles">
                     <i class="fa fa-xs fa-edit"></i>
-                  </a> -->
+                  </a>
                   @endif
                 </h2>
                 <a href="#">
@@ -1005,7 +1005,8 @@
                     $('<div class="ha_update_success"><span class="emsg">Congrats..Your Hackonton has been Updated!</span></div>').appendTo(".ha_success").css('color', 'green');
                     var delay = 1000; //Your delay in milliseconds
                     setTimeout(function () {
-                      location.reload(true);
+                      window.location.href = window.location.href.replace( /[\?#].*|$/, "" );
+                      // location.reload(true);
                     }, delay);
                   } else {
                     if (typeof resp.name != "undefined") {
@@ -1138,7 +1139,8 @@
             $('<span class="smsg">Congrats..Your Profile has been Updated!</span>').appendTo(".success-msg").css('color', 'green');
             var delay = 1000; //Your delay in milliseconds
             setTimeout(function () {
-              location.reload(true);
+              window.location.href = window.location.href.replace( /[\?#].*|$/, "" );
+              // location.reload(true);
             }, delay);
           } else {
             if (typeof resp.name != "undefined") {
@@ -1180,7 +1182,8 @@
             $('<span class="emsg">Congrats..Your Hackonton has been Added!</span>').appendTo(".ha_success").css('color', 'green');
             var delay = 1000; //Your delay in milliseconds
             setTimeout(function () {
-              location.reload(true);
+              window.location.href = window.location.href.replace( /[\?#].*|$/, "?badgeId="+resp.badge_id );
+              // location.reload(true);
             }, delay);
           } else {
             if (typeof resp.name != "undefined") {
@@ -1245,7 +1248,8 @@
             $('<span class="emsg">Congrats..Your Hackonton has been Updated!</span>').appendTo(".per_success").css('color', 'green');
             var delay = 1000; //Your delay in milliseconds
             setTimeout(function () {
-              location.reload(true);
+              window.location.href = window.location.href.replace( /[\?#].*|$/, "" );
+              // location.reload(true);
             }, delay);
           } else {
             if (typeof resp.pitch != "undefined") {

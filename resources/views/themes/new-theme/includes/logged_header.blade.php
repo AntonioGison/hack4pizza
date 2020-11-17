@@ -79,7 +79,7 @@
                   </label>
                 </div>
                 <a class="dropdown-item" href="{{ route('user.top.hackers') }}">Top 100</a>
-                <a class="dropdown-item" href="#">Add Hackathon</a>
+                <a class="dropdown-item add_hackathon" href="javascript:void(0)">Add Hackathon</a>
                 <a class="dropdown-item" href="#">Setting & Privacy</a>
                 <a class="dropdown-item" href="#">Edit Profile</a>
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Logout</a>

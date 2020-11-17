@@ -37,7 +37,23 @@ class UserController extends Controller
         // return view('user.dashboard.index');
     }
     public function top_hackers(){
-        return view('themes.new-theme.user.top_hackers');
+        // $earned_badges = EarnedBadge::whereHas('user_id',$id)->with('badge')->get();
+        $topHackers = User::whereHas('earned_badges', function($q){
+            $q->whereIn('badge_id',['1','2','3']);
+        })
+        ->withCount('earned_badges')
+        ->withCount('first_badges')
+        ->withCount('second_badges')
+        ->withCount('third_badges')
+        ->limit('100')
+        ->get()
+        ->sortByDesc(function($topHacker){
+            return $topHacker->earned_badges->count();
+        });
+        $authUserInfo = $topHackers->where('id',auth()->user()->id);
+        // $authUserInfoKey = $authUserInfo->keys()->first();
+        // dd($topHackers);
+        return view('themes.new-theme.user.top_hackers')->with('topHackers',$topHackers);
     }
     public function search_user(Request $request){
         $name = $request->q;
@@ -194,6 +210,7 @@ class UserController extends Controller
             $new_filename = "uploads/hackathon/".$filename;
             $experience->pic = $new_filename;
         }else{
+            $experience->pic = "new-theme/images/logo.svg";
             $image_uploaded = false;
         }
         if ($experience->save()) {
@@ -383,7 +400,7 @@ class UserController extends Controller
             $updated = EarnedBadge::where($where)->update([
                 'count'=>$new_count
             ]);
-            $res = 0;      
+            $res = $badge_id;      
         }else{
             EarnedBadge::create([
                 'user_id' => Auth::user()->id,
