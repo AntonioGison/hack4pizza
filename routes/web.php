@@ -35,6 +35,7 @@ Route::get('edit-hackonton', 'UserController@edit_hackathon')->name('edit-hackon
 Route::post('edit-hackonton', 'UserController@update_hackathon')->name('edit-hackonton');
 Route::post('update-hackonton', 'UserController@updateHackonton')->name('update-hackonton');
 Route::post('update-performance', 'UserController@updatePerformance')->name('update-performance');
+Route::post('update-social-links', 'UserController@updateSocialLinks')->name('update-social-links');
 //Route::get('get-pound', 'Theme\HomeController@GetPoundEuro')->name('get-pound');
 //Route::get('/hackonthon-delete/{id}', 'UserController@destroy')->name('hackonthon-delete');
 Route::get('hackonthon-delete/delete/{id}', 'UserController@destroy')->name('admin-hackonthon-delete-delete');

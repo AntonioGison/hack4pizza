@@ -902,7 +902,7 @@
       // Display edit social Modal
       $(".edit-social-icon").click(function(e){
         e.preventDefault();
-        $("#hackathon_share").modal();
+        $("#social_modal").modal();
       });
 
       // Display Badges Modal

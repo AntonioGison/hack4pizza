@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use App\RecentSearch;
 use App\EarnedBadge;
+use App\SocialLink;
 
 class UserController extends Controller
 {
@@ -412,4 +413,74 @@ class UserController extends Controller
         return $res;
     }
 
+    public function updateSocialLinks(Request $request)
+    {
+        $userId = $request->user_id;
+
+        foreach($request->all() as $key => $value) {
+            if(strpos($key, 'instagram') !== false){
+                $checkSocialLink = SocialLink::where('user_id',$userId)->where('name','instagram')->first();
+                if(!empty($checkSocialLink)) {
+                    $checkSocialLink->link = $value;
+                    $checkSocialLink->save();
+                } else {
+                    $link = new SocialLink;
+                    $link->name = 'instagram';
+                    $link->link = $value;
+                    $link->user_id = $userId;
+                    $link->save();
+                }
+            } else if(strpos($key, 'facebook') !== false) {
+                $checkSocialLink = SocialLink::where('user_id',$userId)->where('name','facebook')->first();
+                if(!empty($checkSocialLink)) {
+                    $checkSocialLink->link = $value;
+                    $checkSocialLink->save();
+                } else {
+                    $link = new SocialLink;
+                    $link->name = 'facebook';
+                    $link->link = $value;
+                    $link->user_id = $userId;
+                    $link->save();
+                }
+            } else if(strpos($key, 'dribble') !== false) {
+                $checkSocialLink = SocialLink::where('user_id',$userId)->where('name','dribble')->first();
+                if(!empty($checkSocialLink)) {
+                    $checkSocialLink->link = $value;
+                    $checkSocialLink->save();
+                } else {
+                    $link = new SocialLink;
+                    $link->name = 'dribble';
+                    $link->link = $value;
+                    $link->user_id = $userId;
+                    $link->save();
+                }
+            } else if(strpos($key, 'behance') !== false) {
+                $checkSocialLink = SocialLink::where('user_id',$userId)->where('name','behance')->first();
+                if(!empty($checkSocialLink)) {
+                    $checkSocialLink->link = $value;
+                    $checkSocialLink->save();
+                } else {
+                    $link = new SocialLink;
+                    $link->name = 'behance';
+                    $link->link = $value;
+                    $link->user_id = $userId;
+                    $link->save();
+                }
+            } else if(strpos($key, 'whatsapp') !== false) {
+                $checkSocialLink = SocialLink::where('user_id',$userId)->where('name','whatsapp')->first();
+                if(!empty($checkSocialLink)) {
+                    $checkSocialLink->link = $value;
+                    $checkSocialLink->save();
+                } else {
+                    $link = new SocialLink;
+                    $link->name = 'whatsapp';
+                    $link->link = $value;
+                    $link->user_id = $userId;
+                    $link->save();
+                }
+            }
+        }
+
+        return redirect()->route('user.profile',auth()->user()->slug);
+    }
 }

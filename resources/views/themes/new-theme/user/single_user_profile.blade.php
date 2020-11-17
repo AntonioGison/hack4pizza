@@ -138,24 +138,24 @@
               <div class="bio_info social_media_info">
                 <h2>Social
                   @if(isset($ownprofile) && $ownprofile)
-                  <a href="javascript:void(0)" class="edit-social-icon" title="Edit Social profiles">
-                    <i class="fa fa-xs fa-edit"></i>
+                  <a href="javascript:void(0)" class="edit-link edit-social-icon" title="Edit Social profiles">
+                    <i class="fa fa-lg fa-edit"></i>
                   </a>
                   @endif
                 </h2>
-                <a href="#">
+                <a href="javascript:void(0)" onclick="socialRedirect('instagram')" title="instagram">
                   <img src="{{ asset('new-theme/images/link_instagram.svg') }}" alt="instagram" />
                 </a>
-                <a href="#">
+                <a href="javascript:void(0)" onclick="socialRedirect('facebook')" title="facebook">
                   <img src="{{ asset('new-theme/images/link_facebook.svg') }}" alt="facebook" />
                 </a>
-                <a href="#">
-                  <img src="{{ asset('new-theme/images/link_dribbble.svg') }}" alt="dribbble" />
+                <a href="javascript:void(0)" onclick="socialRedirect('dribble')" title="dribble">
+                  <img src="{{ asset('new-theme/images/link_dribbble.svg') }}" alt="dribble" />
                 </a>
-                <a href="#">
+                <a href="javascript:void(0)" onclick="socialRedirect('behance')" title="behance">
                   <img src="{{ asset('new-theme/images/link_behance.svg') }}" alt="behance" />
                 </a>
-                <a href="#">
+                <a href="javascript:void(0)" onclick="socialRedirect('whatsapp')" title="whatsapp">
                   <img src="{{ asset('new-theme/images/link_whatsapp.svg') }}" alt="whatsapp" />
                 </a>
               </div>
@@ -531,6 +531,55 @@
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="social_modal" tabindex="-1" role="dialog" aria-labelledby="social_modelLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="new_modal_section">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="new_modal_header">
+                  <button type="button" class="btn-close new_modal_close_btn" data-dismiss="modal" aria-label="Close">
+                  <img alt="" src="{{asset('new-theme/images/icon_close.png')}}"></button>
+                  <h2 class="new_modal_header_title">Edit Social Links</h2>
+                </div>
+                <hr />
+              </div>
+            </div>
+            <form class="social_link_save profile_save" id="update_social_link_form" method="post" enctype="multipart/form-data" action="{{route('update-social-links')}}">
+              @csrf
+              <input type="hidden" name="user_id" value="{{$user->id}}">
+              <div class="form-group msg_name">
+                <label>Instagram</label>
+                <input type="text" name="instagram" class="form-control" value="<?php echo $user->getInstagramLink();?>" id="edit_instagram">
+              </div>
+              <div class="form-group msg_name">
+                <label>Facebook</label>
+                <input type="text" name="facebook" class="form-control" value="<?php echo $user->getFacebookLink();?>" id="edit_facebook">
+              </div>
+              <div class="form-group msg_name">
+                <label>Dribble</label>
+                <input type="text" name="dribble" class="form-control" value="<?php echo $user->getDribbleLink();?>" id="edit_dribble">
+              </div>
+              <div class="form-group msg_name">
+                <label>Behance</label>
+                <input type="text" name="behance" class="form-control" value="<?php echo $user->getBehanceLink();?>" id="edit_behance">
+              </div>
+              <div class="form-group msg_name">
+                <label>Whatsapp</label>
+                <input type="text" name="whatsapp" class="form-control" value="<?php echo $user->getWhatsappLink();?>" id="edit_whatsapp">
+              </div>
+              <div class="form-group text-right ">
+                <button type="submit" id="social_link_submit" class="btn form_submit_btn">SAVE SOCIAL LINKS</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="modal fade" id="hackathon_add" tabindex="-1" role="dialog" aria-labelledby="hackathon_addLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
@@ -817,6 +866,20 @@
   <script src="{{ asset('theme/hack4pizza/js/bootstrap-datetimepicker.min.js')}}"></script>
   <script src="{{asset('new-theme/plugins/sweetalert/js/sweetalert.min.js')}}"></script>
   <script>
+    /** Redirect to social link **/
+    function socialRedirect (name) {
+      if(name == 'instagram') {
+        window.open('{{$user->getInstagramLink()}}', '_blank');
+      } else if(name == 'facebook') {
+        window.open('{{$user->getFacebookLink()}}', '_blank');
+      } else if(name == 'dribble') {
+        window.open('{{$user->getDribbleLink()}}', '_blank');
+      } else if(name == 'behance') {
+        window.open('{{$user->getBehanceLink()}}', '_blank');
+      } else if(name == 'whatsapp') {
+        window.open('{{$user->getWhatsappLink()}}', '_blank');
+      }  
+    }
     /**  Show Radar Chart  **/
     function del(id){
       swal({
@@ -941,7 +1004,7 @@
       // Display edit social Modal
       $(".edit-social-icon").click(function(e){
         e.preventDefault();
-        $("#hackathon_share").modal();
+        $("#social_modal").modal();
       });
 
       // Display Badges Modal

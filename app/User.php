@@ -41,6 +41,22 @@ class User extends Authenticatable
         return $searches;
         // return $this->hasMany('App\RecentSearch','user_id');
     }
+
+    public function getInstagramLink() {
+        return SocialLink::where('name','instagram')->where('user_id',$this->id)->value('link');
+    }
+    public function getFacebookLink() {
+        return SocialLink::where('name','facebook')->where('user_id',$this->id)->value('link');
+    }
+    public function getDribbleLink() {
+        return SocialLink::where('name','dribble')->where('user_id',$this->id)->value('link');
+    }
+    public function getBehanceLink() {
+        return SocialLink::where('name','behance')->where('user_id',$this->id)->value('link');
+    }
+    public function getWhatsappLink() {
+        return SocialLink::where('name','whatsapp')->where('user_id',$this->id)->value('link');
+    }
     
     /**
      * The attributes that should be hidden for arrays.
