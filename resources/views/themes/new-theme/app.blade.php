@@ -26,10 +26,12 @@
 @php
   $isLoggedin = 0;
   $loggedUserTheme = 0;
+  $loggedUserSlug = '';
   if(Auth::check()) {
     $isLoggedin = 1;
     $loggedUser = auth()->user();
     $loggedUserTheme = $loggedUser->theme;
+    $loggedUserSlug = $loggedUser->slug;
   }
 @endphp
 <body>

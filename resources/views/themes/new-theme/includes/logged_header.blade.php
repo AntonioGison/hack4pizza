@@ -1,5 +1,6 @@
 @php
   $user = Auth::user();
+  $badges = App\Badge::whereIn('id',[1,2,3,12])->get();
 @endphp
 <div id="header" class="top-bar-admin">
   <div class="container">
@@ -167,27 +168,142 @@
   </div>
 </div>
 
-<script>
-  var searchElement = document.getElementById("searchUser");
-  searchElement.addEventListener("keyup", function(event) {
-    var token = $("input[name=_token]").val();
-    var name = searchElement.value;
-    
-    //send to detail search page on hitting enter key
-    if (event.keyCode === 13) {
-      store_recent_search('{{route('user.search.index')}}?q='+name);
-    } else {
-      $.ajax({
-        type: 'POST',
-        url: "{{route("user.search_users_ajax")}}",
-        data: {_token: token, name: name},
-        dataType: 'JSON',
-        success: function (resp) {
-          if(resp.html) {
-            $('.search_area_html').html(resp.html)
-          }
-        },
-      });
-    }
-  });
-</script>
+<!-- profile edit modal -->
+<div class="modal fade" id="profile_modal" tabindex="-1" role="dialog" aria-labelledby="performance_modelLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="new_modal_section">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="new_modal_header">
+                  <button type="button" class="btn-close new_modal_close_btn" data-dismiss="modal" aria-label="Close">
+                  <img alt="" src="{{asset('new-theme/images/icon_close.png')}}"></button>
+                  <h2 class="new_modal_header_title">Edit Profile</h2>
+                </div>
+                <hr />
+              </div>
+            </div>
+            <form class="profile_save" id="update_user_profile_form" method="post" enctype="multipart/form-data">
+              <div class="form-group msg_name">
+                @csrf
+                <label>Name*</label>
+                <input type="hidden" id="id" value="{{$user->id}}">
+                <input type="text" name="name" class="form-control" value="<?php echo $user->name;?>" id="name">
+              </div>
+              <div class="form-group">
+                <label>Bio</label>
+                <textarea name="bio" id="bio" class="form-control">{{$user->bio}}</textarea>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label>Upload Headshot</label>
+                  <div class="custom-file">
+                    <input type="file" name="pic" id="pic" class="custom-file-input">
+                    <label class="custom-file-label" for="hackathon_img"></label>
+                  </div>
+                </div>
+                <div class="form-group col-sm-3 pic_msg">
+                  <?php
+                    if($user->profile_picture!=null){
+                      $user_headshot = asset($user->profile_picture);
+                    }else{
+                      $user_headshot = asset('uploads/user-pic/placeholder.jpg');
+                    }
+                  ?>
+                  <img src="{{ $user_headshot }}" class="edit_headshot img img-thumbnail" style="width:150px;" alt="">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="userBox"></div>
+              </div>
+              <div class="form-group text-right ">
+                <button type="button" id="profile_submit"  class="btn form_submit_btn">SAVE PROFILE</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- add hackathon modal -->
+  <div class="modal fade" id="hackathon_add" tabindex="-1" role="dialog" aria-labelledby="hackathon_addLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="new_modal_section">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="new_modal_header">
+                  <button type="button" class="btn-close new_modal_close_btn" data-dismiss="modal" aria-label="Close">
+                    <img alt="" src="{{asset('new-theme/images/icon_close.png')}}"></button>
+                  <h2 class="new_modal_header_title">Add Hackathon</h2>
+                </div>
+                <hr />
+              </div>
+            </div>
+          </div>
+          <form id="hackathon_add_form" class="form_class add_hackathon_form" enctype="multipart/form-data">
+            @csrf
+            <input type="hidden" id="ha_pic" >
+            <div class="form-group">
+              <input type="text" placeholder="Hackathon's name*" class="form-control hackathon_input" name="name" id="ha_name">
+            </div>
+            <div class="form-group ha_organized">
+              <input type="text" class="form-control hackathon_input" placeholder="Hosted/Organized by*" name="organized_by" id="ha_organized">
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-4 ha_from">
+                <input type="text" placeholder="From*" class="form-control datepicker datepicker_from hackathon_input " name="from" id="ha_from">
+              </div>
+              <div class="form-group col-md-4">
+                <input type="text" placeholder="To*" class="form-control datepicker datepicker_to hackathon_input" name="to" id="ha_to">
+              </div>
+              <div class="form-group col-md-4 place_msg">
+                <select class="form-control hackathon_input" name="result" id="ha_result">
+                  <option value="" selected>Select Result*</option>
+                  @foreach($badges as $badge)
+                    <?php
+                      if($badge->id==12){
+                        $badge_name = "Didn't win";
+                      }else{
+                        $badge_name = $badge->name;
+                      }
+                    ?>
+                    <option value="{{$badge->id}}">{{ $badge_name }}</option>
+                  @endforeach
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="ha_description" class="hackathon_input_label">Description (HTML editor)*</label>
+              <textarea class="form-control hackathon_input_textarea" rows="5" name="description" id="ha_description"></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label class="hackathon_input_label">Upload Hackathon's logo/IMG</label>
+                <div class="custom-file">
+                  <input type="file" name="file" class="custom-file-input new_hackathon_img hackathon_input " id="new_hackathon_img">
+                  <label class="custom-file-label add_hackathon_file_label" for="hackathon_img"></label>
+                </div>
+              </div>
+              
+              <div class="form-group col-sm-2 ha_pic_msg display_new_hackathon_img">
+                <label for="new_hackathon_img">
+                <img style="width:100px;" src="{{ asset('new-theme/images/logo.svg') }}">
+                </label>
+              </div>
+            </div>
+            <div class="form-group text-right ha_success">
+            </div>
+            <div class="form-group text-right">
+              <button type="button" id="ha_submit" class="btn add_hackathon_submit_btn">SAVE</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+

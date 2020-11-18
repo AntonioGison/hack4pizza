@@ -122,9 +122,24 @@
             <div class="col-12 only-mobile"><hr /></div>
             <div class="col-12 col-md-4 main_info_links">
               <div class="share_block">
-                <a href="#"><i class="fab fa-facebook-f" style="color:#1778F2"></i> &nbsp;Share</a>
-                <a href="#"><i class="fab fa-linkedin-in" style="color:#0E76A8"></i>&nbsp;Share</a>
-                <a href="#" class="share_hackathon"><img src="{{ asset('new-theme/images/share_icon.svg') }}" alt="share">&nbsp;Share</a>
+                <a href="javascript:void(0)" 
+                    onclick="
+                    window.open(
+                    'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent('<?php echo url()->current(); ?>'), 
+                    'facebook-share-dialog', 
+                    'width=626,height=436'); return false;"
+                  ><i class="fab fa-facebook-f" style="color:#1778F2"></i> &nbsp;Share
+                </a>
+
+                <a href="javascript:void(0)" 
+                  onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=<?php echo url()->current(); ?>&title=Hack4Pizza&summary=New Badge Earned&source=LinkedIn')"
+                  ><i class="fab fa-linkedin-in" style="color:#0E76A8"></i>&nbsp;Share
+                </a>
+
+                <span id="profileLink" style="display:none;">{{ url()->current() }}</span>
+                <a href="javascript:void(0)" onclick="copyToClipboard('#profileLink')" ><i class="fa fa-copy" style="color:#0E76A8"></i>&nbsp;Copy</a>
+
+                <!-- <a href="#" class="share_hackathon"><img src="{{ asset('new-theme/images/share_icon.svg') }}" alt="share">&nbsp;Share</a> -->
               </div>
             </div>
             <div class="col-12 only-mobile"><hr /></div>
@@ -474,63 +489,7 @@
 </div>
 @endsection
 @section('models')
-  <div class="modal fade" id="profile_modal" tabindex="-1" role="dialog" aria-labelledby="performance_modelLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content">
-        <div class="new_modal_section">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="new_modal_header">
-                  <button type="button" class="btn-close new_modal_close_btn" data-dismiss="modal" aria-label="Close">
-                  <img alt="" src="{{asset('new-theme/images/icon_close.png')}}"></button>
-                  <h2 class="new_modal_header_title">Edit Profile</h2>
-                </div>
-                <hr />
-              </div>
-            </div>
-            <form class="profile_save" id="update_user_profile_form" method="post" enctype="multipart/form-data">
-              <div class="form-group msg_name">
-                @csrf
-                <label>Name*</label>
-                <input type="hidden" id="id" value="{{$user->id}}">
-                <input type="text" name="name" class="form-control" value="<?php echo $user->name;?>" id="name">
-              </div>
-              <div class="form-group">
-                <label>Bio</label>
-                <textarea name="bio" id="bio" class="form-control">{{$user->bio}}</textarea>
-              </div>
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label>Upload Headshot</label>
-                  <div class="custom-file">
-                    <input type="file" name="pic" id="pic" class="custom-file-input">
-                    <label class="custom-file-label" for="hackathon_img"></label>
-                  </div>
-                </div>
-                <div class="form-group col-sm-3 pic_msg">
-                  <?php
-                    if($user->profile_picture!=null){
-                      $user_headshot = asset($user->profile_picture);
-                    }else{
-                      $user_headshot = asset('uploads/user-pic/placeholder.jpg');
-                    }
-                  ?>
-                  <img src="{{ $user_headshot }}" class="edit_headshot img img-thumbnail" style="width:150px;" alt="">
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="userBox"></div>
-              </div>
-              <div class="form-group text-right ">
-                <button type="button" id="profile_submit"  class="btn form_submit_btn">SAVE PROFILE</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  
 
   <div class="modal fade" id="social_modal" tabindex="-1" role="dialog" aria-labelledby="social_modelLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -580,83 +539,7 @@
     </div>
   </div>
 
-  <div class="modal fade" id="hackathon_add" tabindex="-1" role="dialog" aria-labelledby="hackathon_addLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content">
-        <div class="new_modal_section">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="new_modal_header">
-                  <button type="button" class="btn-close new_modal_close_btn" data-dismiss="modal" aria-label="Close">
-                    <img alt="" src="{{asset('new-theme/images/icon_close.png')}}"></button>
-                  <h2 class="new_modal_header_title">Add Hackathon</h2>
-                </div>
-                <hr />
-              </div>
-            </div>
-          </div>
-          <form id="hackathon_add_form" class="form_class add_hackathon_form" enctype="multipart/form-data">
-            @csrf
-            <input type="hidden" id="ha_pic" >
-            <div class="form-group">
-              <input type="text" placeholder="Hackathon's name*" class="form-control hackathon_input" name="name" id="ha_name">
-            </div>
-            <div class="form-group ha_organized">
-              <input type="text" class="form-control hackathon_input" placeholder="Hosted/Organized by*" name="organized_by" id="ha_organized">
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-4 ha_from">
-                <input type="text" placeholder="From*" class="form-control datepicker datepicker_from hackathon_input " name="from" id="ha_from">
-              </div>
-              <div class="form-group col-md-4">
-                <input type="text" placeholder="To*" class="form-control datepicker datepicker_to hackathon_input" name="to" id="ha_to">
-              </div>
-              <div class="form-group col-md-4 place_msg">
-                <select class="form-control hackathon_input" name="result" id="ha_result">
-                  <option value="" selected>Select Result*</option>
-                  @foreach($badges as $badge)
-                    <?php
-                      if($badge->id==12){
-                        $badge_name = "Didn't win";
-                      }else{
-                        $badge_name = $badge->name;
-                      }
-                    ?>
-                    <option value="{{$badge->id}}">{{ $badge_name }}</option>
-                  @endforeach
-                </select>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="ha_description" class="hackathon_input_label">Description (HTML editor)*</label>
-              <textarea class="form-control hackathon_input_textarea" rows="5" name="description" id="ha_description"></textarea>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label class="hackathon_input_label">Upload Hackathon's logo/IMG</label>
-                <div class="custom-file">
-                  <input type="file" name="file" class="custom-file-input new_hackathon_img hackathon_input " id="new_hackathon_img">
-                  <label class="custom-file-label add_hackathon_file_label" for="hackathon_img"></label>
-                </div>
-              </div>
-              
-              <div class="form-group col-sm-2 ha_pic_msg display_new_hackathon_img">
-                <label for="new_hackathon_img">
-                <img style="width:100px;" src="{{ asset('new-theme/images/logo.svg') }}">
-                </label>
-              </div>
-            </div>
-            <div class="form-group text-right ha_success">
-            </div>
-            <div class="form-group text-right">
-              <button type="button" id="ha_submit" class="btn add_hackathon_submit_btn">SAVE</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+  
   
   <div class="modal fade" id="hackathon_edit" tabindex="-1" role="dialog" aria-labelledby="hackathon_addLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -861,10 +744,6 @@
   </div>
 @endsection
 @section("additional_js")
-  <script src="{{ asset('theme/hack4pizza/js/Chart.min.js')}}"></script>
-  <script src="{{ asset('theme/hack4pizza/js/moment.min.js')}}"></script>
-  <script src="{{ asset('theme/hack4pizza/js/bootstrap-datetimepicker.min.js')}}"></script>
-  <script src="{{asset('new-theme/plugins/sweetalert/js/sweetalert.min.js')}}"></script>
   <script>
     /** Redirect to social link **/
     function socialRedirect (name) {
@@ -995,11 +874,7 @@
         $(".range"+slider).html(slide_value);
       });
 
-      // Display edit profile Modal
-      $(".edit-profile-icon").click(function(e){
-        e.preventDefault();
-        $("#profile_modal").modal();
-      });
+      
 
       // Display edit social Modal
       $(".edit-social-icon").click(function(e){
@@ -1013,14 +888,7 @@
         $("#all_badges").modal();
       });
 
-      // Display Add Hackathon Modal
-      $(".add_hackathon").click(function(e){
-        e.preventDefault();
-        $("#hackathon_add").modal();
-        $(".new_hackathon_img").change(function(){
-            previewFile('new_hackathon_img');
-        });
-      });
+      
 
       // Display Edit Performance Modal
       $("#edit-performance").click(function(e){
@@ -1122,22 +990,6 @@
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
       });
 
-      /** datetimepicker **/
-      $('.datepicker_from').datetimepicker({
-        format: 'DD-MM-YYYY',
-        widgetPositioning: {
-          horizontal: "auto",
-          vertical: "bottom"
-        }
-      });
-      $('.datepicker_to').datetimepicker({
-        format: 'DD-MM-YYYY',
-        widgetPositioning: {
-          horizontal: "auto",
-          vertical: "bottom"
-        }
-      });
-
     });
     $(".year_show").click(function () {
       $(this).parent().find(".hackathon_winBadges").toggle();
@@ -1174,107 +1026,8 @@
     //     }
     //   })
     // });
-    $("#profile_submit").click(function (e) {
-      $("#signup_model").find('.umsg').remove();
-      $("#signup_model").find('.emsg').remove();
-      $("#signup_model").find('.pmsg').remove();
-      $("#signup_model").find('.smsg').remove();
-      // var token = $("input[name=_token]").val();
-      // var name = $("#name").val();
-      // var pic = $("#pic").val();    
-      // var bio = $("#bio").val();
-      var form2 = $('form#update_user_profile_form')[0];
-      e.preventDefault();
-      
-      $.ajax({
-        type: 'POST',
-        url: "{{route('user-update')}}",
-        method:"POST",
-        data:new FormData(form2),
-        dataType:'JSON',
-        contentType: false,
-        cache: false,
-        processData: false,
-        success:function(resp)
-        {
-          $.LoadingOverlay("hide");
-          if (resp.status == 0) {
-            $('<span class="smsg">Congrats..Your Profile has been Updated!</span>').appendTo(".success-msg").css('color', 'green');
-            var delay = 1000; //Your delay in milliseconds
-            setTimeout(function () {
-              window.location.href = window.location.href.replace( /[\?#].*|$/, "" );
-              // location.reload(true);
-            }, delay);
-          } else {
-            if (typeof resp.name != "undefined") {
-              $('<span class="umsg">' + resp.name + '</span>').appendTo(".userBox").css('color', 'red');
-            }
-            if (typeof resp.email != "undefined") {
-              $('<span class="emsg">' + resp.email + '</span>').appendTo(".emailBox").css('color', 'red');
-            }
-            if (typeof resp.password != "undefined") {
-              $('<span class="pmsg">' + resp.password + '</span>').appendTo(".passwordBox").css('color', 'red');
-            }
-
-          }
-          
-        }
-      });
-    });
-    $("#ha_submit").click(function () {
-      $("#hackathon_add").find('.emsg').remove();
-      var token = $("input[name=_token]").val();
-      var name = $("#ha_name").val();
-      var organized_by = $("#ha_organized").val();
-      var from = $("#ha_from").val();
-      var to = $("#ha_to").val();
-      var result = $("#ha_result").val();
-      var description = $("#ha_description").val();
-      var pic = $("#ha_pic").val();
-      var form3 = $('form#hackathon_add_form')[0];
-      $.ajax({
-        type: 'POST',
-        url: "{{route('add-hackonton')}}",
-        data: new FormData(form3),
-        cache : false,
-        processData: false,
-        contentType: false,
-        success: function (resp) {
-          $.LoadingOverlay("hide");
-          if (resp.status == 0) {
-            $('<span class="emsg">Congrats..Your Hackonton has been Added!</span>').appendTo(".ha_success").css('color', 'green');
-            var delay = 1000; //Your delay in milliseconds
-            setTimeout(function () {
-              window.location.href = window.location.href.replace( /[\?#].*|$/, "?badgeId="+resp.badge_id );
-              // location.reload(true);
-            }, delay);
-          } else {
-            if (typeof resp.name != "undefined") {
-              $("#ha_name").parent().append('<span class="emsg">' + resp.name + '</span>').css('color', 'red');
-            }
-            if (typeof resp.description != "undefined") {
-              $("#ha_description").parent().append('<span class="emsg">' + resp.description + '</span>').css('color', 'red');
-            }
-            if (typeof resp.result != "undefined") {
-              $("#ha_result").parent().append('<span class="emsg">' + resp.result + '</span>').css('color', 'red');
-            }
-            if (typeof resp.from != "undefined") {
-              $("#ha_from").parent().append('<span class="emsg">' + resp.from + '</span>').css('color', 'red');
-            }
-            if (typeof resp.to != "undefined") {
-              $("#ha_to").parent().append('<span class="emsg">' + resp.to + '</span>').css('color', 'red');
-            }
-            if (typeof resp.organized_by != "undefined") {
-              $("#ha_organized").parent().append('<span class="emsg">' + resp.organized_by + '</span>').css('color', 'red');
-            }
-
-
-          }
-
-        },
-
-      });
-    });
+    
+    
     //see all hackathon function
     function seeAllHackathon(key) {
       var moreText = $(".hackathon_data_"+key);
@@ -1341,22 +1094,7 @@
 
       });
     });
-    function previewFile(inputclass) {
-      var preview = document.querySelector(".display_"+inputclass+" img");
-      var file    = document.querySelector('.'+inputclass).files[0];
-      /*var files   = document.querySelector('.'+inputclass).files;*/
-      var reader  = new FileReader();
-
-      reader.onloadend = function () {
-          preview.src = reader.result;
-      }
-
-      if (file) {
-          reader.readAsDataURL(file);
-      } else {
-          preview.src = "";
-      }
-    }
+    
     function toggleHackathon(id) {
       var item = $('#hackathon_detail_'+id);
       item.slideToggle();
