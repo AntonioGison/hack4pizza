@@ -5,12 +5,12 @@
 <div id="header" class="top-bar-admin">
   <div class="container">
     <div class="row align-items-center">
-      <div class="col-5 logo only-desktop">
+      <div class="col-5 logo only-desktop hide-in-tab">
         <a href="{{ url('/') }}">
           <img alt="Hack4 Pizza" src="{{asset('new-theme/images/logo.svg') }}" />
         </a>
       </div>
-      <div class="col-6 offset-1 only-desktop login_wrapper">
+      <div class="col-6 offset-1 only-desktop hide-in-tab login_wrapper">
         <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
           {{ csrf_field() }}
         </form>
@@ -89,12 +89,12 @@
           </div>
         </div>
       </div>
-      <div class="col-3 logo only-mobile">
+      <div class="col-3 logo only-mobile show-in-tab">
         <a href="{{ url('/') }}">
           <img alt="Hack4 Pizza" src="{{asset('new-theme/images/logo.svg') }}" />
         </a>
       </div>
-      <div class="col-9 logged_menu_right only-mobile">
+      <div class="col-9 logged_menu_right only-mobile show-in-tab">
         <?php
           if(Auth::user()->profile_picture==''){
             $user_profile_picture = Storage::url("uploads/user-pic/placeholder.jpg");
@@ -110,7 +110,7 @@
           $slug = Auth::user()->slug;
         ?>
         <a href="#"><img src="{{ asset('new-theme/images/notification.svg') }}" class="img img-responsive" alt="menu" /></a>
-        <a href="{{ route('user.dashboard') }}"><img src="<?php echo $user_profile_picture; ?>" style="height:40px;" class="img img-responsive" alt="headshot" /></a>
+        <a href="{{ route('user.profile',$loggedUserSlug) }}"><img src="<?php echo $user_profile_picture; ?>" style="height:40px;" class="img img-responsive" alt="headshot" /></a>
         <div class="dropdown my-dropdown">
           <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img src="{{ asset('new-theme/images/logged_menu.svg') }}" style="height:25px;" class="img img-responsive" alt="menu" />
@@ -140,7 +140,7 @@
 </div>
 
 <div class="modal fade" id="select_theme" tabindex="-1" role="dialog" aria-labelledby="select_themeLabel" aria-hidden="true" align="center">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="new_modal_section">
         <div class="container">
