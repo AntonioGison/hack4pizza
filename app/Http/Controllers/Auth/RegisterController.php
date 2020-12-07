@@ -179,7 +179,7 @@ class RegisterController extends Controller
 
     public function assignBadge()
     {
-        if(date('Y') < 2021) {
+        if(date('Y') < 2022) {
             $badge = new EarnedBadge;
             $badge->user_id = auth()->user()->id;
             $badge->badge_id = '22';

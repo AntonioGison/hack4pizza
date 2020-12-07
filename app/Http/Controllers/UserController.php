@@ -388,8 +388,9 @@ class UserController extends Controller
         }
     }
     public function update_badge_info($badge_id){
+        $userId = Auth::user()->id;
         $where = [
-            'user_id' => Auth::user()->id,
+            'user_id' => $userId,
             'badge_id' => $badge_id,
         ];
         $objexist = EarnedBadge::where($where);
@@ -401,6 +402,78 @@ class UserController extends Controller
             $updated = EarnedBadge::where($where)->update([
                 'count'=>$new_count
             ]);
+            
+            //custom badge logic
+            // When you reach 1,2,3rd place for 3 times then unlock one of them
+            if($badge_id == 1) {
+                $updatedBadgeCount = floor($new_count/3);
+                if($updatedBadgeCount == 0) {
+                    $newBadge->user_id = $userId;
+                    $newBadge->badge_id = 4;
+                    $newBadge->count = 1;
+                    $newBadge->save();
+                } else {
+                    EarnedBadge::where('user_id',$userId)->where('badge_id','4')->update([
+                        'count'=>$updatedBadgeCount
+                    ]);
+                    $this->checkAndUpdateMostWantedBadge($userId);
+                }
+            }
+            if($badge_id == 2) {
+                $updatedBadgeCount = floor($new_count/3);
+                if($updatedBadgeCount == 0) {
+                    $newBadge->user_id = $userId;
+                    $newBadge->badge_id = 5;
+                    $newBadge->count = 1;
+                    $newBadge->save();
+                } else {
+                    EarnedBadge::where('user_id',$userId)->where('badge_id','5')->update([
+                        'count'=>$updatedBadgeCount
+                    ]);
+                    $this->checkAndUpdateMostWantedBadge($userId);
+                }
+            }
+            if($badge_id == 3) {
+                $updatedBadgeCount = floor($new_count/3);
+                if($updatedBadgeCount == 0) {
+                    $newBadge->user_id = $userId;
+                    $newBadge->badge_id = 6;
+                    $newBadge->count = 1;
+                    $newBadge->save();
+                } else {
+                    EarnedBadge::where('user_id',$userId)->where('badge_id','6')->update([
+                        'count'=>$updatedBadgeCount
+                    ]);
+                    $this->checkAndUpdateMostWantedBadge($userId);
+                }
+            }
+            if($badge_id == 12) {
+                //When you reach x10 hackathons and you don’t win
+                $updatedBadgeCount10 = floor($new_count/10);
+                if($updatedBadgeCount == 0) {
+                    $newBadge->user_id = $userId;
+                    $newBadge->badge_id = 14;
+                    $newBadge->count = 1;
+                    $newBadge->save();
+                } else {
+                    EarnedBadge::where('user_id',$userId)->where('badge_id','14')->update([
+                        'count'=>$updatedBadgeCount10
+                    ]);
+                }
+                //When you reach x50 hackathons and you don’t win
+                $updatedBadgeCount50 = floor($new_count/50);
+                if($updatedBadgeCount == 0) {
+                    $newBadge->user_id = $userId;
+                    $newBadge->badge_id = 13;
+                    $newBadge->count = 1;
+                    $newBadge->save();
+                } else {
+                    EarnedBadge::where('user_id',$userId)->where('badge_id','13')->update([
+                        'count'=>$updatedBadgeCount50
+                    ]);
+                }
+            }
+
             $res = $badge_id;      
         }else{
             EarnedBadge::create([
@@ -411,6 +484,30 @@ class UserController extends Controller
             $res = $badge_id;
         }
         return $res;
+    }
+
+    //When you always win 1/2/3th place in all your hackathons, unlock after adding x10 hackathons and always win
+    public function checkAndUpdateMostWantedBadge($userId)
+    {
+        $experiences = Experience::where('user_id',$userId)
+                                ->limit(10)
+                                ->get();
+        foreach($experiences as $experience) {
+            if($experience->badge_id > 3) {
+                return true;
+            }
+        }
+        $badge11 = EarnedBadge::where('user_id',$userId)->where('badge_id','11')->get();
+        if(empty($badge11)) {
+            $newBadge11->user_id = $userId;
+            $newBadge11->badge_id = 11;
+            $newBadge11->count = 1;
+            $newBadge11->save();
+        } else {
+            $badge11->count = $badge11->count + 1;
+            $badge11->save();
+        }
+        return true;
     }
 
     public function updateSocialLinks(Request $request)

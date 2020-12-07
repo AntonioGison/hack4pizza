@@ -215,8 +215,6 @@ class HomeController extends Controller
             'g-recaptcha-response.required' => 'Check the ReCaptcha',
         ]);
 
-//dd("working");
-
         $settings = Setting::pluck('value','name')->toArray();
         if(isset($settings['enquiry_email'])) {
             $enquiry_email = $settings['enquiry_email'];
