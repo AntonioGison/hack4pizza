@@ -222,7 +222,7 @@
 
                 if($i<9){
                   ?>
-                  <div class="col-4 col-md-3 p-0 badge_section">
+                  <div class="col-4 col-md-3 p-0 badge_section" @if($badge->count<1) style="opacity:0.5" @endif>
                     <div class="badge_box">
                       <div class="badge_name_sec">
                         <div class="badge_name">{{ $badge->name }}</div>
@@ -693,7 +693,7 @@
                     <?php
                     foreach($all_user_badges as $badge){
                     ?>
-                    <div class="col-4 col-md-2 p-0 badge_section">
+                    <div class="col-4 col-md-2 p-0 badge_section"  @if($badge->count<1) style="opacity:0.5" @endif>
                       <div class="badge_box">
                         <div class="badge_name_sec">
                           <div class="badge_name">{{ $badge->name }}</div>

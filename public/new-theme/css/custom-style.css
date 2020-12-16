@@ -260,7 +260,8 @@ input:checked + .slider:before {
   color:var(--light-color);
 }
 .basic_info_block p{
-  color:#ddd;
+  /* color:#ddd; */
+  color:var(--light-color);
   line-height:1;
 }
 .bio_info{
@@ -298,7 +299,9 @@ input:checked + .slider:before {
   outline:none;
   border-radius:4px;
   margin-top:10px; 
-  background-color:#3C3C43;
+  /* background-color:#3C3C43; */
+  background-color: white;
+  opacity: 0.5;
 }
 .search_user:focus,.search_user:active{
   box-shadow:none;
@@ -717,7 +720,8 @@ body{
 .search_area_content{
   display: none;
   position: absolute;
-  background-color: var(--light-color);
+  /* background-color: var(--light-color); */
+  background-color: #fff;
   min-width: 700px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -773,7 +777,7 @@ body{
   height: 0;
   margin-top: -15px;
   border-left: 15px solid transparent;
-  border-bottom: 15px solid var(--light-color);
+  border-bottom: 15px solid #fff;
 }
 /* Links inside the dropdown */
 .dropdown-content a{
@@ -900,16 +904,19 @@ a.search_profile {
 }
 .recent-search {
   padding: 5px 15px;
-  background-color: var(--dark-blue);
-  color: var(--light-color);
+  background-color: #3B3677;
+  color: #fff;
   border-radius: 3px;
   text-decoration: none;
 }
 a.recent-search:hover, a.recent-search:active {
-  background-color: var(--light-color);
-  color: var(--dark-blue);
-  border: 1px solid var(--dark-blue);
+  background-color: #ffffff;
+  color: #3B3677;
+  border: 1px solid #3B3677;
   text-decoration-line: none;
+}
+input#searchUser:focus {
+  color: #000;
 }
 /* IMAGES OVERLAY */
 .img_hvr_container {
@@ -1152,4 +1159,7 @@ a.recent-search:hover, a.recent-search:active {
   .main_info_cover .figure-img {
     height: 85px;
   }
+}
+form label {
+  color:var(--light-color);
 }
