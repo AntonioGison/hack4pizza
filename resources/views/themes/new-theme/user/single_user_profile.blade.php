@@ -129,14 +129,14 @@
                       'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent('<?php echo url()->current(); ?>'), 
                       'facebook-share-dialog', 
                       'width=626,height=436'); return false;"
-                    ><i class="fab fa-facebook-f" style="color:#1778F2"></i> &nbsp;Share
+                    ><img src="{{ asset('new-theme/images/fb-share.svg') }}" /> &nbsp;Share
                   </a>
                 </div>
 
                 <div class="d-inline-block">
                   <a href="javascript:void(0)" 
                     onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=<?php echo url()->current(); ?>&title=Hack4Pizza&summary=New Badge Earned&source=LinkedIn')"
-                    ><i class="fab fa-linkedin-in" style="color:#0E76A8"></i>&nbsp;Share
+                    ><img src="{{ asset('new-theme/images/linkedin-share.svg') }}" /> &nbsp;Share
                   </a>
                 </div>
 
@@ -144,7 +144,7 @@
                   <span id="profileLink" style="display:none;">{{ url()->current() }}</span>
                   <a href="javascript:void(0)" 
                     onclick="copyToClipboard('#profileLink')" >
-                    <i class="fa fa-copy" style="color:#0E76A8"></i>&nbsp;Copy
+                    <img src="{{ asset('new-theme/images/copy-link.svg') }}" /> Copy
                   </a>
                 </div>
 
