@@ -32,6 +32,14 @@ class LoginController extends Controller
      */
     protected $redirectTo = 'user/dashboard';
 
+    protected function redirectTo()
+    {
+        if (!empty($this->profile_slug)) {
+            return 'user/'.$this->profile_slug;
+        }
+        return '/user/dashboard';
+    }
+
     /**
      * Create a new controller instance.
      *
@@ -42,6 +50,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    protected $profile_slug;
 
 //    public function login(Request $request)
 //    {
@@ -86,7 +95,13 @@ class LoginController extends Controller
     }
     public function redirectToLinkedinProvider()
     {
-        return Socialite::with('LinkedIn')->redirect();
+        return Socialite::with('LinkedIn')
+        ->setScopes(['r_liteprofile', 'r_emailaddress'])
+        ->redirect();
+    }
+    public function redirectToFacebookProvider()
+    {
+        return Socialite::with('Facebook')->redirect();
     }
 
     /**
@@ -106,7 +121,7 @@ class LoginController extends Controller
 
         Auth::login($authUser, true);
 
-        return redirect('user/dashboard');
+        return redirect('user/'.$authUser->slug);
         // $user->token;
     }
     public function handleProviderLinkedinCallback()
@@ -121,31 +136,123 @@ class LoginController extends Controller
 
         Auth::login($authUser, true);
 
-        return redirect('user/dashboard');
+        return redirect('user/'.$authUser->slug);
+        // $user->token;
+    }
+    public function handleProviderFacebookCallback()
+    {
+        try {
+            $user = Socialite::driver('Facebook')->user();
+        } catch (Exception $e) {
+            return Redirect::to('auth/facebook');
+        }
+
+        $authUser = $this->findOrCreateUserFacebook($user);
+
+        Auth::login($authUser, true);
+
+        return redirect('user/'.$authUser->slug);
         // $user->token;
     }
     private function findOrCreateUser($githubUser)
     {
         if ($authUser = User::where('github_id', $githubUser->id)->first()) {
             return $authUser;
+        }        
+        $headshot = $githubUser->avatar;
+        
+        $slug = str_slug($githubUser->name,"-");
+        $password = bcrypt("hack4Pizza$".$slug);
+        
+        if ($authUser = User::where('email', $githubUser->email)->first()) {
+            return $authUser;
+        } else{
+            return User::create([
+                'name' => $githubUser->name,
+                'slug'=>$slug,
+                'email' => $githubUser->email,
+                'password'=>$password,
+                'profile_picture'=>$headshot,
+                'github_id' => $githubUser->id,
+            ]);
         }
-
-        return User::create([
-            'name' => $githubUser->name,
-            'email' => $githubUser->email,
-            'github_id' => $githubUser->id,
-        ]);
     }
     private function findOrCreateUserLinkedin($linkedinUser)
     {
-        if ($authUser = User::where('linkedin_id', $linkedinUser->id)->first()) {
+        
+        $linked_id = $linkedinUser['id'];
+        $first_name = $linkedinUser['first'];
+        $last_name = $linkedinUser['last'];
+        $headshot = $linkedinUser['profile_picture'];
+        $email_address = $linkedinUser['email'];
+        
+        if ($authUser = User::where('linked_id', $linked_id)->first()) {
             return $authUser;
         }
 
-        return User::create([
-            'name' => $linkedinUser->name,
-            'email' => $linkedinUser->email,
-            'linkedin_id' => $linkedinUser->id,
-        ]);
+        $full_name = $first_name." ".$last_name;
+        $slug = str_slug($full_name,"-");
+        $password = bcrypt("hack4Pizza$".$slug);
+        
+        if ($authUser = User::where('email', $email_address)->first()) {
+            return $authUser;
+        } else{
+            $createArray = [
+                'name' => $full_name,
+                'slug'=>$slug,
+                'email' => $email_address,
+                'password'=>$password,
+                'profile_picture'=>$headshot,
+                'linked_id' => $linked_id,
+            ];
+            return User::create($createArray);
+        }
+    }
+    public function createFileObject($url){
+  
+        $path_parts = pathinfo($url);
+  
+        $newPath = $path_parts['dirname'] . '/tmp-files/';
+        if(!is_dir ($newPath)){
+            mkdir($newPath, 0777);
+        }
+  
+        $newUrl = $newPath . $path_parts['basename'];
+        copy($url, $newUrl);
+        $imgInfo = getimagesize($newUrl);
+  
+        $file = new UploadedFile(
+            $newUrl,
+            $path_parts['basename'],
+            $imgInfo['mime'],
+            filesize($url),
+            true,
+            TRUE
+        );
+  
+        return $file;
+    }
+    private function findOrCreateUserFacebook($facebookUser)
+    {
+        if ($authUser = User::where('facebook_id', $facebookUser->id)->first()) {
+            return $authUser;
+        }  
+        $headshot = $facebookUser->avatar_original;
+        
+        $slug = str_slug($facebookUser->name,"-");
+        $password = bcrypt("hack4Pizza$".$slug);
+        
+        if ($authUser = User::where('email', $facebookUser->email)->first()) {
+            return $authUser;
+        } else{
+            return User::create([
+                'name' => $facebookUser->name,
+                'slug'=>$slug,
+                'email' => $facebookUser->email,
+                'password'=>$password,
+                'profile_picture'=>$headshot,
+                'facebook_id' => $facebookUser->id,
+            ]);
+        }
     }
 }

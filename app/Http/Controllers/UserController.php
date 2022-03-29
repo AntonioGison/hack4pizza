@@ -5,10 +5,14 @@ namespace App\Http\Controllers;
 use App\Experience;
 use App\Performance;
 use App\User;
+use App\Badge;
 use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
+use App\RecentSearch;
+use App\EarnedBadge;
+use App\SocialLink;
 
 class UserController extends Controller
 {
@@ -29,9 +33,52 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.dashboard.index');
+        $badges = Badge::get();
+        return view('themes.new-theme.user.dashboard',compact('badges'));
+        // return view('user.dashboard.index');
     }
+    public function top_hackers(){
+        // $earned_badges = EarnedBadge::whereHas('user_id',$id)->with('badge')->get();
+        $topHackers = User::whereHas('earned_badges', function($q){
+            $q->whereIn('badge_id',['1','2','3']);
+        })
+        ->withCount('earned_badges')
+        ->withCount('first_badges')
+        ->withCount('second_badges')
+        ->withCount('third_badges')
+        ->limit('100')
+        ->get()
+        ->sortByDesc(function($topHacker){
+            return $topHacker->earned_badges->count();
+        });
+        $authUserInfo = $topHackers->where('id',auth()->user()->id);
+        // $authUserInfoKey = $authUserInfo->keys()->first();
+        // dd($topHackers);
+        return view('themes.new-theme.user.top_hackers')->with('topHackers',$topHackers);
+    }
+    public function search_user(Request $request){
+        $name = $request->q;
+        $users = User::where('name','LIKE','%'.$name.'%')->orWhere('email','LIKE','%'.$name.'%')->orWhere('address','LIKE','%'.$name.'%')->select('id','name','profile_picture','slug','address')->withCount('experiences')->get();
 
+        return view('themes.new-theme.user.search_user')->with('users',$users);
+    }
+    public function search_users_ajax(Request $request)
+    {
+        $name = $request->name;
+        $users = User::where('name','LIKE','%'.$name.'%')->orWhere('email','LIKE','%'.$name.'%')->orWhere('address','LIKE','%'.$name.'%')->select('id','name','profile_picture','slug')->get()->take(7);
+        $userCount = User::where('name','LIKE','%'.$name.'%')->orWhere('email','LIKE','%'.$name.'%')->orWhere('address','LIKE','%'.$name.'%')->count();
+
+        $returnHTML = view('themes.new-theme.ajax_view.search_user')->with('users', $users)->with('count',$userCount)->with('search_name',$name)->render();
+        return response()->json(array('success' => true, 'html'=>$returnHTML));
+    }
+    public function store_recent_search(Request $request)
+    {
+        $search = new RecentSearch;
+        $search->user_id = auth()->user()->id;
+        $search->search_query = $request->q;
+        $search->save();
+        return response()->json(['success'=>true, 'msg'=>'search stored successfully']);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -46,7 +93,6 @@ class UserController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
-            'email' => 'required|unique:users,email,'.$data['id'],
         ]);
     }
     protected function performanceValidator(array $data)
@@ -65,8 +111,8 @@ class UserController extends Controller
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'organized_by' => 'required',
-            'from' => 'required|date|',
-            'to' => 'required|date|after_or_equal:from',
+            'from' => 'required',
+            'to' => 'required',
             'description' => 'required|string|max:255',
             'result' => 'required',
         ]);
@@ -104,20 +150,30 @@ class UserController extends Controller
     public function profileUpdate(Request $request)
     {
         $id = Auth::user()->id;
-        $user = User::findOrFail($id);
         $validation = $this->validator($request->all());
-        $input = $request->all();
-        if (empty($input['password'])) {
-            $input['password'] = $user->password;
-        } else {
-            $input['password'] = bcrypt($input['password']);
-        }
         if ($validation->fails()) {
             return response()->json($validation->errors()->toArray());
         } else {
-            $slug =  $this->createSlug($request->name);
-            $input['slug'] = $slug;
-            if ($user->fill($input)->save()) {
+            $name = $request->name;
+            $bio = $request->bio;
+            $user = User::where('id',$id)->update([
+                'name'=>$name,
+                'bio'=>$bio,
+            ]);
+
+            if ($image = $request->file('pic')) {
+                $filename = time() . '.' . $image->getClientOriginalExtension();
+                //$location = storage_path('app/public/new_images/') . $filename;
+                //Storage::disk('local')->put($filename, 'test');
+                $image->storeAs('uploads/user-pic', $filename, ['disk' => 'local']);
+                //Image::make($image)->save($location);
+                $new_filename = "uploads/user-pic/".$filename;
+                User::where('id',$id)->update([
+                    'profile_picture'=>$new_filename,
+                ]);
+            }else{
+            }
+            if ($user) {
                 return response()->json(['status' => '0']);
             }
         }
@@ -125,25 +181,48 @@ class UserController extends Controller
 
     public function addHackonton(Request $request)
     {
-        $id = Auth::user()->id;
-        $validation = $this->hackontonValidator($request->all());
-        $input = $request->all();
-        $experience = new Experience();
-        $experience->name = $input['name'];
-        $experience->description = $input['description'];
-        $experience->badge_id = $input['result'];
-        $experience->from = date('Y-m-d', strtotime($input['from']));
-        $experience->to = date('Y-m-d', strtotime($input['to']));
-        $experience->pic = $input['pic'];
-        $experience->organized_by = $input['organized_by'];
-        $experience->user_id = $id;
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string'],
+            'description' => ['required', 'string'],
+            'result' => ['required', 'string'],
+            'from' => ['required'],
+            'to' => ['required'],
+            'organized_by' => ['required'],
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors()->toArray());
+        }
 
-        if ($validation->fails()) {
-            return response()->json($validation->errors()->toArray());
-        } else {
-            if ($experience->save()) {
-                return response()->json(['status' => '0']);
-            }
+        $experience = new Experience;
+        
+        $experience->name = $request->name;
+        $experience->description = $request->description;
+        $experience->badge_id = $request->result;
+        
+        $experience->from = date('Y-m-d', strtotime($request->from));
+        $experience->to = date('Y-m-d', strtotime($request->to));
+        $experience->organized_by = $request->organized_by;
+        $experience->user_id = Auth::user()->id;
+       
+        if ($image = $request->file('file')) {
+            $image_uploaded = true;
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('uploads/hackathon', $filename, ['disk' => 'local']);
+            $new_filename = "uploads/hackathon/".$filename;
+            $experience->pic = $new_filename;
+        }else{
+            $experience->pic = "new-theme/images/logo.svg";
+            $image_uploaded = false;
+        }
+        if ($experience->save()) {
+
+            $badge_id = $experience->badge_id;
+            $new_badge = $this->update_badge_info($badge_id);
+            return response()->json([
+                'status' => '0', 
+                'badge_id'=>$new_badge,
+                'image_uploaded'=>$image_uploaded
+            ]);
         }
     }
 
@@ -174,7 +253,6 @@ class UserController extends Controller
 
     public function updatePerformance(Request $request)
     {
-
         $id = Auth::user()->id;
         $validation = $this->performanceValidator($request->all());
         $input = $request->all();
@@ -246,5 +324,260 @@ class UserController extends Controller
         $experience->delete();
         Session::flash('success_message', 'Hackonthon successfully deleted!');
         return redirect()->route('user.dashboard');
+    }
+
+    public function select_theme($theme)
+    {
+        if(Auth::check()) {
+            $user = auth()->user();
+            $user->theme = $theme;
+            $user->save();
+            return redirect()->route('user.profile',$user->slug);
+        } else {
+            return Redirect::back()->with('message','Please log in to select the default theme!');
+        }
+    }
+
+    public function edit_hackathon(Request $request){
+        $hackathon_id = $request->id;
+        $experience = Experience::where('id',$hackathon_id)->first();
+        $badges = Badge::whereIn('id',[1,2,3,12])->get();
+
+        return view('themes.new-theme.user.edit_hackathon',compact('experience','badges'));
+    }
+
+    public function update_hackathon(Request $request)
+    {
+        $id = Auth::user()->id;
+
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string'],
+            'description' => ['required', 'string'],
+            'result' => ['required', 'string'],
+            'from' => ['required'],
+            'to' => ['required'],
+            'organized_by' => ['required'],
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors()->toArray());
+        }
+
+        $experience = Experience::findOrFail($request->id);
+        
+        $experience->name = $request->name;
+        $experience->description = $request->description;
+        $experience->badge_id = $request->result;
+        
+        $experience->from = date('Y-m-d', strtotime($request->from));
+        $experience->to = date('Y-m-d', strtotime($request->to));
+        $experience->organized_by = $request->organized_by;
+        $experience->user_id = $id;
+       
+        if ($image = $request->file('file')) {
+            $image_uploaded = true;
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('uploads/hackathon', $filename, ['disk' => 'local']);
+            $new_filename = "uploads/hackathon/".$filename;
+            $experience->pic = $new_filename;
+        }else{
+            $image_uploaded = false;
+        }
+
+        if ($experience->save()) {
+            return response()->json(['status' => '0', 'image_uploaded'=>$image_uploaded]);
+        }
+    }
+    public function update_badge_info($badge_id){
+        $userId = Auth::user()->id;
+        $where = [
+            'user_id' => $userId,
+            'badge_id' => $badge_id,
+        ];
+        $objexist = EarnedBadge::where($where);
+        if($objexist->count()>0){
+            $data = $objexist->first();
+            $old_count = $data->count;
+            $new_count = $old_count+1;
+
+            $updated = EarnedBadge::where($where)->update([
+                'count'=>$new_count
+            ]);
+            
+            //custom badge logic
+            // When you reach 1,2,3rd place for 3 times then unlock one of them
+            if($badge_id == 1) {
+                $updatedBadgeCount = floor($new_count/3);
+                if($updatedBadgeCount == 0) {
+                    $newBadge->user_id = $userId;
+                    $newBadge->badge_id = 4;
+                    $newBadge->count = 1;
+                    $newBadge->save();
+                } else {
+                    EarnedBadge::where('user_id',$userId)->where('badge_id','4')->update([
+                        'count'=>$updatedBadgeCount
+                    ]);
+                    $this->checkAndUpdateMostWantedBadge($userId);
+                }
+            }
+            if($badge_id == 2) {
+                $updatedBadgeCount = floor($new_count/3);
+                if($updatedBadgeCount == 0) {
+                    $newBadge->user_id = $userId;
+                    $newBadge->badge_id = 5;
+                    $newBadge->count = 1;
+                    $newBadge->save();
+                } else {
+                    EarnedBadge::where('user_id',$userId)->where('badge_id','5')->update([
+                        'count'=>$updatedBadgeCount
+                    ]);
+                    $this->checkAndUpdateMostWantedBadge($userId);
+                }
+            }
+            if($badge_id == 3) {
+                $updatedBadgeCount = floor($new_count/3);
+                if($updatedBadgeCount == 0) {
+                    $newBadge->user_id = $userId;
+                    $newBadge->badge_id = 6;
+                    $newBadge->count = 1;
+                    $newBadge->save();
+                } else {
+                    EarnedBadge::where('user_id',$userId)->where('badge_id','6')->update([
+                        'count'=>$updatedBadgeCount
+                    ]);
+                    $this->checkAndUpdateMostWantedBadge($userId);
+                }
+            }
+            if($badge_id == 12) {
+                //When you reach x10 hackathons and you don’t win
+                $updatedBadgeCount10 = floor($new_count/10);
+                if($updatedBadgeCount == 0) {
+                    $newBadge->user_id = $userId;
+                    $newBadge->badge_id = 14;
+                    $newBadge->count = 1;
+                    $newBadge->save();
+                } else {
+                    EarnedBadge::where('user_id',$userId)->where('badge_id','14')->update([
+                        'count'=>$updatedBadgeCount10
+                    ]);
+                }
+                //When you reach x50 hackathons and you don’t win
+                $updatedBadgeCount50 = floor($new_count/50);
+                if($updatedBadgeCount == 0) {
+                    $newBadge->user_id = $userId;
+                    $newBadge->badge_id = 13;
+                    $newBadge->count = 1;
+                    $newBadge->save();
+                } else {
+                    EarnedBadge::where('user_id',$userId)->where('badge_id','13')->update([
+                        'count'=>$updatedBadgeCount50
+                    ]);
+                }
+            }
+
+            $res = $badge_id;      
+        }else{
+            EarnedBadge::create([
+                'user_id' => Auth::user()->id,
+                'badge_id' => $badge_id,
+                'count'=>1,
+            ]);
+            $res = $badge_id;
+        }
+        return $res;
+    }
+
+    //When you always win 1/2/3th place in all your hackathons, unlock after adding x10 hackathons and always win
+    public function checkAndUpdateMostWantedBadge($userId)
+    {
+        $experiences = Experience::where('user_id',$userId)
+                                ->limit(10)
+                                ->get();
+        foreach($experiences as $experience) {
+            if($experience->badge_id > 3) {
+                return true;
+            }
+        }
+        $badge11 = EarnedBadge::where('user_id',$userId)->where('badge_id','11')->get();
+        if(empty($badge11)) {
+            $newBadge11->user_id = $userId;
+            $newBadge11->badge_id = 11;
+            $newBadge11->count = 1;
+            $newBadge11->save();
+        } else {
+            $badge11->count = $badge11->count + 1;
+            $badge11->save();
+        }
+        return true;
+    }
+
+    public function updateSocialLinks(Request $request)
+    {
+        $userId = $request->user_id;
+
+        foreach($request->all() as $key => $value) {
+            if(strpos($key, 'instagram') !== false){
+                $checkSocialLink = SocialLink::where('user_id',$userId)->where('name','instagram')->first();
+                if(!empty($checkSocialLink)) {
+                    $checkSocialLink->link = $value;
+                    $checkSocialLink->save();
+                } else {
+                    $link = new SocialLink;
+                    $link->name = 'instagram';
+                    $link->link = $value;
+                    $link->user_id = $userId;
+                    $link->save();
+                }
+            } else if(strpos($key, 'facebook') !== false) {
+                $checkSocialLink = SocialLink::where('user_id',$userId)->where('name','facebook')->first();
+                if(!empty($checkSocialLink)) {
+                    $checkSocialLink->link = $value;
+                    $checkSocialLink->save();
+                } else {
+                    $link = new SocialLink;
+                    $link->name = 'facebook';
+                    $link->link = $value;
+                    $link->user_id = $userId;
+                    $link->save();
+                }
+            } else if(strpos($key, 'dribble') !== false) {
+                $checkSocialLink = SocialLink::where('user_id',$userId)->where('name','dribble')->first();
+                if(!empty($checkSocialLink)) {
+                    $checkSocialLink->link = $value;
+                    $checkSocialLink->save();
+                } else {
+                    $link = new SocialLink;
+                    $link->name = 'dribble';
+                    $link->link = $value;
+                    $link->user_id = $userId;
+                    $link->save();
+                }
+            } else if(strpos($key, 'behance') !== false) {
+                $checkSocialLink = SocialLink::where('user_id',$userId)->where('name','behance')->first();
+                if(!empty($checkSocialLink)) {
+                    $checkSocialLink->link = $value;
+                    $checkSocialLink->save();
+                } else {
+                    $link = new SocialLink;
+                    $link->name = 'behance';
+                    $link->link = $value;
+                    $link->user_id = $userId;
+                    $link->save();
+                }
+            } else if(strpos($key, 'whatsapp') !== false) {
+                $checkSocialLink = SocialLink::where('user_id',$userId)->where('name','whatsapp')->first();
+                if(!empty($checkSocialLink)) {
+                    $checkSocialLink->link = $value;
+                    $checkSocialLink->save();
+                } else {
+                    $link = new SocialLink;
+                    $link->name = 'whatsapp';
+                    $link->link = $value;
+                    $link->user_id = $userId;
+                    $link->save();
+                }
+            }
+        }
+
+        return redirect()->route('user.profile',auth()->user()->slug);
     }
 }

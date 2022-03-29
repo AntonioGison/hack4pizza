@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Mail;
 use Auth;
+use App\EarnedBadge;
 
 class RegisterController extends Controller
 {
@@ -34,6 +35,18 @@ class RegisterController extends Controller
      */
     protected $redirectTo = 'user/dashboard';
 
+    protected function redirectTo()
+    {
+        if (!empty($this->profile_slug)) {
+            if($this->isBadgeAssigned > 0) {
+                return redirect()->route('user.profile',$this->profile_slug)->with('badgeId','22')->with('badgeName','Early Adopter');
+            } else {
+                return redirect()->route('user.profile',$this->profile_slug);
+            }
+        }
+        return '/user/dashboard';
+    }
+
     /**
      * Create a new controller instance.
      *
@@ -44,6 +57,9 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    protected $profile_slug;
+    protected $isBadgeAssigned;
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -53,21 +69,27 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'phone_number' => 'required',
             'password' => 'required|string|min:6',
             'terms' => 'required',
         ]);
     }
 
     protected function create(array $data)
-    {
+    {       
+        $this->profile_slug =  $this->createSlug($data['first_name']." ".$data['last_name']);
         return User::create([
-            'name' => $data['name'],
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'name'=>$data['first_name']." ".$data['last_name'],
             'email' => $data['email'],
+            'phone_number'=>$data['phone_number'],
             'password' => bcrypt($data['password']),
-            'pic' => $data['pic'],
-            'slug' => $data['slug']
+            'slug' => $this->profile_slug,
+            'address'=> $data['address'],
         ]);
     }
 
@@ -143,12 +165,28 @@ class RegisterController extends Controller
         } else {
             $input = $request->all();
             $slug =  $this->createSlug($request->name);
-            $input['slug'] = $slug;
+            $this->profile_slug =  $this->createSlug($request->first_name." ".$request->last_name);
+
+            $input['slug'] = $this->profile_slug;
             $user = $this->create($input);
             Auth::login($user);
             if (Auth::user()) {
-                return response()->json(['status' => '0','slug' => $slug]);
+                $this->isBadgeAssigned = $this->assignBadge();
+                return response()->json(['status' => '0','slug' => $this->profile_slug]);
             }
         }
+    }
+
+    public function assignBadge()
+    {
+        if(date('Y') < 2022) {
+            $badge = new EarnedBadge;
+            $badge->user_id = auth()->user()->id;
+            $badge->badge_id = '22';
+            $badge->count = '1';
+            $badge->save();
+            return $badge->badge_id;
+        }
+        return 0;
     }
 }

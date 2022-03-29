@@ -7,6 +7,7 @@ use App\Experience;
 use App\Setting;
 
 use App\User;
+use App\Badge;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Session;
 use Mail;
 use Validator;
 use Image;
+use App\EarnedBadge;
 
 class HomeController extends Controller
 {
@@ -36,16 +38,46 @@ class HomeController extends Controller
     public function getProfile($slug)
     {
         $user = User::where('slug','=',$slug)->first();
-        $title = "Profiel-".$slug;
+        $id = $user->id;
+        $badges = Badge::whereIn('id',[1,2,3,12])->get();
+        $earned_badges = EarnedBadge::where('user_id',$id)->with('badge')->get();
+        $earned_ids = [];
+        $all_user_badges = [];
+        $i=0;
+        foreach($earned_badges as $erbg){
+            array_push($earned_ids,$erbg->badge_id);  
+            array_push($all_user_badges,$erbg->badge);
+            $all_user_badges[$i]['status']="earned";
+            $all_user_badges[$i]['count']=$erbg->count;
+            $i++;
+        }   
+        $unearned_badges = Badge::whereNotIn('id',$earned_ids)->get();
+        foreach($unearned_badges as $uerbg){
+            array_push($all_user_badges,$uerbg);
+            $all_user_badges[$i]['status']="unearned";           
+            $all_user_badges[$i]['count']= 0;
+            $i++;
+        }
+
+        $title = "Profile-".$slug;
         if (Auth::user()){
             if (Auth::user()->slug == $slug){
-                return view('user.dashboard.index',['title'=>$title,'user'=>$user]);
+                $ownprofile = true;
             }else{
-                return view('user.dashboard.singleProfile',['title'=>$title,'user'=>$user]);
+                $ownprofile = false;
             }
         }else{
-            return view('user.dashboard.singleProfile',['title'=>$title,'user'=>$user]);
+            $ownprofile = false;
         }
+        return view('themes.new-theme.user.single_user_profile',compact(
+            'title',
+            'user',
+            'badges',
+            'ownprofile',
+            'all_user_badges',
+            'earned_badges',
+            'unearned_badges'
+        ));
     }
     function picUpload(Request $request)
     {
@@ -90,17 +122,17 @@ class HomeController extends Controller
         {
             $image = $request->file('file');
             $new_name = rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(base_path('uploads/hackonton/'), $new_name);
+            $image->move(base_path('public/uploads/hackathon/'), $new_name);
 
-            $newImage = base_path()."/uploads/hackonton/".$new_name;
+            $newImage = base_path()."/public/uploads/hackathon/".$new_name;
             $thumb_image = Image::make($newImage);
             $thumb_image->fit(200);
-            $newThumb = base_path()."/uploads/hackonton/".$new_name;
+            $newThumb = base_path()."/public/uploads/hackathon/".$new_name;
             $thumb_image->save($newThumb);
             return response()->json([
                 'pic'       => $new_name,
                 'message'   => 'Image Upload Successfully',
-                'uploaded_image' => '<img src="/uploads/hackonton/'.$new_name.'" class="img-thumbnail" width="100%" />',
+                'uploaded_image' => '<img src="/uploads/hackathon/'.$new_name.'" class="img-thumbnail" width="100%" />',
                 'class_name'  => 'alert-success'
             ]);
 
@@ -182,8 +214,6 @@ class HomeController extends Controller
             'g-recaptcha-response' => 'required',
             'g-recaptcha-response.required' => 'Check the ReCaptcha',
         ]);
-
-//dd("working");
 
         $settings = Setting::pluck('value','name')->toArray();
         if(isset($settings['enquiry_email'])) {

@@ -20,7 +20,7 @@ class CreateExperiencesTable extends Migration
             $table->date('from');
             $table->date('to');
             $table->text('description');
-            $table->string('pic');
+            $table->string('pic')->nullable();
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('badge_id')->unsigned();

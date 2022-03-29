@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap');body {
   background-color: #fcfcfa;  font-family: 'Roboto', sans-serif;
 }
-
+body{
+  font-family: 'Roboto', sans-serif;
+}
 img {
   max-width: 100%;
 }
@@ -21,8 +23,9 @@ img {
 
 .custom-file-label::after {
   color: #ffffff;
-  background-color: #1b8bee;
+  background-color: #D90088;
   border-left: 1px solid #777777;
+  font-family:Monument;
   border-radius: 0;
 }
 
@@ -55,7 +58,7 @@ img {
 }
 
 form.form_class {
-  padding: 30px 60px;
+  padding: 30px 30px;
 }
 
 button {
@@ -134,7 +137,6 @@ button:focus {
 
 #header {
   padding: 7px 10px;
-  margin-bottom: 20px;
 }
 
 #header.header_shadow {
@@ -258,22 +260,9 @@ button:focus {
   margin: 10px auto;
   padding: 65px 15px 40px;
 }
-
-.main_info_wraper:before {
-  content: '';
-  background: rgb(255, 2, 126);
-  background: linear-gradient(90deg, rgba(255, 2, 126, 1) 0%, rgba(255, 62, 71, 1) 25%, rgba(255, 120, 18, 1) 50%, rgba(155, 184, 109, 1) 75%, rgba(67, 223, 205, 1) 100%);
-  position: absolute;
-  width: 100%;
-  height: 15px;
-  top: 10px;
-  left: 0;
-}
-
 .main_info_info {
   padding: 0;
 }
-
 .main_info_cover .figure-img {
     width: 200px;
     height: 200px;
@@ -344,16 +333,16 @@ canvas {
   -webkit-transform: translate(-50%, 0);
   transform: translate(-50%, 0);
 }
-
-#chartjs-radar {
-  width: 320px;
+#chartjs-radar{
+  width:420px;
+  padding:0px;
+  height:420px;
   margin: 0 auto;
-  border: 1.5px solid #707070;
-  padding: 0 10px;
 }
-
-#chartjs-radar #canvas {
-  margin: -8px 0;
+#canvas{
+  width:450px;
+  height:450px;
+  color:#fff;
 }
 
 .badge-min-height {

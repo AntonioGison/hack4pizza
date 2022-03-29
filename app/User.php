@@ -15,15 +15,49 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email','slug', 'password','pic','name1','name2','name3','url1','url2','url3','linkedin_id','github_id','bio',
+      'name','first_name','last_name', 'email', 'phone_number', 'slug', 'password','profile_picture','facebook_id', 'linked_id','github_id','bio',
     ];
 
+    public function earned_badges(){
+        return $this->hasMany('App\EarnedBadge','user_id');
+    }
+    public function first_badges(){
+        return $this->hasMany('App\EarnedBadge','user_id')->where('badge_id','1');
+    }
+    public function second_badges(){
+        return $this->hasMany('App\EarnedBadge','user_id')->where('badge_id','2');
+    }
+    public function third_badges(){
+        return $this->hasMany('App\EarnedBadge','user_id')->where('badge_id','3');
+    }
     public function experiences(){
         return $this->hasMany('App\Experience','user_id')->orderBy("created_at","DESC");
     }
     public function performance(){
         return $this->hasOne('App\Performance','user_id');
     }
+    public function getRecentSearchesAttribute(){
+        $searches = RecentSearch::where('user_id',$this->id)->orderBy('id','desc')->get()->take(5);
+        return $searches;
+        // return $this->hasMany('App\RecentSearch','user_id');
+    }
+
+    public function getInstagramLink() {
+        return SocialLink::where('name','instagram')->where('user_id',$this->id)->value('link');
+    }
+    public function getFacebookLink() {
+        return SocialLink::where('name','facebook')->where('user_id',$this->id)->value('link');
+    }
+    public function getDribbleLink() {
+        return SocialLink::where('name','dribble')->where('user_id',$this->id)->value('link');
+    }
+    public function getBehanceLink() {
+        return SocialLink::where('name','behance')->where('user_id',$this->id)->value('link');
+    }
+    public function getWhatsappLink() {
+        return SocialLink::where('name','whatsapp')->where('user_id',$this->id)->value('link');
+    }
+    
     /**
      * The attributes that should be hidden for arrays.
      *
